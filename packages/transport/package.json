@@ -1,0 +1,33 @@
+{
+  "name": "@tessera/transport",
+  "version": "0.1.0",
+  "description": "Local (BroadcastChannel) and WebSocket transports",
+  "license": "MIT",
+  "author": "Abhishek Thakur",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "@tessera/core": "workspace:*",
+    "@tessera/protocol": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

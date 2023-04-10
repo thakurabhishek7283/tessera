@@ -1,0 +1,38 @@
+{
+  "name": "@tessera/elements",
+  "version": "0.1.0",
+  "description": "Lit base element, design tokens and UI primitives for Tessera kits",
+  "license": "MIT",
+  "author": "Abhishek Thakur",
+  "type": "module",
+  "sideEffects": [
+    "./dist/*.js"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json",
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "src/tokens.css"
+  ],
+  "dependencies": {
+    "@tessera/core": "workspace:*",
+    "lit": "^3.3.0",
+    "@lit/context": "^1.1.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

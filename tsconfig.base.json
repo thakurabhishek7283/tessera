@@ -4,6 +4,7 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "verbatimModuleSyntax": true,
+    "declaration": true,
     "isolatedDeclarations": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",

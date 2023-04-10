@@ -1,0 +1,33 @@
+{
+  "name": "@tessera/testing",
+  "version": "0.1.0",
+  "description": "FakeHub, fake clock and fixtures for testing Tessera kits",
+  "license": "MIT",
+  "author": "Abhishek Thakur",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "@tessera/core": "workspace:*",
+    "@tessera/protocol": "workspace:*"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

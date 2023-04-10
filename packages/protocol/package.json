@@ -1,0 +1,32 @@
+{
+  "name": "@tessera/protocol",
+  "version": "0.1.0",
+  "description": "Wire protocol and REST DTO schemas shared by Tessera clients and servers",
+  "license": "MIT",
+  "author": "Abhishek Thakur",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "zod": "^4.1.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

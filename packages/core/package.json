@@ -1,0 +1,32 @@
+{
+  "name": "@tessera/core",
+  "version": "0.1.0",
+  "description": "Plugin host, config, event bus, services, store, history, i18n and adapter contracts",
+  "license": "MIT",
+  "author": "Abhishek Thakur",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "zod": "^4.1.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

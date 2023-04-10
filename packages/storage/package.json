@@ -1,0 +1,34 @@
+{
+  "name": "@tessera/storage",
+  "version": "0.1.0",
+  "description": "Memory, localStorage, IndexedDB and REST storage adapters plus upload adapters",
+  "license": "MIT",
+  "author": "Abhishek Thakur",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "dependencies": {
+    "@tessera/core": "workspace:*",
+    "@tessera/protocol": "workspace:*",
+    "idb": "^8.0.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
