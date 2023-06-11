@@ -94,7 +94,7 @@ export function storageContract(
       const rest = await s.list<Card>('cards', {
         orderBy: { field: 'rank' },
         limit: 3,
-        cursor: first.nextCursor!,
+        ...(first.nextCursor ? { cursor: first.nextCursor } : {}),
       });
       expect(rest.items.map((d) => d.data.title)).toEqual(['d']);
       expect(rest.nextCursor).toBeUndefined();
