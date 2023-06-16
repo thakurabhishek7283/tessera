@@ -60,3 +60,24 @@ export const UploadRes = z.object({
 });
 
 export const HealthRes = z.object({ ok: z.literal(true), version: z.string(), uptime: z.number() });
+
+/** A `where` value as the client sends it: query strings carry no type information. */
+export type WhereValue = string | number | boolean | null;
+
+/** Encodes a typed filter value for a `where[field]=…` query parameter. */
+export function encodeWhereValue(value: WhereValue): string {
+  return value === null ? 'null' : String(value);
+}
+
+/**
+ * Typed values a raw query-string filter may stand for, e.g. `"1"` → `["1", 1]`. Servers match a
+ * document if its field equals any candidate, which keeps `where: { rank: 1 }` working over HTTP.
+ */
+export function whereCandidates(raw: string): WhereValue[] {
+  const out: WhereValue[] = [raw];
+  if (raw === 'null') out.push(null);
+  else if (raw === 'true') out.push(true);
+  else if (raw === 'false') out.push(false);
+  else if (raw.trim() !== '' && Number.isFinite(Number(raw))) out.push(Number(raw));
+  return out;
+}

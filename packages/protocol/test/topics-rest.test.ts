@@ -6,10 +6,12 @@ import {
   ChatSendReq,
   DocListQuery,
   DocParams,
+  encodeWhereValue,
   IceRes,
   Message,
   MessageBody,
   TopicSchemas,
+  whereCandidates,
 } from '../src/index.js';
 
 const message = {
@@ -93,5 +95,16 @@ describe('REST DTOs', () => {
       ],
     });
     expect(res.success).toBe(true);
+  });
+});
+
+describe('where value encoding', () => {
+  it('round-trips typed values through candidates', () => {
+    for (const value of ['todo', 7, true, false, null] as const) {
+      expect(whereCandidates(encodeWhereValue(value))).toContain(value);
+    }
+    expect(whereCandidates('1')).toEqual(['1', 1]);
+    expect(whereCandidates('')).toEqual(['']);
+    expect(whereCandidates('abc')).toEqual(['abc']);
   });
 });
