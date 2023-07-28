@@ -1,3 +1,4 @@
+export { createTransport } from './factory.js';
 export {
   createLocalTransport,
   isLocalTransport,
@@ -7,3 +8,9 @@ export {
   type LocalTransportOptions,
 } from './local.js';
 export { createMergeThrottle, createPeerList, type PeerList, withTimeout } from './util.js';
+export {
+  createWebSocketTransport,
+  DEFAULT_RECONNECT,
+  type WebSocketLike,
+  type WebSocketTransportOptions,
+} from './websocket.js';
