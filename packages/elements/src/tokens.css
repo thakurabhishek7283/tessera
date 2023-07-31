@@ -1,0 +1,98 @@
+/*
+ * Tessera design tokens. Light palette by default; dark when the nearest
+ * `data-tessera-theme="dark"` ancestor says so, or when the OS prefers dark and no theme is set.
+ * Every colour pair is checked against WCAG 2.2 AA in test/tokens.test.ts.
+ */
+:root,
+tessera-root {
+  --tessera-font-family:
+    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --tessera-font-size-xs: 0.75rem;
+  --tessera-font-size-sm: 0.875rem;
+  --tessera-font-size-md: 1rem;
+  --tessera-font-size-lg: 1.125rem;
+  --tessera-font-size-xl: 1.5rem;
+  --tessera-line-height: 1.5;
+
+  --tessera-radius-sm: 4px;
+  --tessera-radius-md: 8px;
+  --tessera-radius-lg: 12px;
+  --tessera-radius-full: 9999px;
+
+  --tessera-space-1: 4px;
+  --tessera-space-2: 8px;
+  --tessera-space-3: 12px;
+  --tessera-space-4: 16px;
+  --tessera-space-5: 20px;
+  --tessera-space-6: 24px;
+  --tessera-space-7: 28px;
+  --tessera-space-8: 32px;
+
+  --tessera-z-popover: 1000;
+  --tessera-z-dialog: 1100;
+  --tessera-z-toast: 1200;
+
+  --tessera-motion-duration: 150ms;
+
+  --tessera-color-bg: #ffffff;
+  --tessera-color-surface: #f8fafc;
+  --tessera-color-surface-2: #eef2f6;
+  --tessera-color-border: #6b7686;
+  --tessera-color-text: #0f172a;
+  --tessera-color-text-muted: #475569;
+  --tessera-color-primary: #1d4ed8;
+  --tessera-color-primary-contrast: #ffffff;
+  --tessera-color-danger: #b91c1c;
+  --tessera-color-warning: #92400e;
+  --tessera-color-success: #166534;
+  --tessera-color-focus-ring: #1d4ed8;
+
+  --tessera-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.12);
+  --tessera-shadow-md: 0 4px 12px rgb(15 23 42 / 0.16);
+  --tessera-shadow-lg: 0 12px 32px rgb(15 23 42 / 0.22);
+}
+
+:root[data-tessera-theme="dark"],
+tessera-root[data-tessera-theme="dark"],
+[data-tessera-theme="dark"] {
+  --tessera-color-bg: #0b1220;
+  --tessera-color-surface: #111a2e;
+  --tessera-color-surface-2: #1a2540;
+  --tessera-color-border: #7283a0;
+  --tessera-color-text: #e5e9f0;
+  --tessera-color-text-muted: #a3afc2;
+  --tessera-color-primary: #60a5fa;
+  --tessera-color-primary-contrast: #0b1220;
+  --tessera-color-danger: #f87171;
+  --tessera-color-warning: #fbbf24;
+  --tessera-color-success: #4ade80;
+  --tessera-color-focus-ring: #93c5fd;
+
+  --tessera-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
+  --tessera-shadow-md: 0 4px 12px rgb(0 0 0 / 0.55);
+  --tessera-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.65);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tessera-theme]) {
+    --tessera-color-bg: #0b1220;
+    --tessera-color-surface: #111a2e;
+    --tessera-color-surface-2: #1a2540;
+    --tessera-color-border: #7283a0;
+    --tessera-color-text: #e5e9f0;
+    --tessera-color-text-muted: #a3afc2;
+    --tessera-color-primary: #60a5fa;
+    --tessera-color-primary-contrast: #0b1220;
+    --tessera-color-danger: #f87171;
+    --tessera-color-warning: #fbbf24;
+    --tessera-color-success: #4ade80;
+    --tessera-color-focus-ring: #93c5fd;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  tessera-root {
+    --tessera-motion-duration: 0ms;
+  }
+}
