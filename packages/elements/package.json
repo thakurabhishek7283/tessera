@@ -6,33 +6,60 @@
   "author": "Abhishek Thakur",
   "type": "module",
   "sideEffects": [
-    "./dist/*.js"
+    "./dist/define.js"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./package.json": "./package.json",
-    "./tokens.css": "./dist/tokens.css"
+    "./define": {
+      "types": "./dist/define.d.ts",
+      "import": "./dist/define.js"
+    },
+    "./tokens.css": "./src/tokens.css",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
-    "README.md",
-    "src/tokens.css"
+    "src/tokens.css",
+    "README.md"
   ],
   "dependencies": {
+    "@lit/context": "^1.1.0",
     "@tessera/core": "workspace:*",
-    "lit": "^3.3.0",
-    "@lit/context": "^1.1.0"
+    "lit": "^3.3.0"
   },
   "scripts": {
-    "build": "tsdown",
+    "build": "node scripts/sync-tokens.mjs && tsdown",
     "dev": "tsdown --watch",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --passWithNoTests",
+    "test:browser": "vitest run --config vitest.browser.config.ts",
+    "sync-tokens": "node scripts/sync-tokens.mjs"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@tessera/protocol": "workspace:*",
+    "@tessera/storage": "workspace:*",
+    "@tessera/transport": "workspace:*",
+    "@types/node": "^26.6.4",
+    "@vitest/browser-playwright": "^5.0.3",
+    "playwright": "^1.63.0",
+    "zod": "^4.6.5"
+  },
+  "peerDependencies": {
+    "@tessera/storage": "^0.1.0",
+    "@tessera/transport": "^0.1.0"
+  },
+  "peerDependenciesMeta": {
+    "@tessera/storage": {
+      "optional": true
+    },
+    "@tessera/transport": {
+      "optional": true
+    }
   }
 }
