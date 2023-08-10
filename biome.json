@@ -12,7 +12,8 @@
       "!**/node_modules",
       "!**/.vitepress/cache",
       "!**/.vitepress/dist",
-      "!pnpm-lock.yaml"
+      "!pnpm-lock.yaml",
+      "!**/*.generated.ts"
     ]
   },
   "formatter": {

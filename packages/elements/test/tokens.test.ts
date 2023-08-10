@@ -75,6 +75,9 @@ describe.each(Object.entries(palettes))('%s palette meets WCAG AA', (name, read)
     ['success', 'bg'],
     ['success', 'surface'],
     ['primary-contrast', 'primary'],
+    ['primary-contrast', 'danger'],
+    ['primary-contrast', 'warning'],
+    ['primary-contrast', 'success'],
   ])('text %s on %s has ≥ 4.5:1', (fg, bg) => {
     expect(contrast(c(fg), c(bg))).toBeGreaterThanOrEqual(4.5);
   });
