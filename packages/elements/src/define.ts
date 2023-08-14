@@ -1,10 +1,14 @@
 import { TesseraAvatar, TesseraAvatarStack } from './components/avatar.js';
 import { TesseraBadge } from './components/badge.js';
 import { TesseraButton } from './components/button.js';
+import { TesseraDialog } from './components/dialog.js';
 import { TesseraEmptyState } from './components/empty-state.js';
 import { TesseraIcon } from './components/icon.js';
 import { TesseraIconButton } from './components/icon-button.js';
+import { TesseraMenu } from './components/menu.js';
+import { TesseraPopover } from './components/popover.js';
 import { TesseraSpinner } from './components/spinner.js';
+import { TesseraTooltip } from './components/tooltip.js';
 import { TesseraRoot } from './root.js';
 
 /** Defines `tag` once, even if the module is loaded twice. */
@@ -22,6 +26,10 @@ defineElement('tessera-avatar', TesseraAvatar);
 defineElement('tessera-avatar-stack', TesseraAvatarStack);
 defineElement('tessera-badge', TesseraBadge);
 defineElement('tessera-empty-state', TesseraEmptyState);
+defineElement('tessera-popover', TesseraPopover);
+defineElement('tessera-menu', TesseraMenu);
+defineElement('tessera-tooltip', TesseraTooltip);
+defineElement('tessera-dialog', TesseraDialog);
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -34,5 +42,9 @@ declare global {
     'tessera-avatar-stack': TesseraAvatarStack;
     'tessera-badge': TesseraBadge;
     'tessera-empty-state': TesseraEmptyState;
+    'tessera-popover': TesseraPopover;
+    'tessera-menu': TesseraMenu;
+    'tessera-tooltip': TesseraTooltip;
+    'tessera-dialog': TesseraDialog;
   }
 }
