@@ -9,6 +9,18 @@ const executablePath =
 
 export default defineConfig({
   resolve: { dedupe: ['lit', '@lit/context'] },
+  // Pre-bundle up front so Vite does not reload the page mid-run when it discovers them.
+  optimizeDeps: {
+    include: [
+      'axe-core',
+      'lit',
+      'lit/directives/unsafe-svg.js',
+      'lit/directives/if-defined.js',
+      '@lit/context',
+      'vitest/browser',
+      'zod',
+    ],
+  },
   test: {
     include: ['test/**/*.browser.test.ts'],
     browser: {
