@@ -13,13 +13,10 @@ import { TesseraSelect } from './components/select.js';
 import { TesseraSpinner } from './components/spinner.js';
 import { TesseraTagInput } from './components/tag-input.js';
 import { TesseraTextarea } from './components/textarea.js';
+import { TesseraToastRegion } from './components/toast.js';
 import { TesseraTooltip } from './components/tooltip.js';
+import { defineElement } from './define-element.js';
 import { TesseraRoot } from './root.js';
-
-/** Defines `tag` once, even if the module is loaded twice. */
-export function defineElement(tag: string, ctor: CustomElementConstructor): void {
-  if (!customElements.get(tag)) customElements.define(tag, ctor);
-}
 
 // <tessera-root> first, so elements upgraded afterwards find their provider immediately.
 defineElement('tessera-root', TesseraRoot);
@@ -40,6 +37,7 @@ defineElement('tessera-textarea', TesseraTextarea);
 defineElement('tessera-select', TesseraSelect);
 defineElement('tessera-tag-input', TesseraTagInput);
 defineElement('tessera-color-swatches', TesseraColorSwatches);
+defineElement('tessera-toast-region', TesseraToastRegion);
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -61,5 +59,6 @@ declare global {
     'tessera-select': TesseraSelect;
     'tessera-tag-input': TesseraTagInput;
     'tessera-color-swatches': TesseraColorSwatches;
+    'tessera-toast-region': TesseraToastRegion;
   }
 }
