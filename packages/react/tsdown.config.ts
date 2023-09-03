@@ -6,4 +6,5 @@ export default defineConfig({
   dts: true,
   clean: true,
   platform: 'neutral',
+  external: ['react', 'react/jsx-runtime', '@tessera/elements/define'],
 });
