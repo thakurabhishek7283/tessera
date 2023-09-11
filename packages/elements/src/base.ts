@@ -1,7 +1,7 @@
 import { ContextConsumer } from '@lit/context';
 import type { ReadonlyStore, TesseraContext, TesseraInstance, Unsubscribe } from '@tessera/core';
 import { TesseraError } from '@tessera/core';
-import { LitElement, nothing, type PropertyDeclarations } from 'lit';
+import { LitElement, nothing, type PropertyDeclarations, type PropertyValues } from 'lit';
 import { tesseraContext } from './context.js';
 import { StoreController } from './controllers.js';
 import { getDefaultInstance, isDefaultInstance } from './default-instance.js';
@@ -38,6 +38,8 @@ export abstract class TesseraElement extends LitElement {
   });
   #bound: TesseraInstance | undefined;
   #offs: Unsubscribe[] = [];
+  #observed = new Map<ReadonlyStore<unknown>, Unsubscribe>();
+  #seen = new Set<ReadonlyStore<unknown>>();
 
   /** The resolved context. Throws if no instance can be found (only possible for primitives). */
   protected get ctx(): TesseraContext {
@@ -70,6 +72,22 @@ export abstract class TesseraElement extends LitElement {
     return this.dispatchEvent(event);
   }
 
+  /**
+   * Returns `store.get()` and re-renders when it changes. Call it from `render()`: the
+   * subscription follows whichever stores the latest render used, so it works with stores that
+   * only exist once a feature is enabled. Prefer {@link TesseraElement.useStore} for a fixed store.
+   */
+  protected observe<T>(store: ReadonlyStore<T>): T {
+    this.#seen.add(store as ReadonlyStore<unknown>);
+    if (!this.#observed.has(store as ReadonlyStore<unknown>)) {
+      this.#observed.set(
+        store as ReadonlyStore<unknown>,
+        store.subscribe(() => this.requestUpdate()),
+      );
+    }
+    return store.get();
+  }
+
   /** Re-renders when `store` changes and gives access to its current value. */
   protected useStore<T>(store: ReadonlyStore<T>): StoreController<T> {
     return new StoreController(this, store);
@@ -90,15 +108,29 @@ export abstract class TesseraElement extends LitElement {
   override disconnectedCallback(): void {
     super.disconnectedCallback();
     this.#unbind();
+    for (const off of this.#observed.values()) off();
+    this.#observed.clear();
   }
 
   protected override willUpdate(changed: Map<PropertyKey, unknown>): void {
+    this.#seen.clear();
     if (changed.has('tessera')) this.#bind(false);
     if (this.featureId !== null) this.toggleAttribute('hidden', !this.enabled);
   }
 
   protected override render(): unknown {
     return this.enabled ? this.renderFeature() : nothing;
+  }
+
+  protected override update(changed: PropertyValues): void {
+    super.update(changed);
+    // `update` (unlike `updated`) is not normally overridden, so this cannot be skipped by accident.
+    // Drop subscriptions to stores the last render no longer read.
+    for (const [store, off] of this.#observed) {
+      if (this.#seen.has(store)) continue;
+      off();
+      this.#observed.delete(store);
+    }
   }
 
   /** Kits render their UI here; it is only called when the feature is enabled. */

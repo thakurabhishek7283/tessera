@@ -244,3 +244,43 @@ describe('sanity', () => {
     expect(Object.getPrototypeOf(TesseraElement)).toBe(LitElement);
   });
 });
+
+describe('observe()', () => {
+  class ObserveElement extends TesseraElement {
+    protected readonly featureId: string | null = null;
+    a = createStore('a1');
+    b = createStore('b1');
+    useB = false;
+    protected override render() {
+      return html`<i>${this.observe(this.useB ? this.b : this.a)}</i>`;
+    }
+  }
+  if (!customElements.get('test-observe')) customElements.define('test-observe', ObserveElement);
+
+  it('follows the stores the latest render read and stops watching the rest', async () => {
+    const el = document.createElement('test-observe') as ObserveElement;
+    await mount(el);
+    const text = () => el.shadowRoot?.querySelector('i')?.textContent;
+    expect(text()).toBe('a1');
+    el.a.set('a2');
+    await el.updateComplete;
+    expect(text()).toBe('a2');
+
+    el.useB = true;
+    el.requestUpdate();
+    await el.updateComplete;
+    expect(text()).toBe('b1');
+    const spy = vi.spyOn(el, 'requestUpdate');
+    el.a.set('a3'); // no longer observed
+    expect(spy).not.toHaveBeenCalled();
+    el.b.set('b2');
+    expect(spy).toHaveBeenCalledTimes(1);
+    await el.updateComplete;
+    expect(text()).toBe('b2');
+
+    el.remove();
+    spy.mockClear();
+    el.b.set('b3');
+    expect(spy).not.toHaveBeenCalled();
+  });
+});
