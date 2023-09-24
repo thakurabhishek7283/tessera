@@ -219,6 +219,11 @@ export class PlaygroundApp extends LitElement {
     }
   }
 
+  resetConfig(): void {
+    this.configText = DEFAULT_CONFIG;
+    this.apply();
+  }
+
   #syncFeature(): void {
     this.helloOn = this.instance?.featureStatus('hello') === 'enabled';
   }
@@ -268,7 +273,7 @@ export class PlaygroundApp extends LitElement {
           ></tessera-textarea>
           <div class="toolbar">
             <tessera-button variant="primary" @click=${() => this.apply()}>Apply</tessera-button>
-            <tessera-button @click=${() => ((this.configText = DEFAULT_CONFIG), this.apply())}>Reset</tessera-button>
+            <tessera-button @click=${() => this.resetConfig()}>Reset</tessera-button>
           </div>
           <p class="hint">
             Applying creates a fresh instance. Features that are not enabled never load their code.
