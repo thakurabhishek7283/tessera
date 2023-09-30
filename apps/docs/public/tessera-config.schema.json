@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "appId": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]{1,40}$",
+      "description": "Namespace for storage keys and room names. Lower-case letters, digits and dashes, up to 40 characters."
+    },
+    "auth": {
+      "description": "Who the current user is. Default `guest`: a random identity remembered in localStorage.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "static"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Stable user id."
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "Display name."
+                },
+                "avatarUrl": {
+                  "description": "Image URL. Initials are shown when missing.",
+                  "type": "string"
+                },
+                "color": {
+                  "description": "CSS colour. Derived from the id when missing.",
+                  "type": "string"
+                },
+                "roles": {
+                  "description": "Role names such as `moderator`.",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["id", "name"],
+              "description": "The signed-in user."
+            },
+            "token": {
+              "description": "Bearer token sent to the server and REST storage.",
+              "type": "string"
+            }
+          },
+          "required": ["type", "user"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "guest"
+            },
+            "name": {
+              "description": "Display name. Random when omitted.",
+              "type": "string"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "custom"
+            },
+            "provider": {
+              "description": "An AuthProvider implementation."
+            }
+          },
+          "required": ["type", "provider"]
+        }
+      ]
+    },
+    "transport": {
+      "description": "How tabs and servers talk to each other. Default `none`.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "none"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "local"
+            },
+            "channel": {
+              "description": "BroadcastChannel name suffix; tabs on the same channel see each other.",
+              "type": "string"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "websocket"
+            },
+            "url": {
+              "type": "string",
+              "pattern": "^wss?:\\/\\/",
+              "description": "WebSocket endpoint of tessera-server, e.g. `wss://example.com/v1/ws`."
+            },
+            "reconnect": {
+              "description": "Backoff tuning. Every field is optional.",
+              "type": "object",
+              "properties": {
+                "initialDelayMs": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "First reconnect delay. Default 500."
+                },
+                "maxDelayMs": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "description": "Upper bound for the delay. Default 30000."
+                },
+                "factor": {
+                  "type": "number",
+                  "minimum": 1,
+                  "description": "Delay multiplier per failed attempt. Default 2."
+                },
+                "jitter": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Random spread as a fraction of the delay. Default 0.3."
+                },
+                "maxQueue": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Outbound messages kept while offline. Default 200."
+                }
+              }
+            }
+          },
+          "required": ["type", "url"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "custom"
+            },
+            "create": {
+              "description": "Factory `(ctx) => Transport`."
+            }
+          },
+          "required": ["type", "create"]
+        }
+      ]
+    },
+    "storage": {
+      "description": "Where documents live. Default `memory`.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "memory"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "local"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "indexeddb"
+            },
+            "dbName": {
+              "description": "Database name. Defaults to `tessera-<appId>`.",
+              "type": "string"
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "rest"
+            },
+            "baseUrl": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Base URL of a server implementing `/v1/docs`."
+            }
+          },
+          "required": ["type", "baseUrl"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "custom"
+            },
+            "adapter": {
+              "description": "A StorageAdapter implementation."
+            }
+          },
+          "required": ["type", "adapter"]
+        }
+      ]
+    },
+    "uploads": {
+      "description": "How files are stored. Default `dataurl`: small files are inlined and no server is needed.",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "dataurl"
+            },
+            "maxBytes": {
+              "description": "Size limit per file. Default 1000000.",
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "rest"
+            },
+            "baseUrl": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Base URL of a server implementing `/v1/uploads`."
+            },
+            "maxBytes": {
+              "description": "Size limit per file. Default 5242880.",
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": ["type", "baseUrl"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "custom"
+            },
+            "adapter": {
+              "description": "An UploadAdapter implementation."
+            }
+          },
+          "required": ["type", "adapter"]
+        }
+      ]
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "description": "`light`, `dark` or `auto` (follow the OS). Default `auto`.",
+          "type": "string",
+          "enum": ["light", "dark", "auto"]
+        },
+        "tokens": {
+          "description": "CSS custom property overrides, e.g. `{ \"--tessera-color-primary\": \"#0a7\" }`.",
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^--"
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "locale": {
+      "description": "BCP 47 tag such as `en` or `de-CH`. Defaults to the browser language, then `en`.",
+      "type": "string",
+      "minLength": 2
+    },
+    "messages": {
+      "description": "Message overrides as locale → key → template. These win over every plugin catalog.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "propertyNames": {
+          "type": "string"
+        },
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Turn the feature on. A disabled feature never loads its code."
+          }
+        },
+        "required": ["enabled"],
+        "additionalProperties": {}
+      },
+      "description": "Feature id → options. Each plugin validates its own options when it is set up."
+    },
+    "debug": {
+      "description": "Log debug output through the instance logger.",
+      "type": "boolean"
+    }
+  },
+  "required": ["appId", "features"]
+}
