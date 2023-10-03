@@ -1,0 +1,16 @@
+{
+  "name": "docs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "typecheck": "echo 'docs: nothing to typecheck'",
+    "test": "echo 'docs: no tests'"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
