@@ -22,5 +22,6 @@
       "persistent": true
     }
   },
-  "globalPassThroughEnv": ["CHROMIUM_PATH", "BASE_PATH", "CI"]
+  "globalPassThroughEnv": ["CHROMIUM_PATH", "BASE_PATH", "CI"],
+  "agentGuidance": false
 }
