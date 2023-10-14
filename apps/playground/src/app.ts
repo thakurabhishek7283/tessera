@@ -79,6 +79,9 @@ export class PlaygroundApp extends LitElement {
         gap: var(--tessera-space-4);
         border-bottom: 1px solid var(--tessera-color-border);
       }
+      header tessera-select {
+        min-width: 9rem;
+      }
       h1 {
         margin: 0;
         font-size: var(--tessera-font-size-xl);
