@@ -19,12 +19,15 @@
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
     "e2e": "playwright test",
     "docs:gen": "node scripts/gen-config-docs.mjs",
-    "docs:dev": "pnpm --filter docs dev"
+    "docs:dev": "pnpm --filter docs dev",
+    "screenshots": "node scripts/screenshots.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.0",
     "@changesets/cli": "^3.0.0",
     "@playwright/test": "^1.63.0",
+    "@size-limit/preset-small-lib": "^14.1.0",
+    "size-limit": "^14.1.0",
     "tsdown": "^0.23.0",
     "turbo": "^2.11.0",
     "typescript": "~6.0.3",
