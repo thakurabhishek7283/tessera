@@ -9,7 +9,7 @@ const executablePath =
 export default defineConfig({
   resolve: { dedupe: ['react', 'react-dom', 'lit', '@lit/context'] },
   optimizeDeps: {
-    include: ['react', 'react-dom/client', 'react/jsx-dev-runtime', 'lit', '@lit/context', 'zod'],
+    include: ['react', 'react-dom/client', 'react/jsx-dev-runtime', 'lit', 'zod'],
   },
   test: {
     include: ['test/**/*.browser.test.{ts,tsx}'],
