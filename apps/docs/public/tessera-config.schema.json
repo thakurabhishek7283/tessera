@@ -46,7 +46,10 @@
                   }
                 }
               },
-              "required": ["id", "name"],
+              "required": [
+                "id",
+                "name"
+              ],
               "description": "The signed-in user."
             },
             "token": {
@@ -54,7 +57,10 @@
               "type": "string"
             }
           },
-          "required": ["type", "user"]
+          "required": [
+            "type",
+            "user"
+          ]
         },
         {
           "type": "object",
@@ -68,7 +74,9 @@
               "type": "string"
             }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
@@ -81,7 +89,10 @@
               "description": "An AuthProvider implementation."
             }
           },
-          "required": ["type", "provider"]
+          "required": [
+            "type",
+            "provider"
+          ]
         }
       ]
     },
@@ -96,7 +107,9 @@
               "const": "none"
             }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
@@ -110,7 +123,9 @@
               "type": "string"
             }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
@@ -158,7 +173,10 @@
               }
             }
           },
-          "required": ["type", "url"]
+          "required": [
+            "type",
+            "url"
+          ]
         },
         {
           "type": "object",
@@ -171,7 +189,10 @@
               "description": "Factory `(ctx) => Transport`."
             }
           },
-          "required": ["type", "create"]
+          "required": [
+            "type",
+            "create"
+          ]
         }
       ]
     },
@@ -186,7 +207,9 @@
               "const": "memory"
             }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
@@ -196,7 +219,9 @@
               "const": "local"
             }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
@@ -210,7 +235,9 @@
               "type": "string"
             }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
@@ -225,7 +252,10 @@
               "description": "Base URL of a server implementing `/v1/docs`."
             }
           },
-          "required": ["type", "baseUrl"]
+          "required": [
+            "type",
+            "baseUrl"
+          ]
         },
         {
           "type": "object",
@@ -238,7 +268,10 @@
               "description": "A StorageAdapter implementation."
             }
           },
-          "required": ["type", "adapter"]
+          "required": [
+            "type",
+            "adapter"
+          ]
         }
       ]
     },
@@ -259,7 +292,9 @@
               "maximum": 9007199254740991
             }
           },
-          "required": ["type"]
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
@@ -280,7 +315,10 @@
               "maximum": 9007199254740991
             }
           },
-          "required": ["type", "baseUrl"]
+          "required": [
+            "type",
+            "baseUrl"
+          ]
         },
         {
           "type": "object",
@@ -293,7 +331,10 @@
               "description": "An UploadAdapter implementation."
             }
           },
-          "required": ["type", "adapter"]
+          "required": [
+            "type",
+            "adapter"
+          ]
         }
       ]
     },
@@ -303,7 +344,11 @@
         "mode": {
           "description": "`light`, `dark` or `auto` (follow the OS). Default `auto`.",
           "type": "string",
-          "enum": ["light", "dark", "auto"]
+          "enum": [
+            "light",
+            "dark",
+            "auto"
+          ]
         },
         "tokens": {
           "description": "CSS custom property overrides, e.g. `{ \"--tessera-color-primary\": \"#0a7\" }`.",
@@ -352,7 +397,9 @@
             "description": "Turn the feature on. A disabled feature never loads its code."
           }
         },
-        "required": ["enabled"],
+        "required": [
+          "enabled"
+        ],
         "additionalProperties": {}
       },
       "description": "Feature id → options. Each plugin validates its own options when it is set up."
@@ -362,5 +409,8 @@
       "type": "boolean"
     }
   },
-  "required": ["appId", "features"]
+  "required": [
+    "appId",
+    "features"
+  ]
 }

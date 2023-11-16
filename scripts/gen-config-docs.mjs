@@ -44,7 +44,7 @@ function typeOf(node) {
 /** @param {Map<string, Row>} rows */
 function collect(node, path, requiredHere, rows, variant) {
   const variants = node.anyOf ?? node.oneOf;
-  if (variants && variants.every((v) => v.type === 'object')) {
+  if (variants?.every((v) => v.type === 'object')) {
     for (const v of variants)
       collect(v, path, requiredHere, rows, v.properties?.type?.const ?? variant);
     return;
