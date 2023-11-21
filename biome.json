@@ -13,7 +13,8 @@
       "!**/.vitepress/cache",
       "!**/.vitepress/dist",
       "!pnpm-lock.yaml",
-      "!**/*.generated.ts"
+      "!**/*.generated.ts",
+      "!**/tessera-config.schema.json"
     ]
   },
   "formatter": {
