@@ -10,6 +10,7 @@ import { LitElement, nothing, type PropertyDeclarations, type PropertyValues } f
 import { tesseraContext } from './context.js';
 import { StoreController } from './controllers.js';
 import { getDefaultInstance, isDefaultInstance } from './default-instance.js';
+import { observeLazyTags } from './lazy-define.js';
 import { interpolate, uiMessages } from './messages.js';
 import { installTokens } from './theme.js';
 
@@ -128,7 +129,11 @@ export abstract class TesseraElement extends LitElement {
   }
 
   protected override update(changed: PropertyValues): void {
+    const first = !this.hasUpdated;
     super.update(changed);
+    // A document MutationObserver cannot see into shadow roots, so after the first render each
+    // element watches its own for lazily defined tags (see lazyDefine).
+    if (first && this.renderRoot instanceof ShadowRoot) observeLazyTags(this.renderRoot);
     // `update` (unlike `updated`) is not normally overridden, so this cannot be skipped by accident.
     // Drop subscriptions to stores the last render no longer read.
     for (const [store, off] of this.#observed) {

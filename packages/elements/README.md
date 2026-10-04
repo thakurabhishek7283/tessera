@@ -27,6 +27,18 @@ class MyKit extends TesseraElement {
 
 `<tessera-root>` provides an instance to its descendants and applies `data-tessera-theme` plus any `theme.tokens` overrides.
 
+## Defining elements
+
+`lazyDefine(tag, loader)` defines a tag the first time an element with it is connected instead of up front. One shared `MutationObserver` watches the document; `TesseraElement` checks its own shadow root after its first render (document observers can't see inside shadow roots), and elements already on the page when the tag is registered are found too.
+
+```ts
+lazyDefine('tessera-inbox', () => import('./inbox.js'));        // a module that defines the tag
+lazyDefine('my-widget', () => import('./widget.js').then((m) => m.MyWidget)); // or the constructor
+await whenLazyDefined('tessera-inbox');                         // resolves when defined, rejects if the loader failed
+```
+
+`observeLazyTags(shadowRoot)` watches another shadow root (one that isn't a `TesseraElement`'s) the same way.
+
 ## Primitives
 
 | Tag | Notes | Events |
