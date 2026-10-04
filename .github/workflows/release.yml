@@ -1,7 +1,11 @@
 name: Release
 
+# Runs only after the CI workflow (lint, typecheck, unit/browser/e2e tests, build, size) has
+# passed for a push to main, and releases exactly the commit CI tested.
 on:
-  push:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [main]
 
 permissions:
@@ -14,11 +18,14 @@ concurrency:
 
 jobs:
   release:
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
     runs-on: ubuntu-latest
     env:
       HAS_NPM_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
@@ -28,8 +35,9 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       # Without NPM_TOKEN there is no publish script, so this only opens or updates the
-      # "Version Packages" pull request instead of failing on unpublished packages.
-      - uses: changesets/action@v1
+      # "Version Packages" pull request; the next step makes sure that never hides a release.
+      - id: changesets
+        uses: changesets/action@v1
         with:
           version: pnpm changeset version
           publish: ${{ env.HAS_NPM_TOKEN == 'true' && 'pnpm changeset publish' || '' }}
@@ -37,3 +45,24 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Fail if versions are waiting to publish but NPM_TOKEN is missing
+        if: env.HAS_NPM_TOKEN != 'true' && steps.changesets.outputs.hasChangesets == 'false'
+        run: |
+          missing=()
+          for manifest in packages/*/package.json; do
+            [ "$(node -p "require('./$manifest').private === true")" = "true" ] && continue
+            spec=$(node -p "const p = require('./$manifest'); p.name + '@' + p.version")
+            npm view "$spec" version > /dev/null 2>&1 || missing+=("$spec")
+          done
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::NPM_TOKEN is not set, so these versions were not published: ${missing[*]}"
+            exit 1
+          fi
+          echo "Every package version is already on npm; nothing to publish."
+      - name: Summarise published packages
+        if: steps.changesets.outputs.published == 'true'
+        env:
+          PUBLISHED: ${{ steps.changesets.outputs.publishedPackages }}
+        run: |
+          echo "### Published to npm" >> "$GITHUB_STEP_SUMMARY"
+          node -e 'for (const p of JSON.parse(process.env.PUBLISHED)) console.log(`- \`${p.name}@${p.version}\``)' >> "$GITHUB_STEP_SUMMARY"
