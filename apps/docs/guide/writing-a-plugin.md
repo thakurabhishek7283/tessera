@@ -45,6 +45,37 @@ createTessera(
 );
 ```
 
+### Loading elements on first use
+
+A kit with several elements shouldn't make every page download all of them. `lazyDefine(tag, loader)` registers a tag and loads its code the first time an element with that tag is connected, in the document or in any Tessera element's shadow root:
+
+```ts
+import { lazyDefine } from '@tessera-kit/elements';
+
+// Defines itself when the module loads; nothing is fetched until a <tessera-hello-history> appears.
+lazyDefine('tessera-hello-history', () => import('./history.js'));
+```
+
+The loader can define the tag itself (a side-effect module, as above) or resolve to the constructor. `whenLazyDefined(tag)` resolves once the tag is defined and rejects if its loader failed, which is handy in tests. Don't start a dynamic import when your `elements` entry loads (`void import('./x.js')`): that downloads the chunk on every page.
+
+The official kits follow one layout, which you can copy:
+
+| Entry | Contents |
+| --- | --- |
+| `<kit>/elements` | Defines the kit's main elements and calls `lazyDefine` for the optional ones |
+| `<kit>/elements/<tag>` | Defines one element and what it renders, for precise imports |
+| `<kit>/autoload` | Only `lazyDefine` calls, one per tag: `<script type="module" src="…/autoload">` in plain HTML |
+
+### Versions and duplicate copies
+
+Give each element class a `static tesseraVersion` with your package's version. If a page ends up with two copies of your kit, `defineElement` keeps the first definition and, in development, prints both versions:
+
+```
+[tessera] <tessera-hello> is already defined by another copy (0.1.0), so the one from 0.2.0 is ignored. Run "npx tessera doctor" or dedupe your lockfile.
+```
+
+Core does the same for itself: every copy registers its version under `Symbol.for('tessera.core')` on `globalThis`, and a second copy logs one warning in development.
+
 ## Services
 
 `ctx.services.register(id, api)` makes an API available to other kits; `get(id)` returns it or `undefined`, `require(id)` throws `SERVICE_MISSING`, and `watch(id, fn)` calls you when it appears or disappears. A plugin's own API is registered under its id automatically.
