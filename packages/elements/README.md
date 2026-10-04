@@ -41,6 +41,10 @@ await whenLazyDefined('tessera-inbox');                         // resolves when
 
 `observeLazyTags(shadowRoot)` watches a shadow root that was attached before the first `lazyDefine` call and isn't open (declarative or closed). `version` is this package's version.
 
+## Exposes
+
+`static tesseraExposes = ['value']` makes an element dispatch `tessera-change` (`{ detail: { property, value } }`, not bubbling, composed) after each render in which one of those properties changed. Studio bindings observe elements through it. The form primitives expose `value`.
+
 ## Primitives
 
 | Tag | Notes | Events |

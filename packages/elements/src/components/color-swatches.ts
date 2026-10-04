@@ -9,6 +9,7 @@ import { baseStyles } from '../styles.js';
  * @fires change - `{ value: string }`
  */
 export class TesseraColorSwatches extends TesseraElement {
+  static override tesseraExposes: readonly string[] = ['value'];
   static formAssociated = true;
   static override properties: PropertyDeclarations = {
     colors: { attribute: false },

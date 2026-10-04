@@ -11,6 +11,7 @@ let counter = 0;
  * @fires change - `{ value: string[] }`
  */
 export class TesseraTagInput extends TesseraElement {
+  static override tesseraExposes: readonly string[] = ['value'];
   static formAssociated = true;
   static override properties: PropertyDeclarations = {
     label: {},

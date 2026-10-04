@@ -75,6 +75,7 @@ export const fieldStyles: CSSResultGroup = [
  * @fires change - re-dispatched from the host (native `change` does not cross shadow boundaries)
  */
 export abstract class TesseraField extends TesseraElement {
+  static override tesseraExposes: readonly string[] = ['value'];
   static formAssociated = true;
   static override shadowRootOptions: ShadowRootInit = {
     ...LitElement.shadowRootOptions,
