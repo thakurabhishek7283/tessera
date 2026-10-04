@@ -27,7 +27,13 @@
     "name": "@tessera-kit/elements",
     "path": "packages/elements/dist/define.js",
     "limit": "15 kB",
-    "ignore": ["lit", "@lit/context", "@tessera-kit/core", "@tessera-kit/storage", "@tessera-kit/transport"]
+    "ignore": [
+      "lit",
+      "@lit/context",
+      "@tessera-kit/core",
+      "@tessera-kit/storage",
+      "@tessera-kit/transport"
+    ]
   },
   {
     "name": "@tessera-kit/react",

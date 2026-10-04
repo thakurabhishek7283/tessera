@@ -1,4 +1,9 @@
-import type { AdapterFactories, PluginLoader, TesseraConfig, TesseraInstance } from '@tessera-kit/core';
+import type {
+  AdapterFactories,
+  PluginLoader,
+  TesseraConfig,
+  TesseraInstance,
+} from '@tessera-kit/core';
 import { createTessera } from '@tessera-kit/core';
 import {
   createElement,

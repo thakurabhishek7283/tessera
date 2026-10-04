@@ -1,4 +1,9 @@
-import type { FeatureApiMap, ReadonlyStore, TesseraEvents, TesseraInstance } from '@tessera-kit/core';
+import type {
+  FeatureApiMap,
+  ReadonlyStore,
+  TesseraEvents,
+  TesseraInstance,
+} from '@tessera-kit/core';
 import { useCallback, useContext, useEffect, useRef, useSyncExternalStore } from 'react';
 import { TesseraReactContext } from './context.js';
 
