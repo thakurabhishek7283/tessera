@@ -20,6 +20,9 @@ importers:
       '@size-limit/preset-small-lib':
         specifier: ^14.1.0
         version: 14.1.0(size-limit@14.1.0)
+      rolldown:
+        specifier: 1.2.12
+        version: 1.2.12
       size-limit:
         specifier: ^14.1.0
         version: 14.1.0
@@ -69,6 +72,24 @@ importers:
       vite:
         specifier: ^8.0.0
         version: 8.3.2(@types/node@26.6.4)(yaml@2.9.1)
+
+  budgets:
+    dependencies:
+      '@tessera-kit/core':
+        specifier: workspace:*
+        version: link:../packages/core
+      '@tessera-kit/elements':
+        specifier: workspace:*
+        version: link:../packages/elements
+      '@tessera-kit/react':
+        specifier: workspace:*
+        version: link:../packages/react
+      '@tessera-kit/storage':
+        specifier: workspace:*
+        version: link:../packages/storage
+      '@tessera-kit/transport':
+        specifier: workspace:*
+        version: link:../packages/transport
 
   packages/core:
     dependencies:

@@ -12,3 +12,6 @@ apps/docs/.vitepress/cache/
 apps/docs/.vitepress/dist/
 test-results/
 playwright-report/
+
+# Written by scripts/page-budget.mjs
+budgets/report.json

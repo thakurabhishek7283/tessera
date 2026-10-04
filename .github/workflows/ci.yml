@@ -35,6 +35,8 @@ jobs:
           pnpm docs:gen
           git diff --exit-code apps/docs
       - run: pnpm size
+      - name: Page budgets (all dependencies included)
+        run: pnpm budget
 
   browser:
     name: Component and end-to-end tests

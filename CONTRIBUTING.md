@@ -21,6 +21,7 @@ Component and end-to-end tests need Chromium. Install it with `npx playwright in
 | Unit tests | `pnpm test` (add `--filter @tessera-kit/core` to narrow) |
 | Component tests in a browser | `pnpm test:browser` |
 | End-to-end tests | `pnpm e2e` |
+| Page budgets (what a page pays, all dependencies included) | `pnpm budget` (after `pnpm build`) |
 | Format | `pnpm format` |
 | Regenerate the config reference | `pnpm docs:gen` (after changing `packages/core/src/config.ts`) |
 | Regenerate the design token module | `pnpm --filter @tessera-kit/elements sync-tokens` (after editing `tokens.css`) |
@@ -33,6 +34,7 @@ Component and end-to-end tests need Chromium. Install it with `npx playwright in
 - **Elements** use tokens only (no hard-coded colours), expose `part` names on main internals, and fire kebab-case `CustomEvent`s that bubble and are composed.
 - **Accessibility** is part of done: keyboard operation, visible focus, labelled controls. Add an `expectAccessible` check to component tests.
 - **Public API changes** need a changeset: `pnpm changeset`.
+- **Page budgets** only go down. If a change has to raise one in `budgets/pages.json`, say why in the pull request. A new runtime package gets a page in `budgets/pages/` before its first release ([ADR 6](docs/decisions/0006-page-budgets-and-the-shared-peer-trigger.md)).
 
 ## Adding a UI primitive
 

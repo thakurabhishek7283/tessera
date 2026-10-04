@@ -159,6 +159,7 @@ Requires Node 22 and pnpm 10.
 pnpm install
 pnpm dev                 # the playground at http://localhost:5173
 pnpm check               # lint, typecheck, unit tests, build
+pnpm budget              # page sizes with every dependency included, against budgets/pages.json
 pnpm test:browser        # component tests in Chromium (Vitest browser mode)
 pnpm e2e                 # Playwright against the built playground
 pnpm docs:dev            # the documentation site
