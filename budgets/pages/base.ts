@@ -2,4 +2,3 @@
 export { createTessera } from '@tessera-kit/core';
 
 import '@tessera-kit/elements/define';
-export * from '@tessera-kit/storage';
