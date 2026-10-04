@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Lit base element, design tokens and UI primitives for Tessera kits",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thakurabhishek7283/tessera.git",
+    "directory": "packages/elements"
+  },
   "author": "Abhishek Thakur",
   "type": "module",
   "sideEffects": [

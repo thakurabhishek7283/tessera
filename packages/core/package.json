@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "Plugin host, config, event bus, services, store, history, i18n and adapter contracts",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thakurabhishek7283/tessera.git",
+    "directory": "packages/core"
+  },
   "author": "Abhishek Thakur",
   "type": "module",
   "sideEffects": false,

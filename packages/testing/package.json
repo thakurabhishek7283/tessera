@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "FakeHub, fake clock and fixtures for testing Tessera kits",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thakurabhishek7283/tessera.git",
+    "directory": "packages/testing"
+  },
   "author": "Abhishek Thakur",
   "type": "module",
   "sideEffects": false,

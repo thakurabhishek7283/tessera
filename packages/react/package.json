@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "React bridge: provider and hooks for Tessera",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thakurabhishek7283/tessera.git",
+    "directory": "packages/react"
+  },
   "author": "Abhishek Thakur",
   "type": "module",
   "sideEffects": false,
