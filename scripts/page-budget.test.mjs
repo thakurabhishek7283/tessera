@@ -5,6 +5,7 @@ import {
   duplicates,
   formatReport,
   initialChunks,
+  markStatements,
   packageOf,
   splitRegions,
 } from './page-budget-lib.mjs';
@@ -65,32 +66,80 @@ describe('packageOf', () => {
   });
 });
 
+describe('markStatements', () => {
+  const built = [
+    '//#region ../dnd/src/sortable.ts',
+    'function sortable() {}',
+    'const css = `',
+    'x { }`;',
+    '//#endregion',
+    '//#region src/board.ts',
+    'class Board {}',
+    '//#endregion',
+    'export { Board };',
+  ].join('\n');
+  const starts = (code, ...snippets) => snippets.map((snippet) => code.indexOf(snippet));
+
+  it('marks every top-level statement with its region, and code outside regions with none', () => {
+    const marked = markStatements(
+      built,
+      starts(built, 'function sortable', 'const css', 'class Board', 'export {'),
+    );
+    expect(marked).toBe(
+      [
+        '//#region ../dnd/src/sortable.ts',
+        '/** #region ../dnd/src/sortable.ts */',
+        'function sortable() {}',
+        '/** #region ../dnd/src/sortable.ts */',
+        'const css = `',
+        'x { }`;',
+        '//#endregion',
+        '//#region src/board.ts',
+        '/** #region src/board.ts */',
+        'class Board {}',
+        '//#endregion',
+        '/** #region  */',
+        'export { Board };',
+      ].join('\n'),
+    );
+  });
+
+  it('leaves files without regions alone', () => {
+    expect(markStatements('const a = 1;', [0])).toBeNull();
+  });
+});
+
 describe('splitRegions', () => {
   const owner = (region) => region ?? 'host';
 
-  it('gives a module without inner regions to its host', () => {
+  it('gives a module without marks to its host', () => {
     const code = '//#region packages/core/dist/index.js\nconst a = 1;\n//#endregion';
-    expect(splitRegions(code, owner)).toEqual([{ owner: 'host', bytes: 'const a = 1;'.length }]);
+    expect(splitRegions(code, owner)).toEqual([{ owner: 'host', bytes: code.length }]);
   });
 
-  it('splits a kit dist file into the packages tsdown inlined', () => {
+  it('splits a rendered kit module into the packages tsdown inlined, merging runs', () => {
     const code = [
       '//#region packages/kanban/dist/index.js',
-      '//#region ../dnd/src/sortable.ts',
+      '/** #region ../dnd/src/sortable.ts */',
       'function sortable() {}',
-      '//#endregion',
-      '//#region src/board.ts',
+      '/** #region ../dnd/src/sortable.ts */',
+      'const css = `x`;',
+      '/** #region src/board.ts */',
       'class Board {}',
-      '//#endregion',
+      '/** #region  */',
+      'Board.x = 1;',
       '//#endregion',
     ].join('\n');
-    const parts = splitRegions(code, owner);
-    expect(parts.map((p) => p.owner)).toEqual(['../dnd/src/sortable.ts', 'src/board.ts']);
+    expect(splitRegions(code, owner).map((p) => p.owner)).toEqual([
+      '../dnd/src/sortable.ts',
+      'src/board.ts',
+      'host',
+    ]);
   });
 
-  it('drops regions that tree-shaking emptied', () => {
+  it('ignores runs that hold only comments', () => {
     const code =
-      '//#region x\n//#region ../dnd/src/unused.ts\n/** doc */\n//#endregion\n//#region src/a.ts\nlet a;\n//#endregion';
+      '//#region x\n/** #region ../dnd/src/a.ts */\n/** doc */\n/** #region src/a.ts */\nlet a;';
     expect(splitRegions(code, owner).map((p) => p.owner)).toEqual(['src/a.ts']);
   });
 });

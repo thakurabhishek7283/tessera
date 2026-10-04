@@ -46,37 +46,68 @@ function versionFromStoreDir(storeDir, name) {
   return storeDir.slice(prefix.length).split('_')[0];
 }
 
-const REGION = /^\/\/#region (.+)$/gm;
+const SOURCE_REGION = /^\/\/#(region|endregion)(?: (.*))?$/gm;
+const MARK = /\/\*\* #region (.*?) \*\//g;
 
 /**
- * Splits a rendered module into the packages its code came from.
+ * Marks every top-level statement of a built file with the source region it came from.
  *
  * Published Tessera packages are built with tsdown, which bundles `@tessera-internal/*` source into
- * each kit and marks every source file with `//#region <path relative to the package>`. The bundler
- * keeps those comments in each module's rendered code, so the regions tell us which bytes of a kit's
- * dist file are really a copy of an internal package. The first region of the rendered code is the
- * bundler's own marker for the module itself and is skipped.
+ * each kit and wraps every source file in `//#region <path relative to the package>` …
+ * `//#endregion` line comments. The bundler drops those line comments when it renders a module, but
+ * it keeps a doc comment for as long as the statement after it survives tree-shaking. So each
+ * statement gets a `/** #region <path> *\/` doc comment; the minifier removes them from the final
+ * chunk, so measured sizes don't change. Statements outside any region get an empty path.
+ *
+ * @param {string} code a built file
+ * @param {number[]} starts start offsets (UTF-16) of its top-level statements, from a parser
+ * @returns {string | null} the marked code, or null when the file has no regions
+ */
+export function markStatements(code, starts) {
+  const regions = [...code.matchAll(SOURCE_REGION)].map((m) => ({
+    at: m.index,
+    path: m[1] === 'region' ? (m[2] ?? '').trim() : '',
+  }));
+  if (!regions.some((r) => r.path)) return null;
+  let out = '';
+  let last = 0;
+  let r = -1;
+  for (const start of [...starts].sort((a, b) => a - b)) {
+    while (r + 1 < regions.length && regions[r + 1].at <= start) r++;
+    const path = r === -1 ? '' : regions[r].path;
+    out += `${code.slice(last, start)}/** #region ${path} */\n`;
+    last = start;
+  }
+  return out + code.slice(last);
+}
+
+/**
+ * Splits a rendered module into the packages its code came from, using the statement marks that
+ * {@link markStatements} added. Code before the first mark, and code under an empty mark, belongs
+ * to the module itself.
  *
  * @template T
  * @param {string} code rendered code of one module (comments intact)
  * @param {(region: string | null) => T} owner the owner of a region path (relative to the package
  *   that published the module), or of the module itself when `region` is null
- * @returns {Array<{ owner: T, bytes: number }>} owners in order of appearance, with the length of
- *   their code; regions with nothing left after tree-shaking are dropped
+ * @returns {Array<{ owner: T, bytes: number }>} one entry per run of statements from the same
+ *   region, with the length of their code; runs with no code left are dropped
  */
 export function splitRegions(code, owner) {
-  const body = code.replace(/^\/\/#region [^\n]*\n/, '').replace(/\n\/\/#endregion\s*$/, '');
-  const marks = [...body.matchAll(REGION)];
+  const marks = [...code.matchAll(MARK)];
   const parts = [];
   const push = (region, text) => {
-    if (significantBytes(text) > 0) parts.push({ owner: owner(region), bytes: text.length });
+    if (significantBytes(text) === 0) return;
+    const prev = parts.at(-1);
+    if (prev && prev.region === region) prev.bytes += text.length;
+    else parts.push({ region, bytes: text.length });
   };
-  push(null, marks.length === 0 ? body : body.slice(0, marks[0].index));
+  push(null, marks.length === 0 ? code : code.slice(0, marks[0].index));
   marks.forEach((m, i) => {
-    const end = i + 1 < marks.length ? marks[i + 1].index : body.length;
-    push(m[1].trim(), body.slice(m.index + m[0].length, end));
+    const end = i + 1 < marks.length ? marks[i + 1].index : code.length;
+    push(m[1] || null, code.slice(m.index + m[0].length, end));
   });
-  return parts;
+  return parts.map((p) => ({ owner: owner(p.region), bytes: p.bytes }));
 }
 
 /** Length of the text once comments and whitespace are removed; 0 means "tree-shaken away". */

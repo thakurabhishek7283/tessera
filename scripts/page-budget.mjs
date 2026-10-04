@@ -17,12 +17,14 @@ import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { brotliCompressSync, constants, gzipSync } from 'node:zlib';
 import { build } from 'rolldown';
+import { parseAst } from 'rolldown/parseAst';
 import {
   attribute,
   checkBudgets,
   duplicates,
   formatReport,
   initialChunks,
+  markStatements,
   normaliseId,
   packageOf,
   splitRegions,
@@ -69,6 +71,46 @@ function lookup(file) {
 
 const shortName = (name) => name.replace(/^@[^/]+\//, '');
 
+/** Lets {@link splitRegions} see which package each statement of a built kit file came from. */
+const markRegions = {
+  name: 'page-budget:mark-regions',
+  transform(code, id) {
+    if (!code.includes('//#region ')) return null;
+    const marked = markStatements(
+      code,
+      parseAst(code, { lang: id.endsWith('.ts') ? 'ts' : 'js' }).body.map((s) => s.start),
+    );
+    return marked === null ? null : { code: marked, map: null };
+  },
+};
+
+/**
+ * Resolves every copy of the same package version to one directory. In an app, the package manager
+ * installs a version once; here the linked sibling checkouts (external/*) bring their own
+ * node_modules, which would otherwise count zod or lit twice. Different versions stay apart and
+ * show up as duplicates.
+ */
+function dedupeVersions() {
+  const first = new Map();
+  return {
+    name: 'page-budget:dedupe-versions',
+    async resolveId(source, importer, options) {
+      if (!importer || /^[./\0]/.test(source) || isExternal(source)) return null;
+      const resolved = await this.resolve(source, importer, { ...options, skipSelf: true });
+      if (!resolved || resolved.external) return resolved;
+      const pkg = packageOf(resolved.id, lookup);
+      if (!pkg.dir || !normaliseId(resolved.id).includes('/node_modules/')) return resolved;
+      const version = pkg.version ?? lookup(join(pkg.dir, 'package.json'))?.version;
+      const key = `${pkg.name}@${version}`;
+      if (!first.has(key)) first.set(key, pkg.dir);
+      const dir = first.get(key);
+      return dir === pkg.dir
+        ? resolved
+        : { ...resolved, id: dir + normaliseId(resolved.id).slice(pkg.dir.length) };
+    },
+  };
+}
+
 async function measure(name, entry) {
   const out = await build({
     input: { [name]: entry },
@@ -78,6 +120,7 @@ async function measure(name, entry) {
     external: isExternal,
     output: { format: 'esm', minify: true },
     logLevel: 'warn',
+    plugins: [dedupeVersions(), markRegions],
     onLog(level, log, handler) {
       // A page that can't resolve an import would silently measure less than it ships.
       if (log.code === 'UNRESOLVED_IMPORT') throw new Error(`${name}: ${log.message}`);
