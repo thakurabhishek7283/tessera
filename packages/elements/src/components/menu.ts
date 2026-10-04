@@ -19,6 +19,10 @@ export interface MenuItem {
  * <tessera-menu .items=${items}><tessera-button slot="trigger">Actions</tessera-button></tessera-menu>
  * @fires menu-select - `{ id }` of the chosen item
  * @slot trigger - the element that opens the menu
+ *
+ * @tessera-icon menu
+ * @tessera-span 2
+ * @tessera-method close(returnFocus?: boolean): void - Closes the menu, by default moving focus back to the trigger.
  */
 export class TesseraMenu extends TesseraElement {
   static override properties: PropertyDeclarations = {

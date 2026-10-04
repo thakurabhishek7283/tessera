@@ -15,6 +15,7 @@
       "!pnpm-lock.yaml",
       "!**/*.generated.ts",
       "!**/tessera-config.schema.json",
+      "!**/tessera.manifest.api.json",
       "!packages/manifest/test/fixtures"
     ]
   },

@@ -20,7 +20,10 @@ export function initialsOf(name: string): string {
     .toUpperCase();
 }
 
-/** User avatar: image when available, otherwise initials on a colour derived from the name. */
+/** User avatar: image when available, otherwise initials on a colour derived from the name. *
+ * @tessera-icon user
+ * @tessera-span 1
+ */
 export class TesseraAvatar extends TesseraElement {
   static override properties: PropertyDeclarations = {
     name: {},
@@ -92,7 +95,10 @@ export class TesseraAvatar extends TesseraElement {
   }
 }
 
-/** Overlapping row of avatars with a "+N" overflow chip. */
+/** Overlapping row of avatars with a "+N" overflow chip. *
+ * @tessera-icon users
+ * @tessera-span 2
+ */
 export class TesseraAvatarStack extends TesseraElement {
   static override properties: PropertyDeclarations = {
     users: { attribute: false },

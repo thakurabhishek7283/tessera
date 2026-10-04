@@ -7,7 +7,9 @@ export interface SelectOption {
   disabled?: boolean;
 }
 
-/** Native `<select>` with the Tessera look, form association and validation. */
+/** Native `<select>` with the Tessera look, form association and validation. *
+ * @tessera-icon chevron-down
+ */
 export class TesseraSelect extends TesseraField {
   static override properties: PropertyDeclarations = {
     ...TesseraField.properties,

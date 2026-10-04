@@ -2,7 +2,10 @@ import { type CSSResultGroup, css, html, nothing, type PropertyDeclarations } fr
 import { TesseraElement } from '../base.js';
 import { baseStyles } from '../styles.js';
 
-/** Placeholder for lists and boards with nothing in them. Put a call to action in the default slot. */
+/** Placeholder for lists and boards with nothing in them. Put a call to action in the default slot. *
+ * @tessera-icon info
+ * @tessera-editor icon icon
+ */
 export class TesseraEmptyState extends TesseraElement {
   static override properties: PropertyDeclarations = { icon: {}, heading: {}, description: {} };
   static override styles: CSSResultGroup = [

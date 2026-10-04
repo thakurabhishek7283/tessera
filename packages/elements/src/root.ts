@@ -11,6 +11,10 @@ import { version } from './version.js';
  * @example
  * <tessera-root><tessera-kanban board-id="roadmap"></tessera-kanban></tessera-root>
  * root.tessera = createTessera(config, opts);
+ *
+ * @tessera-category layout
+ * @tessera-icon columns
+ * @tessera-container
  */
 export class TesseraRoot extends LitElement {
   static override properties: PropertyDeclarations = { tessera: { attribute: false } };

@@ -20,6 +20,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "manifest:check": {
+      "dependsOn": ["build"],
+      "outputs": []
     }
   },
   "globalPassThroughEnv": ["CHROMIUM_PATH", "BASE_PATH", "CI"],

@@ -73,6 +73,11 @@ export const fieldStyles: CSSResultGroup = [
  *
  * @fires input - native, composed
  * @fires change - re-dispatched from the host (native `change` does not cross shadow boundaries)
+ *
+ * @tessera-span 4
+ * @tessera-expose value {string} - The current value, as the user types.
+ * @tessera-method checkValidity(): boolean - Whether the value meets its constraints, without showing an error.
+ * @tessera-method reportValidity(): boolean - Checks the value and shows the error if it is invalid.
  */
 export abstract class TesseraField extends TesseraElement {
   static override tesseraExposes: readonly string[] = ['value'];

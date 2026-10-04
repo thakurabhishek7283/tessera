@@ -84,6 +84,9 @@ export const buttonStyles: CSSResultGroup = [
  * `type="reset"` act on the surrounding `<form>`.
  *
  * @fires click - native click (not fired while `disabled` or `loading`)
+ *
+ * @tessera-icon check
+ * @tessera-span 2
  */
 export class TesseraButton extends TesseraElement {
   static formAssociated = true;

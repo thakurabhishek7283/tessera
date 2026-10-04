@@ -2,7 +2,10 @@ import { type CSSResultGroup, css, html, type PropertyDeclarations } from 'lit';
 import { TesseraElement } from '../base.js';
 import { baseStyles } from '../styles.js';
 
-/** Indeterminate progress indicator with an accessible status label. */
+/** Indeterminate progress indicator with an accessible status label. *
+ * @tessera-icon clock
+ * @tessera-span 1
+ */
 export class TesseraSpinner extends TesseraElement {
   static override properties: PropertyDeclarations = { label: {}, size: { reflect: true } };
   static override styles: CSSResultGroup = [

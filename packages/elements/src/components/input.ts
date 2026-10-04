@@ -7,6 +7,8 @@ import { TesseraField } from './field.js';
  * constraint validation and resets with the form.
  *
  * @example <tessera-input label="Email" type="email" name="email" required></tessera-input>
+ *
+ * @tessera-icon edit
  */
 export class TesseraInput extends TesseraField {
   static override properties: PropertyDeclarations = {

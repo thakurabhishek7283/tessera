@@ -1,0 +1,2773 @@
+{
+  "package": {
+    "name": "@tessera-kit/elements"
+  },
+  "schemaVersion": "1.0",
+  "elements": [
+    {
+      "tag": "tessera-avatar",
+      "displayName": "Avatar",
+      "category": "primitive",
+      "icon": "user",
+      "props": [
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "src",
+          "attribute": "src",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "color",
+          "attribute": "color",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "Any CSS colour; defaults to a stable colour for the name.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "size",
+          "attribute": "size",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          "default": "md",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "sm",
+                "label": "sm"
+              },
+              {
+                "value": "md",
+                "label": "md"
+              },
+              {
+                "value": "lg",
+                "label": "lg"
+              }
+            ]
+          },
+          "bindable": true
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [],
+      "cssParts": [
+        "avatar"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 1
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-avatar-stack",
+      "displayName": "Avatar stack",
+      "category": "primitive",
+      "icon": "users",
+      "props": [
+        {
+          "name": "users",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "ref",
+              "name": "AvatarUser"
+            }
+          },
+          "default": [],
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "json"
+          },
+          "bindable": true
+        },
+        {
+          "name": "max",
+          "attribute": "max",
+          "type": {
+            "kind": "number"
+          },
+          "default": 4,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "size",
+          "attribute": "size",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          "default": "md",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "sm",
+                "label": "sm"
+              },
+              {
+                "value": "md",
+                "label": "md"
+              },
+              {
+                "value": "lg",
+                "label": "lg"
+              }
+            ]
+          },
+          "bindable": true
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [],
+      "cssParts": [
+        "more"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 2
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-badge",
+      "displayName": "Badge",
+      "category": "primitive",
+      "icon": "star",
+      "props": [
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "neutral",
+              "primary",
+              "success",
+              "warning",
+              "danger"
+            ]
+          },
+          "default": "neutral",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "neutral",
+                "label": "neutral"
+              },
+              {
+                "value": "primary",
+                "label": "primary"
+              },
+              {
+                "value": "success",
+                "label": "success"
+              },
+              {
+                "value": "warning",
+                "label": "warning"
+              },
+              {
+                "value": "danger",
+                "label": "danger"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "count",
+          "attribute": "count",
+          "type": {
+            "kind": "number"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "max",
+          "attribute": "max",
+          "type": {
+            "kind": "number"
+          },
+          "default": 99,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "dot",
+          "attribute": "dot",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "cssParts": [
+        "badge"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 1
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-button",
+      "displayName": "Button",
+      "category": "primitive",
+      "icon": "check",
+      "props": [
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "default": "secondary",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "primary",
+                "label": "primary"
+              },
+              {
+                "value": "secondary",
+                "label": "secondary"
+              },
+              {
+                "value": "ghost",
+                "label": "ghost"
+              },
+              {
+                "value": "danger",
+                "label": "danger"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "size",
+          "attribute": "size",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "sm",
+              "md"
+            ]
+          },
+          "default": "md",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "sm",
+                "label": "sm"
+              },
+              {
+                "value": "md",
+                "label": "md"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "loading",
+          "attribute": "loading",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "button",
+              "submit",
+              "reset"
+            ]
+          },
+          "default": "button",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "button",
+                "label": "button"
+              },
+              {
+                "value": "submit",
+                "label": "submit"
+              },
+              {
+                "value": "reset",
+                "label": "reset"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "Accessible name when the content is not text.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "click",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "native click (not fired while `disabled` or `loading`)",
+          "bubbles": true
+        }
+      ],
+      "exposes": [],
+      "methods": [],
+      "slots": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "cssParts": [
+        "button",
+        "spinner"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 2
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": true
+    },
+    {
+      "tag": "tessera-color-swatches",
+      "displayName": "Color swatches",
+      "category": "primitive",
+      "icon": "image",
+      "props": [
+        {
+          "name": "colors",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "string"
+            }
+          },
+          "default": [],
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "json"
+          },
+          "bindable": true
+        },
+        {
+          "name": "names",
+          "type": {
+            "kind": "object",
+            "jsonSchema": {
+              "type": "object"
+            }
+          },
+          "default": {},
+          "required": false,
+          "description": "Optional human names by colour value, used as accessible labels.",
+          "editor": {
+            "kind": "json"
+          },
+          "bindable": true
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "color"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "`{ value: string }`",
+          "bubbles": true
+        }
+      ],
+      "exposes": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "string"
+          },
+          "source": {
+            "property": "value"
+          },
+          "description": "The selected colour."
+        }
+      ],
+      "methods": [],
+      "slots": [],
+      "cssParts": [],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 4
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": true
+    },
+    {
+      "tag": "tessera-dialog",
+      "displayName": "Dialog",
+      "category": "primitive",
+      "icon": "copy",
+      "props": [
+        {
+          "name": "open",
+          "attribute": "open",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "heading",
+          "attribute": "heading",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "dismissible",
+          "attribute": "dismissible",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": true,
+          "required": false,
+          "description": "When false, Escape, backdrop clicks and the close button do nothing.",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "dialog-cancel",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "Escape, the close button or a backdrop click; cancelable",
+          "bubbles": true
+        },
+        {
+          "name": "dialog-close",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "after the dialog closed",
+          "bubbles": true
+        }
+      ],
+      "exposes": [],
+      "methods": [
+        {
+          "name": "show",
+          "params": [],
+          "returns": {
+            "kind": "unknown"
+          },
+          "description": "Opens the dialog as a modal."
+        },
+        {
+          "name": "close",
+          "params": [],
+          "returns": {
+            "kind": "unknown"
+          },
+          "description": "Closes the dialog."
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": "dialog body"
+        },
+        {
+          "name": "footer",
+          "description": "actions"
+        }
+      ],
+      "cssParts": [
+        "body",
+        "content",
+        "dialog",
+        "footer"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 12
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-empty-state",
+      "displayName": "Empty state",
+      "category": "primitive",
+      "icon": "info",
+      "props": [
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "icon"
+          },
+          "bindable": true
+        },
+        {
+          "name": "heading",
+          "attribute": "heading",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "description",
+          "attribute": "description",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "cssParts": [
+        "wrap"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 12
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-icon",
+      "displayName": "Icon",
+      "category": "primitive",
+      "icon": "smile",
+      "props": [
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "size",
+          "attribute": "size",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "CSS length, e.g. `20px`. Defaults to `1.25em`.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [],
+      "cssParts": [
+        "svg"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 1
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-icon-button",
+      "displayName": "Icon button",
+      "category": "primitive",
+      "icon": "settings",
+      "props": [
+        {
+          "name": "icon",
+          "attribute": "icon",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "icon"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "Accessible name when the content is not text.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "variant",
+          "attribute": "variant",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "primary",
+              "secondary",
+              "ghost",
+              "danger"
+            ]
+          },
+          "default": "secondary",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "primary",
+                "label": "primary"
+              },
+              {
+                "value": "secondary",
+                "label": "secondary"
+              },
+              {
+                "value": "ghost",
+                "label": "ghost"
+              },
+              {
+                "value": "danger",
+                "label": "danger"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "size",
+          "attribute": "size",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "sm",
+              "md"
+            ]
+          },
+          "default": "md",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "sm",
+                "label": "sm"
+              },
+              {
+                "value": "md",
+                "label": "md"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "loading",
+          "attribute": "loading",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "button",
+              "submit",
+              "reset"
+            ]
+          },
+          "default": "button",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "button",
+                "label": "button"
+              },
+              {
+                "value": "submit",
+                "label": "submit"
+              },
+              {
+                "value": "reset",
+                "label": "reset"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "click",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "native click (not fired while `disabled` or `loading`)",
+          "bubbles": true
+        }
+      ],
+      "exposes": [],
+      "methods": [],
+      "slots": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "cssParts": [
+        "button",
+        "spinner"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 1
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": true
+    },
+    {
+      "tag": "tessera-input",
+      "displayName": "Input",
+      "category": "primitive",
+      "icon": "edit",
+      "props": [
+        {
+          "name": "type",
+          "attribute": "type",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "text",
+              "email",
+              "password",
+              "search",
+              "url",
+              "tel",
+              "number"
+            ]
+          },
+          "default": "text",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "text",
+                "label": "text"
+              },
+              {
+                "value": "email",
+                "label": "email"
+              },
+              {
+                "value": "password",
+                "label": "password"
+              },
+              {
+                "value": "search",
+                "label": "search"
+              },
+              {
+                "value": "url",
+                "label": "url"
+              },
+              {
+                "value": "tel",
+                "label": "tel"
+              },
+              {
+                "value": "number",
+                "label": "number"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "maxlength",
+          "attribute": "maxlength",
+          "type": {
+            "kind": "number"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "minlength",
+          "attribute": "minlength",
+          "type": {
+            "kind": "number"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "pattern",
+          "attribute": "pattern",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "autocomplete",
+          "attribute": "autocomplete",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "inputmode",
+          "attribute": "inputmode",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "error",
+          "attribute": "error",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "Custom error text. When set the field is invalid regardless of native constraints.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "required",
+          "attribute": "required",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "invalid",
+          "attribute": "invalid",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "re-dispatched from the host (native `change` does not cross shadow boundaries)",
+          "bubbles": true
+        },
+        {
+          "name": "input",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "native, composed",
+          "bubbles": true
+        }
+      ],
+      "exposes": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "string"
+          },
+          "source": {
+            "property": "value"
+          },
+          "description": "The current value, as the user types."
+        }
+      ],
+      "methods": [
+        {
+          "name": "checkValidity",
+          "params": [],
+          "returns": {
+            "kind": "boolean"
+          },
+          "description": "Whether the value meets its constraints, without showing an error."
+        },
+        {
+          "name": "reportValidity",
+          "params": [],
+          "returns": {
+            "kind": "boolean"
+          },
+          "description": "Checks the value and shows the error if it is invalid."
+        }
+      ],
+      "slots": [],
+      "cssParts": [
+        "control",
+        "error",
+        "field",
+        "hint",
+        "label"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 4
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": true
+    },
+    {
+      "tag": "tessera-menu",
+      "displayName": "Menu",
+      "category": "primitive",
+      "icon": "menu",
+      "props": [
+        {
+          "name": "items",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "ref",
+              "name": "MenuItem"
+            }
+          },
+          "default": [],
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "json"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "Accessible name of the menu. Defaults to the trigger's text.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "placement",
+          "attribute": "placement",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "top",
+              "bottom",
+              "left",
+              "right",
+              "top-start",
+              "bottom-start",
+              "left-start",
+              "right-start",
+              "top-end",
+              "bottom-end",
+              "left-end",
+              "right-end"
+            ]
+          },
+          "default": "bottom-start",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "top",
+                "label": "top"
+              },
+              {
+                "value": "bottom",
+                "label": "bottom"
+              },
+              {
+                "value": "left",
+                "label": "left"
+              },
+              {
+                "value": "right",
+                "label": "right"
+              },
+              {
+                "value": "top-start",
+                "label": "top-start"
+              },
+              {
+                "value": "bottom-start",
+                "label": "bottom-start"
+              },
+              {
+                "value": "left-start",
+                "label": "left-start"
+              },
+              {
+                "value": "right-start",
+                "label": "right-start"
+              },
+              {
+                "value": "top-end",
+                "label": "top-end"
+              },
+              {
+                "value": "bottom-end",
+                "label": "bottom-end"
+              },
+              {
+                "value": "left-end",
+                "label": "left-end"
+              },
+              {
+                "value": "right-end",
+                "label": "right-end"
+              }
+            ]
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "menu-select",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "`{ id }` of the chosen item",
+          "bubbles": true
+        }
+      ],
+      "exposes": [],
+      "methods": [
+        {
+          "name": "close",
+          "params": [
+            {
+              "name": "returnFocus",
+              "type": {
+                "kind": "boolean"
+              }
+            }
+          ],
+          "returns": {
+            "kind": "unknown"
+          },
+          "description": "Closes the menu, by default moving focus back to the trigger."
+        }
+      ],
+      "slots": [
+        {
+          "name": "trigger",
+          "description": "the element that opens the menu"
+        }
+      ],
+      "cssParts": [],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 2
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-popover",
+      "displayName": "Popover",
+      "category": "primitive",
+      "icon": "eye",
+      "props": [
+        {
+          "name": "open",
+          "attribute": "open",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "anchor",
+          "attribute": "anchor",
+          "type": {
+            "kind": "unknown"
+          },
+          "required": false,
+          "description": "An element, or a CSS selector resolved in the popover's own root.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "placement",
+          "attribute": "placement",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "top",
+              "bottom",
+              "left",
+              "right",
+              "top-start",
+              "bottom-start",
+              "left-start",
+              "right-start",
+              "top-end",
+              "bottom-end",
+              "left-end",
+              "right-end"
+            ]
+          },
+          "default": "bottom-start",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "top",
+                "label": "top"
+              },
+              {
+                "value": "bottom",
+                "label": "bottom"
+              },
+              {
+                "value": "left",
+                "label": "left"
+              },
+              {
+                "value": "right",
+                "label": "right"
+              },
+              {
+                "value": "top-start",
+                "label": "top-start"
+              },
+              {
+                "value": "bottom-start",
+                "label": "bottom-start"
+              },
+              {
+                "value": "left-start",
+                "label": "left-start"
+              },
+              {
+                "value": "right-start",
+                "label": "right-start"
+              },
+              {
+                "value": "top-end",
+                "label": "top-end"
+              },
+              {
+                "value": "bottom-end",
+                "label": "bottom-end"
+              },
+              {
+                "value": "left-end",
+                "label": "left-end"
+              },
+              {
+                "value": "right-end",
+                "label": "right-end"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "offset",
+          "attribute": "offset",
+          "type": {
+            "kind": "number"
+          },
+          "default": 6,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "matchAnchorWidth",
+          "attribute": "match-anchor-width",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "panelRole",
+          "attribute": "panel-role",
+          "type": {
+            "kind": "string"
+          },
+          "default": "dialog",
+          "required": false,
+          "description": "ARIA role of the floating panel. Use `presentation` when slotted content brings its own role.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "popover-close",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "`{ reason: 'escape' | 'outside' | 'api' }` after the popover closed itself",
+          "bubbles": true
+        }
+      ],
+      "exposes": [],
+      "methods": [
+        {
+          "name": "hide",
+          "params": [],
+          "returns": {
+            "kind": "unknown"
+          },
+          "description": "Closes the popover."
+        }
+      ],
+      "slots": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "cssParts": [
+        "panel"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 3
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-root",
+      "displayName": "Root",
+      "category": "layout",
+      "icon": "columns",
+      "props": [
+        {
+          "name": "tessera",
+          "type": {
+            "kind": "ref",
+            "name": "TesseraInstance"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "hidden"
+          },
+          "bindable": false
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "cssParts": [],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 12
+        },
+        "resizable": true,
+        "container": true
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-select",
+      "displayName": "Select",
+      "category": "primitive",
+      "icon": "chevron-down",
+      "props": [
+        {
+          "name": "options",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "ref",
+              "name": "SelectOption"
+            }
+          },
+          "default": [],
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "json"
+          },
+          "bindable": true
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "Text of the empty first option. When omitted, no empty option is rendered.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "error",
+          "attribute": "error",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "Custom error text. When set the field is invalid regardless of native constraints.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "required",
+          "attribute": "required",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "invalid",
+          "attribute": "invalid",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "re-dispatched from the host (native `change` does not cross shadow boundaries)",
+          "bubbles": true
+        },
+        {
+          "name": "input",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "native, composed",
+          "bubbles": true
+        }
+      ],
+      "exposes": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "string"
+          },
+          "source": {
+            "property": "value"
+          },
+          "description": "The current value, as the user types."
+        }
+      ],
+      "methods": [
+        {
+          "name": "checkValidity",
+          "params": [],
+          "returns": {
+            "kind": "boolean"
+          },
+          "description": "Whether the value meets its constraints, without showing an error."
+        },
+        {
+          "name": "reportValidity",
+          "params": [],
+          "returns": {
+            "kind": "boolean"
+          },
+          "description": "Checks the value and shows the error if it is invalid."
+        }
+      ],
+      "slots": [],
+      "cssParts": [
+        "control",
+        "error",
+        "field",
+        "hint",
+        "label"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 4
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": true
+    },
+    {
+      "tag": "tessera-spinner",
+      "displayName": "Spinner",
+      "category": "primitive",
+      "icon": "clock",
+      "props": [
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "size",
+          "attribute": "size",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "sm",
+              "md",
+              "lg"
+            ]
+          },
+          "default": "md",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "sm",
+                "label": "sm"
+              },
+              {
+                "value": "md",
+                "label": "md"
+              },
+              {
+                "value": "lg",
+                "label": "lg"
+              }
+            ]
+          },
+          "bindable": true
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [],
+      "cssParts": [],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 1
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-tag-input",
+      "displayName": "Tag input",
+      "category": "primitive",
+      "icon": "tag",
+      "props": [
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "value",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "string"
+            }
+          },
+          "default": [],
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "json"
+          },
+          "bindable": true
+        },
+        {
+          "name": "max",
+          "attribute": "max",
+          "type": {
+            "kind": "number"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": {
+            "kind": "string"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "suggestions",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "string"
+            }
+          },
+          "default": [],
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "json"
+          },
+          "bindable": true
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "allowDuplicates",
+          "attribute": "allow-duplicates",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "validate",
+          "type": {
+            "kind": "unknown"
+          },
+          "required": false,
+          "description": "Return `false` to reject a tag.",
+          "editor": {
+            "kind": "hidden"
+          },
+          "bindable": false
+        }
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "`{ value: string[] }`",
+          "bubbles": true
+        }
+      ],
+      "exposes": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "array",
+            "of": {
+              "kind": "string"
+            }
+          },
+          "source": {
+            "property": "value"
+          },
+          "description": "The current tags."
+        }
+      ],
+      "methods": [
+        {
+          "name": "addTags",
+          "params": [
+            {
+              "name": "raw",
+              "type": {
+                "kind": "string"
+              }
+            }
+          ],
+          "returns": {
+            "kind": "array",
+            "of": {
+              "kind": "string"
+            }
+          },
+          "description": "Adds comma-separated tags and returns the ones that were added."
+        },
+        {
+          "name": "removeTag",
+          "params": [
+            {
+              "name": "tag",
+              "type": {
+                "kind": "string"
+              }
+            }
+          ],
+          "returns": {
+            "kind": "unknown"
+          },
+          "description": "Removes a tag."
+        }
+      ],
+      "slots": [],
+      "cssParts": [
+        "box",
+        "input",
+        "tag"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 6
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": true
+    },
+    {
+      "tag": "tessera-textarea",
+      "displayName": "Textarea",
+      "category": "primitive",
+      "icon": "note",
+      "props": [
+        {
+          "name": "rows",
+          "attribute": "rows",
+          "type": {
+            "kind": "number"
+          },
+          "default": 3,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "placeholder",
+          "attribute": "placeholder",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "maxlength",
+          "attribute": "maxlength",
+          "type": {
+            "kind": "number"
+          },
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        },
+        {
+          "name": "autoresize",
+          "attribute": "autoresize",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "Grow with the content instead of scrolling.",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "label",
+          "attribute": "label",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "name",
+          "attribute": "name",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "value",
+          "attribute": "value",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "textarea"
+          },
+          "bindable": true
+        },
+        {
+          "name": "hint",
+          "attribute": "hint",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "error",
+          "attribute": "error",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "Custom error text. When set the field is invalid regardless of native constraints.",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "disabled",
+          "attribute": "disabled",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "required",
+          "attribute": "required",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "readonly",
+          "attribute": "readonly",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        },
+        {
+          "name": "invalid",
+          "attribute": "invalid",
+          "type": {
+            "kind": "boolean"
+          },
+          "default": false,
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "switch"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "re-dispatched from the host (native `change` does not cross shadow boundaries)",
+          "bubbles": true
+        },
+        {
+          "name": "input",
+          "detail": {
+            "kind": "unknown"
+          },
+          "description": "native, composed",
+          "bubbles": true
+        }
+      ],
+      "exposes": [
+        {
+          "name": "value",
+          "type": {
+            "kind": "string"
+          },
+          "source": {
+            "property": "value"
+          },
+          "description": "The current value, as the user types."
+        }
+      ],
+      "methods": [
+        {
+          "name": "checkValidity",
+          "params": [],
+          "returns": {
+            "kind": "boolean"
+          },
+          "description": "Whether the value meets its constraints, without showing an error."
+        },
+        {
+          "name": "reportValidity",
+          "params": [],
+          "returns": {
+            "kind": "boolean"
+          },
+          "description": "Checks the value and shows the error if it is invalid."
+        }
+      ],
+      "slots": [],
+      "cssParts": [
+        "control",
+        "error",
+        "field",
+        "hint",
+        "label"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 6
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": true
+    },
+    {
+      "tag": "tessera-toast-region",
+      "displayName": "Toast region",
+      "category": "primitive",
+      "icon": "bell",
+      "props": [],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [],
+      "cssParts": [
+        "toast"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 12
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    },
+    {
+      "tag": "tessera-tooltip",
+      "displayName": "Tooltip",
+      "category": "primitive",
+      "icon": "message",
+      "props": [
+        {
+          "name": "text",
+          "attribute": "text",
+          "type": {
+            "kind": "string"
+          },
+          "default": "",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "text"
+          },
+          "bindable": true
+        },
+        {
+          "name": "placement",
+          "attribute": "placement",
+          "type": {
+            "kind": "enum",
+            "values": [
+              "top",
+              "bottom",
+              "left",
+              "right",
+              "top-start",
+              "bottom-start",
+              "left-start",
+              "right-start",
+              "top-end",
+              "bottom-end",
+              "left-end",
+              "right-end"
+            ]
+          },
+          "default": "top",
+          "required": false,
+          "description": "",
+          "editor": {
+            "kind": "select",
+            "options": [
+              {
+                "value": "top",
+                "label": "top"
+              },
+              {
+                "value": "bottom",
+                "label": "bottom"
+              },
+              {
+                "value": "left",
+                "label": "left"
+              },
+              {
+                "value": "right",
+                "label": "right"
+              },
+              {
+                "value": "top-start",
+                "label": "top-start"
+              },
+              {
+                "value": "bottom-start",
+                "label": "bottom-start"
+              },
+              {
+                "value": "left-start",
+                "label": "left-start"
+              },
+              {
+                "value": "right-start",
+                "label": "right-start"
+              },
+              {
+                "value": "top-end",
+                "label": "top-end"
+              },
+              {
+                "value": "bottom-end",
+                "label": "bottom-end"
+              },
+              {
+                "value": "left-end",
+                "label": "left-end"
+              },
+              {
+                "value": "right-end",
+                "label": "right-end"
+              }
+            ]
+          },
+          "bindable": true
+        },
+        {
+          "name": "delay",
+          "attribute": "delay",
+          "type": {
+            "kind": "number"
+          },
+          "default": 400,
+          "required": false,
+          "description": "Milliseconds before the tooltip appears.",
+          "editor": {
+            "kind": "number"
+          },
+          "bindable": true
+        }
+      ],
+      "events": [],
+      "exposes": [],
+      "methods": [],
+      "slots": [
+        {
+          "name": "",
+          "description": ""
+        }
+      ],
+      "cssParts": [
+        "tip"
+      ],
+      "cssProperties": [],
+      "layout": {
+        "defaultSpan": {
+          "base": 2
+        },
+        "resizable": true,
+        "container": false
+      },
+      "formAssociated": false
+    }
+  ],
+  "entries": {
+    "elements": "@tessera-kit/elements/define"
+  },
+  "peers": {
+    "@tessera-kit/storage": "^0.1.0",
+    "@tessera-kit/transport": "^0.1.0"
+  },
+  "docs": {
+    "summary": "Design tokens, <tessera-root> and the UI primitives every Tessera kit is built from: buttons, form fields, menus, dialogs, popovers, tooltips, avatars, badges and toasts.",
+    "useWhen": [
+      "a page needs a basic control (button, input, select, dialog) that matches the Tessera kits",
+      "wrapping a page in <tessera-root> to give its kit elements an instance and a theme"
+    ],
+    "avoidWhen": [
+      "the app already has a design system for basic controls; the kits work without these primitives on the page"
+    ],
+    "examples": []
+  }
+}

@@ -109,6 +109,9 @@ importers:
         specifier: ^3.3.0
         version: 3.3.3
     devDependencies:
+      '@tessera-kit/manifest':
+        specifier: workspace:*
+        version: link:../manifest
       '@tessera-kit/protocol':
         specifier: workspace:*
         version: link:../protocol
