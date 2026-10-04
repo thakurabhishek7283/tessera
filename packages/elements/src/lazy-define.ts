@@ -17,6 +17,7 @@ const waiters = new Map<string, Waiter[]>();
 let selector = '';
 let observer: MutationObserver | undefined;
 let scanQueued = false;
+let shadowHooked = false;
 
 const hasDom = (): boolean =>
   typeof document !== 'undefined' && typeof customElements !== 'undefined';
@@ -25,10 +26,11 @@ const hasDom = (): boolean =>
  * Registers `tag` to be defined the first time an element with that tag is connected, instead of
  * loading its code up front.
  *
- * A single `MutationObserver` on the document watches for the tag; `TesseraElement` also checks its
- * own shadow root after its first render, because document observers do not see inside shadow
- * roots. Elements already on the page when the tag is registered are found too. Registering a tag
- * that is already defined, or already registered, does nothing.
+ * A single `MutationObserver` on the document watches for the tag. Document observers do not see
+ * inside shadow roots, so while a tag is pending, shadow roots attached afterwards are watched as
+ * well, and `TesseraElement` checks its own after its first render. Elements already on the page
+ * when the tag is registered, including inside open shadow roots, are found by a scan. Registering
+ * a tag that is already defined, or already registered, does nothing.
  *
  * @example
  * lazyDefine('tessera-inbox', () => import('./inbox.js'));
@@ -80,6 +82,22 @@ function register(name: string, loader: LazyLoader): void {
   pending.set(name, loader);
   updateSelector();
   watch(document);
+  hookShadowRoots();
+}
+
+/**
+ * Watches shadow roots attached from now on, while any tag is pending, so tags rendered inside an
+ * app's own components (a Lit app shell, a design system) are found too, closed roots included.
+ */
+function hookShadowRoots(): void {
+  if (shadowHooked) return;
+  shadowHooked = true;
+  const attach = Element.prototype.attachShadow;
+  Element.prototype.attachShadow = function attachShadow(this: Element, init: ShadowRootInit) {
+    const root = attach.call(this, init);
+    if (pending.size > 0) watch(root);
+    return root;
+  };
 }
 
 function updateSelector(): void {

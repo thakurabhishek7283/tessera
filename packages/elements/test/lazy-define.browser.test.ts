@@ -224,6 +224,45 @@ describe('lazyDefine', () => {
     expect(isUpgraded(el.shadowRoot?.querySelector(tag))).toBe(true);
   });
 
+  it('upgrades an element that an app’s own component (not a TesseraElement) renders later', async () => {
+    const tag = uniqueTag('app-child');
+    const host = uniqueTag('app-host');
+    const { load, calls } = loaderFor(tag);
+    lazyDefine(tag, load);
+    await flush();
+    customElements.define(
+      host,
+      class extends LitElement {
+        static override properties = { show: { type: Boolean } };
+        show = false;
+        protected override render() {
+          return this.show ? unsafeTag(tag) : html`<i></i>`;
+        }
+      },
+    );
+    const el = document.createElement(host) as LitElement & { show: boolean };
+    document.body.append(el);
+    await el.updateComplete;
+    await flush();
+    expect(calls()).toBe(0);
+    el.show = true;
+    await whenLazyDefined(tag);
+    expect(isUpgraded(el.shadowRoot?.querySelector(tag))).toBe(true);
+  });
+
+  it('upgrades an element in a closed shadow root attached after registration', async () => {
+    const tag = uniqueTag('closed-child');
+    const { load } = loaderFor(tag);
+    lazyDefine(tag, load);
+    await flush();
+    const host = document.createElement('div');
+    const root = host.attachShadow({ mode: 'closed' });
+    document.body.append(host);
+    root.innerHTML = `<p><${tag}></${tag}></p>`;
+    await whenLazyDefined(tag);
+    expect(isUpgraded(root.querySelector(tag))).toBe(true);
+  });
+
   it('finds an element in a shadow root that existed before the tag was registered', async () => {
     const tag = uniqueTag('pre-shadow');
     const host = uniqueTag('pre-host');
