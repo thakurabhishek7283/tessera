@@ -1,7 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
-const css = readFileSync(new URL('../src/tokens.css', import.meta.url), 'utf8');
+// Normalised like scripts/sync-tokens.mjs, so the check passes on CRLF checkouts too.
+const css = readFileSync(new URL('../src/tokens.css', import.meta.url), 'utf8').replace(
+  /\r\n/g,
+  '\n',
+);
 
 /** Extracts `--name: value` declarations from the first block matching `selector`. */
 function block(selector: string): Record<string, string> {
