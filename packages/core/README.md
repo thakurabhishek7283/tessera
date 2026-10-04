@@ -1,6 +1,6 @@
 # @tessera-kit/core
 
-The plugin host behind Tessera: configuration schema, plugin lifecycle, event bus, service registry, stores, undo/redo history, i18n and the adapter interfaces. One runtime dependency (zod).
+The plugin host behind Tessera: configuration schema, plugin lifecycle, event bus, service registry, stores, undo/redo history, i18n and the adapter interfaces. One runtime dependency (zod, through `zod/mini`).
 
 ```sh
 pnpm add @tessera-kit/core
@@ -21,6 +21,8 @@ const tessera = createTessera(
 await tessera.ready; // never rejects; failures arrive as 'tessera:error'
 ```
 
+An invalid config throws `CONFIG_INVALID` with one `path: message` line per problem. Development builds (anything where `process.env.NODE_ENV` isn't `"production"`) check the whole config against `TesseraConfigSchema`. Production builds check `appId`, the `features` object and the adapter `type` values, with the same messages, and leave the full schema and zod's message catalog out of the bundle. Feature options are always checked by their plugin.
+
 | Option | Description |
 | --- | --- |
 | `plugins` | Feature id → `() => import(...)` whose default export is a plugin |
@@ -35,12 +37,12 @@ The full configuration is documented in the [configuration reference](https://th
 
 ```ts
 import { definePlugin } from '@tessera-kit/core';
-import { z } from 'zod';
+import * as z from 'zod/mini';
 
 export default definePlugin({
   id: 'counter',
   version: '1.0.0',
-  configSchema: z.object({ enabled: z.boolean(), step: z.number().default(1) }),
+  configSchema: z.object({ enabled: z.boolean(), step: z._default(z.number(), 1) }),
   requires: ['storage'],
   setup: (ctx, cfg) => ({ step: cfg.step }),
   teardown: (api) => {},

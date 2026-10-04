@@ -23,7 +23,7 @@
     "README.md"
   ],
   "dependencies": {
-    "zod": "^4.1.0"
+    "zod": "^4.2.0"
   },
   "scripts": {
     "build": "tsdown",

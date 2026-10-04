@@ -2,7 +2,8 @@ import type { StorageAdapter, Transport, UploadAdapter } from './adapters.js';
 import { resolveAuth } from './auth.js';
 import { createEventBus, type Unsubscribe } from './bus.js';
 import { type Clock, systemClock } from './clock.js';
-import { parseConfig, TesseraConfigSchema } from './config.js';
+import { checkConfig, parseConfig } from './config.js';
+import { TesseraConfigSchema } from './config-schema.js';
 import { TesseraError } from './errors.js';
 import { createI18n } from './i18n.js';
 import { createIdGenerator, type IdGenerator } from './ids.js';
@@ -37,6 +38,10 @@ interface FeatureState {
   disposers: Unsubscribe[];
 }
 
+// Bundlers replace `process.env.NODE_ENV` in app builds; where nothing does and `process` doesn't
+// exist (plain ES modules in a browser), the production path runs.
+declare const process: { env: { NODE_ENV?: string } };
+
 const ADAPTER_HINTS = {
   transport: "import { createTransport } from '@tessera-kit/transport'",
   storage: "import { createStorage } from '@tessera-kit/storage'",
@@ -55,7 +60,12 @@ const ADAPTER_HINTS = {
  * await tessera.ready;
  */
 export function createTessera(config: TesseraConfig, opts: CreateTesseraOptions): TesseraInstance {
-  const validated = parseConfig(TesseraConfigSchema, config);
+  // Development builds validate the whole config. Production builds check only what would fail far
+  // from its cause, so the schema (and zod's message catalog) stays out of the bundle.
+  const validated =
+    typeof process !== 'undefined' && process.env.NODE_ENV !== 'production'
+      ? parseConfig(TesseraConfigSchema, config)
+      : checkConfig(config);
   const logger = createLogger(validated.debug ? 'debug' : 'warn');
   const clock = opts.clock ?? systemClock;
   const ids = opts.ids ?? createIdGenerator({ clock });
