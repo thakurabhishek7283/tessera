@@ -31,3 +31,7 @@ The savings are in the kits: pages that render only some of a kit's elements sto
 ## Development detection
 
 The guards read `process.env.NODE_ENV` inside `try`, not behind `typeof process !== 'undefined'`. Vite replaces `process.env.NODE_ENV` but doesn't define `process` in the browser, so a `typeof process` check never sees development in a Vite dev server (checked in Chromium: `typeof process` is `"undefined"` while `process.env.NODE_ENV` reads `"development"`). Wrapped in `try`, the check works there, stays silent in unbundled ES modules, and still folds away in production builds.
+
+## The budget now counts eager dynamic imports
+
+`pnpm budget` used to count only the entry chunk and its static imports as "initial". A dynamic `import()` that runs as soon as a module is evaluated (chat's `void import('./inbox.js')`) downloads on every page, but was counted as lazy, so the budget couldn't see the problem this session removes. `scripts/page-budget-lib.mjs` now finds `import()` calls outside functions and loaders and counts their chunks as initial. Nothing in `tessera` does this, so its numbers don't change; chat's page measured 48.3 KB rather than 45.0 KB before its fix (see tessera-realtime).
