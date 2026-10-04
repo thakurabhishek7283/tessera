@@ -54,3 +54,4 @@ export type {
   TransportConfig,
   UploadConfig,
 } from './types.js';
+export { version } from './version.js';

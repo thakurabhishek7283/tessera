@@ -64,6 +64,16 @@ See [Writing a plugin](https://thakurabhishek7283.github.io/tessera/guide/writin
 | `TesseraError` | `code`, `message`, `details`, `cause`; `TesseraError.is(e, code?)`. |
 | `createLogger(level)` | Scoped logger; libraries log through `ctx.logger`. |
 
+## One copy per page
+
+Each copy of core that a page evaluates pushes its version onto `globalThis[Symbol.for('tessera.core')].versions`. When a second copy appears (two versions in the lockfile, or one bundled twice), development builds log one warning:
+
+```
+[tessera] two copies of @tessera-kit/core loaded (0.1.0 and 0.2.0). Run "npx tessera doctor" or dedupe your lockfile.
+```
+
+Two copies don't share instances, stores or the implicit default instance, so elements from one can't see the other's. Production builds keep the registration and drop the warning. The `version` export is this copy's version.
+
 ## Extending the types
 
 `FeatureApiMap`, `ServiceMap` and `TesseraEvents` are open interfaces; kits add to them with `declare module '@tessera-kit/core'`.
