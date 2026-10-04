@@ -4,7 +4,7 @@ import {
   type Peer,
   systemClock,
   type UserInfo,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { createLocalTransport, isLocalTransport, type LocalTransport } from '../src/local.js';
 import { FakeChannelBus } from './helpers/fake-channel.js';

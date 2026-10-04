@@ -11,10 +11,10 @@
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@tessera/core": "workspace:*",
-    "@tessera/elements": "workspace:*",
-    "@tessera/storage": "workspace:*",
-    "@tessera/transport": "workspace:*",
+    "@tessera-kit/core": "workspace:*",
+    "@tessera-kit/elements": "workspace:*",
+    "@tessera-kit/storage": "workspace:*",
+    "@tessera-kit/transport": "workspace:*",
     "lit": "^3.3.0",
     "zod": "^4.1.0"
   },

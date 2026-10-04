@@ -1,4 +1,4 @@
-import { type AuthProvider, createIdGenerator } from '@tessera/core';
+import { type AuthProvider, createIdGenerator } from '@tessera-kit/core';
 import { describe, expect, it, vi } from 'vitest';
 import {
   blobToDataUrl,

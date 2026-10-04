@@ -1,5 +1,5 @@
 {
-  "name": "@tessera/testing",
+  "name": "@tessera-kit/testing",
   "version": "0.1.0",
   "description": "FakeHub, fake clock and fixtures for testing Tessera kits",
   "license": "MIT",
@@ -18,9 +18,9 @@
     "README.md"
   ],
   "dependencies": {
-    "@tessera/core": "workspace:*",
-    "@tessera/protocol": "workspace:*",
-    "@tessera/storage": "workspace:*"
+    "@tessera-kit/core": "workspace:*",
+    "@tessera-kit/protocol": "workspace:*",
+    "@tessera-kit/storage": "workspace:*"
   },
   "scripts": {
     "build": "tsdown",

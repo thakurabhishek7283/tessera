@@ -1,4 +1,4 @@
-import { defineElement, registerImplicitPlugin } from '@tessera/elements';
+import { defineElement, registerImplicitPlugin } from '@tessera-kit/elements';
 import { TesseraHelloElement } from './element.js';
 
 export { TesseraHelloElement } from './element.js';

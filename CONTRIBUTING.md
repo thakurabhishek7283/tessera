@@ -18,12 +18,12 @@ Component and end-to-end tests need Chromium. Install it with `npx playwright in
 | Task | Command |
 | --- | --- |
 | Run the playground | `pnpm dev` |
-| Unit tests | `pnpm test` (add `--filter @tessera/core` to narrow) |
+| Unit tests | `pnpm test` (add `--filter @tessera-kit/core` to narrow) |
 | Component tests in a browser | `pnpm test:browser` |
 | End-to-end tests | `pnpm e2e` |
 | Format | `pnpm format` |
 | Regenerate the config reference | `pnpm docs:gen` (after changing `packages/core/src/config.ts`) |
-| Regenerate the design token module | `pnpm --filter @tessera/elements sync-tokens` (after editing `tokens.css`) |
+| Regenerate the design token module | `pnpm --filter @tessera-kit/elements sync-tokens` (after editing `tokens.css`) |
 
 ## Conventions
 

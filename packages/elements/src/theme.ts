@@ -1,11 +1,11 @@
-import type { ThemeMode } from '@tessera/core';
+import type { ThemeMode } from '@tessera-kit/core';
 import { tokensCss } from './tokens.generated.js';
 
 const MARKER = '--tessera-color-primary';
 
 /**
  * Makes sure the design tokens exist on the page. Hosts that already import
- * `@tessera/elements/tokens.css` are left alone; otherwise the tokens are adopted once.
+ * `@tessera-kit/elements/tokens.css` are left alone; otherwise the tokens are adopted once.
  */
 export function installTokens(doc: Document = document): void {
   const view = doc.defaultView;

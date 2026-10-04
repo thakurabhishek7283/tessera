@@ -1,6 +1,6 @@
 # Wire protocol
 
-Clients and `tessera-server` exchange JSON text frames over one WebSocket. The schemas live in `@tessera/protocol` and are used on both sides, so a frame that validates in the client validates on the server.
+Clients and `tessera-server` exchange JSON text frames over one WebSocket. The schemas live in `@tessera-kit/protocol` and are used on both sides, so a frame that validates in the client validates on the server.
 
 - Protocol version: **1**. The first frame must be `hello` with `v: 1`.
 - Maximum frame size: **64 KiB**. Presence patches are limited to **2 KiB**.
@@ -67,7 +67,7 @@ The `websocket` transport implements the following so kits do not have to:
 
 ## Topics
 
-Request topics and their payloads are exported from `@tessera/protocol` as `TopicSchemas`, and broadcast payloads as `BroadcastSchemas`.
+Request topics and their payloads are exported from `@tessera-kit/protocol` as `TopicSchemas`, and broadcast payloads as `BroadcastSchemas`.
 
 | Request topic | Request | Response |
 | --- | --- | --- |
@@ -90,6 +90,6 @@ Request topics and their payloads are exported from `@tessera/protocol` as `Topi
 
 ## REST
 
-`tessera-server` also exposes `/v1/docs`, `/v1/uploads`, `/v1/ice` and `/v1/auth/guest`. Their request and response shapes are `DocDto`, `DocListQuery`, `DocPutBody`, `UploadRes`, `IceRes` and `GuestAuthRes` in `@tessera/protocol`. Errors use the envelope `{ "error": { "code", "message", "details?" } }`; a version conflict (`409`) also returns the stored document as `current`.
+`tessera-server` also exposes `/v1/docs`, `/v1/uploads`, `/v1/ice` and `/v1/auth/guest`. Their request and response shapes are `DocDto`, `DocListQuery`, `DocPutBody`, `UploadRes`, `IceRes` and `GuestAuthRes` in `@tessera-kit/protocol`. Errors use the envelope `{ "error": { "code", "message", "details?" } }`; a version conflict (`409`) also returns the stored document as `current`.
 
 Filter values in `where[field]=value` carry no type, so servers match a field against every typed reading of the string (`"1"` also matches the number `1`); `encodeWhereValue` and `whereCandidates` implement this.

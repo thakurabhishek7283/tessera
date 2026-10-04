@@ -57,6 +57,6 @@ return editor ? mountRichEditor(editor) : mountTextarea();
 
 - **No imports between kits.** Use services and the bus.
 - **No `console`.** Use `ctx.logger`; it is silent unless the host sets `debug: true`.
-- **Validate at the edge.** Storage reads go through `createCollection`; anything off the wire goes through a schema from `@tessera/protocol`.
+- **Validate at the edge.** Storage reads go through `createCollection`; anything off the wire goes through a schema from `@tessera-kit/protocol`.
 - **Be deterministic.** Take time from `ctx.clock` and ids from `ctx.ids` so tests with [`createTestInstance`](/guide/testing) are repeatable.
 - **Clean up.** Whatever `setup` starts, `teardown` stops.

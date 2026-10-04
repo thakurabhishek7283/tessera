@@ -5,7 +5,7 @@ import { TesseraError } from './errors.js';
  * Well-known cross-kit services. Kits extend this through declaration merging:
  *
  * ```ts
- * declare module '@tessera/core' {
+ * declare module '@tessera-kit/core' {
  *   interface ServiceMap { editor: EditorService }
  * }
  * ```

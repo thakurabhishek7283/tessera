@@ -1,6 +1,6 @@
 import { ContextConsumer } from '@lit/context';
-import type { ReadonlyStore, TesseraContext, TesseraInstance, Unsubscribe } from '@tessera/core';
-import { TesseraError } from '@tessera/core';
+import type { ReadonlyStore, TesseraContext, TesseraInstance, Unsubscribe } from '@tessera-kit/core';
+import { TesseraError } from '@tessera-kit/core';
 import { LitElement, nothing, type PropertyDeclarations, type PropertyValues } from 'lit';
 import { tesseraContext } from './context.js';
 import { StoreController } from './controllers.js';

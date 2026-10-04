@@ -7,7 +7,7 @@ Until the packages are published, install them from the repositories (each one e
 :::
 
 ```sh
-pnpm add @tessera/core @tessera/elements @tessera/transport @tessera/storage
+pnpm add @tessera-kit/core @tessera-kit/elements @tessera-kit/transport @tessera-kit/storage
 ```
 
 ## Just an element
@@ -16,8 +16,8 @@ With no configuration at all, an element switches its own feature on in an impli
 
 ```html
 <script type="module">
-  import '@tessera/elements/define'; // <tessera-root> and the UI primitives
-  import '@tessera/kanban/elements'; // <tessera-kanban>, registers the kanban plugin
+  import '@tessera-kit/elements/define'; // <tessera-root> and the UI primitives
+  import '@tessera-kit/kanban/elements'; // <tessera-kanban>, registers the kanban plugin
 </script>
 
 <tessera-kanban board-id="roadmap"></tessera-kanban>
@@ -33,11 +33,11 @@ Create an instance yourself when you want a different backend, auth, theme or a 
 
 ```html [Plain HTML]
 <script type="module">
-  import { createTessera } from '@tessera/core';
-  import { createStorage, createUploads } from '@tessera/storage';
-  import { createTransport } from '@tessera/transport';
-  import '@tessera/elements/define';
-  import '@tessera/kanban/elements';
+  import { createTessera } from '@tessera-kit/core';
+  import { createStorage, createUploads } from '@tessera-kit/storage';
+  import { createTransport } from '@tessera-kit/transport';
+  import '@tessera-kit/elements/define';
+  import '@tessera-kit/kanban/elements';
 
   const tessera = createTessera(
     {
@@ -49,8 +49,8 @@ Create an instance yourself when you want a different backend, auth, theme or a 
     },
     {
       plugins: {
-        kanban: () => import('@tessera/kanban'),
-        chat: () => import('@tessera/chat'), // never loaded: chat is disabled
+        kanban: () => import('@tessera-kit/kanban'),
+        chat: () => import('@tessera-kit/chat'), // never loaded: chat is disabled
       },
       adapters: { transport: createTransport, storage: createStorage, uploads: createUploads },
     },
@@ -65,16 +65,16 @@ Create an instance yourself when you want a different backend, auth, theme or a 
 ```
 
 ```tsx [React]
-import { TesseraProvider } from '@tessera/react';
-import { KanbanBoard } from '@tessera/kanban/react';
-import { createStorage, createUploads } from '@tessera/storage';
-import { createTransport } from '@tessera/transport';
+import { TesseraProvider } from '@tessera-kit/react';
+import { KanbanBoard } from '@tessera-kit/kanban/react';
+import { createStorage, createUploads } from '@tessera-kit/storage';
+import { createTransport } from '@tessera-kit/transport';
 
 const config = {
   appId: 'my-app',
   features: { kanban: { enabled: true } },
 };
-const plugins = { kanban: () => import('@tessera/kanban') };
+const plugins = { kanban: () => import('@tessera-kit/kanban') };
 const adapters = { transport: createTransport, storage: createStorage, uploads: createUploads };
 
 export function App() {
@@ -88,12 +88,12 @@ export function App() {
 
 ```ts [Angular]
 // main.ts: define the elements once
-import '@tessera/elements/define';
-import '@tessera/kanban/elements';
+import '@tessera-kit/elements/define';
+import '@tessera-kit/kanban/elements';
 
 // app.component.ts
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { createTessera } from '@tessera/core';
+import { createTessera } from '@tessera-kit/core';
 
 @Component({
   selector: 'app-root',
@@ -112,9 +112,9 @@ export class AppComponent {
 
 ```vue [Vue]
 <script setup lang="ts">
-import '@tessera/elements/define';
-import '@tessera/kanban/elements';
-import { createTessera } from '@tessera/core';
+import '@tessera-kit/elements/define';
+import '@tessera-kit/kanban/elements';
+import { createTessera } from '@tessera-kit/core';
 
 const tessera = createTessera(config, { plugins, adapters });
 </script>

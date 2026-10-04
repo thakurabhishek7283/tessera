@@ -1,4 +1,4 @@
-import { TesseraError } from '@tessera/core';
+import { TesseraError } from '@tessera-kit/core';
 import { describe, expect, it, vi } from 'vitest';
 import { alice, bob, carol, FakeHub } from '../src/index.js';
 

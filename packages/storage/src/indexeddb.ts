@@ -1,5 +1,5 @@
-import type { Clock, Doc, DocChange, StorageAdapter } from '@tessera/core';
-import { systemClock } from '@tessera/core';
+import type { Clock, Doc, DocChange, StorageAdapter } from '@tessera-kit/core';
+import { systemClock } from '@tessera-kit/core';
 import { type IDBPDatabase, openDB } from 'idb';
 import { createEngine, type DocBackend } from './engine.js';
 

@@ -1,5 +1,5 @@
 {
-  "name": "@tessera/protocol",
+  "name": "@tessera-kit/protocol",
   "version": "0.1.0",
   "description": "Wire protocol and REST DTO schemas shared by Tessera clients and servers",
   "license": "MIT",
@@ -30,6 +30,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@tessera/core": "workspace:*"
+    "@tessera-kit/core": "workspace:*"
   }
 }

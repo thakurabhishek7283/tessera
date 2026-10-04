@@ -4,10 +4,10 @@ import {
   TesseraError,
   type TesseraInstance,
   type ThemeMode,
-} from '@tessera/core';
-import { baseStyles, toastErrors } from '@tessera/elements';
-import { createStorage, createUploads } from '@tessera/storage';
-import { createTransport } from '@tessera/transport';
+} from '@tessera-kit/core';
+import { baseStyles, toastErrors } from '@tessera-kit/elements';
+import { createStorage, createUploads } from '@tessera-kit/storage';
+import { createTransport } from '@tessera-kit/transport';
 import {
   type CSSResultGroup,
   css,

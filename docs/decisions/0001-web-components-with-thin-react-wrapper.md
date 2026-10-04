@@ -8,7 +8,7 @@ The kits must work in React, Angular, Vue and plain HTML. Maintaining a componen
 
 ## Decision
 
-Every UI piece is a Lit 3 custom element with Shadow DOM, plus a headless TypeScript API. React gets a thin bridge (`@tessera/react`: a provider and hooks; kits wrap their elements with `@lit/react`).
+Every UI piece is a Lit 3 custom element with Shadow DOM, plus a headless TypeScript API. React gets a thin bridge (`@tessera-kit/react`: a provider and hooks; kits wrap their elements with `@lit/react`).
 
 ## Consequences
 

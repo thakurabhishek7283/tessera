@@ -4,7 +4,7 @@ import {
   definePlugin,
   type PluginLoader,
   type TesseraInstance,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 import { html, LitElement } from 'lit';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
@@ -16,7 +16,7 @@ import {
   TesseraRoot,
 } from '../src/index.js';
 
-declare module '@tessera/core' {
+declare module '@tessera-kit/core' {
   interface FeatureApiMap {
     demo: { hello(): string };
   }

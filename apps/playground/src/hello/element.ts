@@ -1,4 +1,4 @@
-import { baseStyles, TesseraElement } from '@tessera/elements';
+import { baseStyles, TesseraElement } from '@tessera-kit/elements';
 import { type CSSResultGroup, css, html } from 'lit';
 import type { HelloApi } from './plugin.js';
 

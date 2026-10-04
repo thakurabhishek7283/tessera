@@ -7,7 +7,7 @@ import {
   type StorageAdapter,
   TesseraError,
   type Unsubscribe,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 
 /**
  * Minimal persistence primitive. Every local adapter implements this and gets identical

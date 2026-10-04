@@ -1,4 +1,4 @@
-import { colorForId } from '@tessera/core';
+import { colorForId } from '@tessera-kit/core';
 import { type CSSResultGroup, css, html, nothing, type PropertyDeclarations } from 'lit';
 import { TesseraElement } from '../base.js';
 import { readableTextOn } from '../color.js';

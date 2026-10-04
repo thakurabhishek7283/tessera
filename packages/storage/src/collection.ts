@@ -7,7 +7,7 @@ import {
   type TesseraContext,
   TesseraError,
   type Unsubscribe,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 import type { z } from 'zod';
 
 /** A typed, validated view of one storage collection. */

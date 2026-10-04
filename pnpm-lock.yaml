@@ -47,16 +47,16 @@ importers:
 
   apps/playground:
     dependencies:
-      '@tessera/core':
+      '@tessera-kit/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@tessera/elements':
+      '@tessera-kit/elements':
         specifier: workspace:*
         version: link:../../packages/elements
-      '@tessera/storage':
+      '@tessera-kit/storage':
         specifier: workspace:*
         version: link:../../packages/storage
-      '@tessera/transport':
+      '@tessera-kit/transport':
         specifier: workspace:*
         version: link:../../packages/transport
       lit:
@@ -81,20 +81,20 @@ importers:
       '@lit/context':
         specifier: ^1.1.0
         version: 1.1.6
-      '@tessera/core':
+      '@tessera-kit/core':
         specifier: workspace:*
         version: link:../core
       lit:
         specifier: ^3.3.0
         version: 3.3.3
     devDependencies:
-      '@tessera/protocol':
+      '@tessera-kit/protocol':
         specifier: workspace:*
         version: link:../protocol
-      '@tessera/storage':
+      '@tessera-kit/storage':
         specifier: workspace:*
         version: link:../storage
-      '@tessera/transport':
+      '@tessera-kit/transport':
         specifier: workspace:*
         version: link:../transport
       '@types/node':
@@ -119,7 +119,7 @@ importers:
         specifier: ^4.1.0
         version: 4.6.5
     devDependencies:
-      '@tessera/core':
+      '@tessera-kit/core':
         specifier: workspace:*
         version: link:../core
 
@@ -128,10 +128,10 @@ importers:
       '@lit/react':
         specifier: ^1.0.8
         version: 1.0.8(@types/react@19.3.0)
-      '@tessera/core':
+      '@tessera-kit/core':
         specifier: workspace:*
         version: link:../core
-      '@tessera/elements':
+      '@tessera-kit/elements':
         specifier: workspace:*
         version: link:../elements
     devDependencies:
@@ -165,10 +165,10 @@ importers:
 
   packages/storage:
     dependencies:
-      '@tessera/core':
+      '@tessera-kit/core':
         specifier: workspace:*
         version: link:../core
-      '@tessera/protocol':
+      '@tessera-kit/protocol':
         specifier: workspace:*
         version: link:../protocol
       idb:
@@ -184,13 +184,13 @@ importers:
 
   packages/testing:
     dependencies:
-      '@tessera/core':
+      '@tessera-kit/core':
         specifier: workspace:*
         version: link:../core
-      '@tessera/protocol':
+      '@tessera-kit/protocol':
         specifier: workspace:*
         version: link:../protocol
-      '@tessera/storage':
+      '@tessera-kit/storage':
         specifier: workspace:*
         version: link:../storage
     devDependencies:
@@ -203,10 +203,10 @@ importers:
 
   packages/transport:
     dependencies:
-      '@tessera/core':
+      '@tessera-kit/core':
         specifier: workspace:*
         version: link:../core
-      '@tessera/protocol':
+      '@tessera-kit/protocol':
         specifier: workspace:*
         version: link:../protocol
     devDependencies:

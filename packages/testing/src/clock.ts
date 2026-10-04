@@ -1,4 +1,4 @@
-import type { Clock, IdGenerator } from '@tessera/core';
+import type { Clock, IdGenerator } from '@tessera-kit/core';
 
 /** A clock that only moves when told to. Pair with Vitest fake timers when code uses `setTimeout`. */
 export interface FakeClock extends Clock {

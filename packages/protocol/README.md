@@ -1,9 +1,9 @@
-# @tessera/protocol
+# @tessera-kit/protocol
 
 Zod schemas and inferred types for the Tessera wire protocol and REST DTOs, shared by clients and `tessera-server`.
 
 ```ts
-import { ClientMsg, decodeServerFrame, TopicSchemas } from '@tessera/protocol';
+import { ClientMsg, decodeServerFrame, TopicSchemas } from '@tessera-kit/protocol';
 
 const frame = decodeServerFrame(event.data);
 if (frame.ok && frame.msg.t === 'msg') handle(frame.msg);

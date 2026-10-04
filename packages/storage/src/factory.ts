@@ -4,7 +4,7 @@ import type {
   TesseraContext,
   UploadAdapter,
   UploadConfig,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 import { createIndexedDbStorage } from './indexeddb.js';
 import { createLocalStorageAdapter } from './local-storage.js';
 import { createMemoryStorage } from './memory.js';

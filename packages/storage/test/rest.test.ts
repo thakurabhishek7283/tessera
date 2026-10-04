@@ -1,4 +1,4 @@
-import { createStore, type Doc, type Peer, type Room, type Transport } from '@tessera/core';
+import { createStore, type Doc, type Peer, type Room, type Transport } from '@tessera-kit/core';
 import { describe, expect, it } from 'vitest';
 import { createRestStorage } from '../src/rest.js';
 

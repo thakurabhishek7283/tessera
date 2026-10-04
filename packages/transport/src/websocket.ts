@@ -11,14 +11,14 @@ import {
   type Transport,
   type TransportState,
   type UserInfo,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 import {
   type ClientMessage,
   decodeServerFrame,
   MAX_FRAME_BYTES,
   PROTOCOL_VERSION,
   type ServerMessage,
-} from '@tessera/protocol';
+} from '@tessera-kit/protocol';
 import { createMergeThrottle, createPeerList, type PeerList } from './util.js';
 
 /** The subset of the WebSocket API the transport needs, so tests can inject sockets. */
@@ -104,7 +104,7 @@ interface WsRoomState {
 }
 
 /**
- * Transport for `tessera-server` (or any server speaking `@tessera/protocol`). Handles
+ * Transport for `tessera-server` (or any server speaking `@tessera-kit/protocol`). Handles
  * reconnecting with jittered backoff, rejoining rooms, queueing while offline, heartbeats and
  * request/response correlation.
  */

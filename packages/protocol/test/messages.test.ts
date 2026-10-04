@@ -102,8 +102,8 @@ describe('constants', () => {
     expect(MAX_FRAME_BYTES).toBe(65536);
   });
 
-  it('mirrors the error codes declared in @tessera/core', async () => {
-    const core = await import('@tessera/core');
+  it('mirrors the error codes declared in @tessera-kit/core', async () => {
+    const core = await import('@tessera-kit/core');
     const sample = core.TesseraError.from(new Error('x'));
     expect(ERROR_CODES).toContain(sample.code);
     // The compile-time check below fails if core adds a code that protocol lacks.

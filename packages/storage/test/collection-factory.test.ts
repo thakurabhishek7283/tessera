@@ -1,4 +1,4 @@
-import { createStore, createTessera, type Transport } from '@tessera/core';
+import { createStore, createTessera, type Transport } from '@tessera-kit/core';
 import { describe, expect, it, vi } from 'vitest';
 import { z } from 'zod';
 import { createCollection } from '../src/collection.js';

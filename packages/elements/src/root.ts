@@ -1,5 +1,5 @@
 import { ContextProvider } from '@lit/context';
-import type { TesseraInstance, Unsubscribe } from '@tessera/core';
+import type { TesseraInstance, Unsubscribe } from '@tessera-kit/core';
 import { type CSSResultGroup, css, html, LitElement, type PropertyDeclarations } from 'lit';
 import { tesseraContext } from './context.js';
 import { applyTheme, installTokens } from './theme.js';

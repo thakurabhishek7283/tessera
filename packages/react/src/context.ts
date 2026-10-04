@@ -1,4 +1,4 @@
-import type { TesseraInstance } from '@tessera/core';
+import type { TesseraInstance } from '@tessera-kit/core';
 import { createContext } from 'react';
 
 export const TesseraReactContext: React.Context<TesseraInstance | null> =

@@ -1,4 +1,4 @@
-import type { ReadonlyStore, Unsubscribe } from '@tessera/core';
+import type { ReadonlyStore, Unsubscribe } from '@tessera-kit/core';
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 
 /** Re-renders the host whenever `store` changes. */

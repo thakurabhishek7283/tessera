@@ -1,9 +1,9 @@
-# @tessera/react
+# @tessera-kit/react
 
 React 19 bridge for Tessera.
 
 ```tsx
-import { TesseraProvider, useFeature, useBusEvent } from '@tessera/react';
+import { TesseraProvider, useFeature, useBusEvent } from '@tessera-kit/react';
 
 <TesseraProvider config={config} plugins={plugins} adapters={adapters} fallback={<Spinner />}>
   <App />

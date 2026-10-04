@@ -10,7 +10,7 @@ import {
   type TransportState,
   type Unsubscribe,
   type UserInfo,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 import { createMergeThrottle, createPeerList, withTimeout } from './util.js';
 
 /** What a local request handler can do. It plays the role of the server for one request. */

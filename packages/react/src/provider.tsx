@@ -1,5 +1,5 @@
-import type { AdapterFactories, PluginLoader, TesseraConfig, TesseraInstance } from '@tessera/core';
-import { createTessera } from '@tessera/core';
+import type { AdapterFactories, PluginLoader, TesseraConfig, TesseraInstance } from '@tessera-kit/core';
+import { createTessera } from '@tessera-kit/core';
 import {
   createElement,
   type ReactElement,
@@ -49,7 +49,7 @@ export function TesseraProvider(props: TesseraProviderProps): ReactElement {
     void (async () => {
       try {
         // Elements are defined lazily so importing this module on the server stays harmless.
-        await import('@tessera/elements/define');
+        await import('@tessera-kit/elements/define');
         if (cancelled) return;
         const { config, plugins, adapters } = latest.current;
         let instance = external;

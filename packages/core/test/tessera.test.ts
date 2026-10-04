@@ -168,7 +168,7 @@ describe('createTessera', () => {
 
   it('throws ADAPTER_MISSING with a hint when a storage factory is absent', () => {
     const t = createTessera(base({}, { storage: { type: 'indexeddb' } }), { plugins: {} });
-    expect(() => t.ctx.storage()).toThrowError(/@tessera\/storage/);
+    expect(() => t.ctx.storage()).toThrowError(/@tessera-kit\/storage/);
   });
 
   it('uses custom storage adapters without a factory', () => {

@@ -1,4 +1,4 @@
-import type { TesseraContext, Transport, TransportConfig } from '@tessera/core';
+import type { TesseraContext, Transport, TransportConfig } from '@tessera-kit/core';
 import { createLocalTransport } from './local.js';
 import { createWebSocketTransport } from './websocket.js';
 

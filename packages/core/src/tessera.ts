@@ -22,7 +22,7 @@ import type {
 export interface CreateTesseraOptions {
   /** Feature id → lazy loader. A loader is only invoked for enabled features. */
   plugins: Record<string, PluginLoader>;
-  /** Factories from `@tessera/transport` and `@tessera/storage`. */
+  /** Factories from `@tessera-kit/transport` and `@tessera-kit/storage`. */
   adapters?: Partial<AdapterFactories>;
   /** For tests. */
   clock?: Clock;
@@ -38,9 +38,9 @@ interface FeatureState {
 }
 
 const ADAPTER_HINTS = {
-  transport: "import { createTransport } from '@tessera/transport'",
-  storage: "import { createStorage } from '@tessera/storage'",
-  uploads: "import { createUploads } from '@tessera/storage'",
+  transport: "import { createTransport } from '@tessera-kit/transport'",
+  storage: "import { createStorage } from '@tessera-kit/storage'",
+  uploads: "import { createUploads } from '@tessera-kit/storage'",
 } as const;
 
 /**
@@ -50,7 +50,7 @@ const ADAPTER_HINTS = {
  * @example
  * const tessera = createTessera(
  *   { appId: 'my-app', features: { kanban: { enabled: true } } },
- *   { plugins: { kanban: () => import('@tessera/kanban') }, adapters },
+ *   { plugins: { kanban: () => import('@tessera-kit/kanban') }, adapters },
  * );
  * await tessera.ready;
  */

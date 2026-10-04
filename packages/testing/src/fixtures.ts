@@ -1,4 +1,4 @@
-import type { UserInfo } from '@tessera/core';
+import type { UserInfo } from '@tessera-kit/core';
 import { deflateStored } from './png.js';
 
 export const alice: UserInfo = { id: 'alice', name: 'Alice Archer', color: 'hsl(210 62% 42%)' };

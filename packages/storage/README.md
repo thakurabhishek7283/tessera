@@ -1,9 +1,9 @@
-# @tessera/storage
+# @tessera-kit/storage
 
 Document storage and upload adapters for Tessera.
 
 ```ts
-import { createStorage, createUploads } from '@tessera/storage';
+import { createStorage, createUploads } from '@tessera-kit/storage';
 createTessera(config, { plugins, adapters: { storage: createStorage, uploads: createUploads } });
 ```
 

@@ -1,4 +1,4 @@
-import type { StorageAdapter } from '@tessera/core';
+import type { StorageAdapter } from '@tessera-kit/core';
 import { describe, expect, it } from 'vitest';
 
 interface Card {

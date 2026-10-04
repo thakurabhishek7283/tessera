@@ -1,38 +1,38 @@
 [
   {
-    "name": "@tessera/core",
+    "name": "@tessera-kit/core",
     "path": "packages/core/dist/index.js",
     "limit": "6 kB",
     "ignore": ["zod"]
   },
   {
-    "name": "@tessera/protocol",
+    "name": "@tessera-kit/protocol",
     "path": "packages/protocol/dist/index.js",
     "limit": "4 kB",
     "ignore": ["zod"]
   },
   {
-    "name": "@tessera/transport",
+    "name": "@tessera-kit/transport",
     "path": "packages/transport/dist/index.js",
     "limit": "5 kB",
-    "ignore": ["zod", "@tessera/core", "@tessera/protocol"]
+    "ignore": ["zod", "@tessera-kit/core", "@tessera-kit/protocol"]
   },
   {
-    "name": "@tessera/storage",
+    "name": "@tessera-kit/storage",
     "path": "packages/storage/dist/index.js",
     "limit": "5 kB",
-    "ignore": ["zod", "@tessera/core", "@tessera/protocol", "idb"]
+    "ignore": ["zod", "@tessera-kit/core", "@tessera-kit/protocol", "idb"]
   },
   {
-    "name": "@tessera/elements",
+    "name": "@tessera-kit/elements",
     "path": "packages/elements/dist/define.js",
     "limit": "15 kB",
-    "ignore": ["lit", "@lit/context", "@tessera/core", "@tessera/storage", "@tessera/transport"]
+    "ignore": ["lit", "@lit/context", "@tessera-kit/core", "@tessera-kit/storage", "@tessera-kit/transport"]
   },
   {
-    "name": "@tessera/react",
+    "name": "@tessera-kit/react",
     "path": "packages/react/dist/index.js",
     "limit": "2 kB",
-    "ignore": ["react", "react-dom", "@lit/react", "@tessera/core", "@tessera/elements"]
+    "ignore": ["react", "react-dom", "@lit/react", "@tessera-kit/core", "@tessera-kit/elements"]
   }
 ]

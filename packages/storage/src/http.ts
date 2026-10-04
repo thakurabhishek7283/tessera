@@ -1,5 +1,5 @@
-import { type ErrorCode, TesseraError } from '@tessera/core';
-import { ErrorEnvelope } from '@tessera/protocol';
+import { type ErrorCode, TesseraError } from '@tessera-kit/core';
+import { ErrorEnvelope } from '@tessera-kit/protocol';
 
 const STATUS_CODES: Record<number, ErrorCode> = {
   400: 'VALIDATION',

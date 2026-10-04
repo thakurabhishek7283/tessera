@@ -1,4 +1,4 @@
-import { createTessera } from '@tessera/core';
+import { createTessera } from '@tessera-kit/core';
 import { html, LitElement } from 'lit';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { userEvent } from 'vitest/browser';

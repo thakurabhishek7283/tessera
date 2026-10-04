@@ -1,5 +1,5 @@
-import { createStore, definePlugin, type ReadonlyStore, TesseraError } from '@tessera/core';
-import { createCollection } from '@tessera/storage';
+import { createStore, definePlugin, type ReadonlyStore, TesseraError } from '@tessera-kit/core';
+import { createCollection } from '@tessera-kit/storage';
 import { z } from 'zod';
 
 /** Everything the host and the element can do with the `hello` feature. */
@@ -13,7 +13,7 @@ export interface HelloApi {
 }
 
 // Kits extend the core maps through declaration merging, so everything stays typed end to end.
-declare module '@tessera/core' {
+declare module '@tessera-kit/core' {
   interface FeatureApiMap {
     hello: HelloApi;
   }

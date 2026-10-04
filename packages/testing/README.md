@@ -1,4 +1,4 @@
-# @tessera/testing
+# @tessera-kit/testing
 
 Test helpers for Tessera kits. See the [testing guide](https://thakurabhishek7283.github.io/tessera/guide/testing).
 

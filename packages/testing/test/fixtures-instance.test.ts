@@ -1,5 +1,5 @@
 import { inflateSync } from 'node:zlib';
-import { definePlugin } from '@tessera/core';
+import { definePlugin } from '@tessera-kit/core';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import {

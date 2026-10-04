@@ -1,5 +1,5 @@
 {
-  "name": "@tessera/transport",
+  "name": "@tessera-kit/transport",
   "version": "0.1.0",
   "description": "Local (BroadcastChannel) and WebSocket transports",
   "license": "MIT",
@@ -18,8 +18,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@tessera/core": "workspace:*",
-    "@tessera/protocol": "workspace:*"
+    "@tessera-kit/core": "workspace:*",
+    "@tessera-kit/protocol": "workspace:*"
   },
   "scripts": {
     "build": "tsdown",

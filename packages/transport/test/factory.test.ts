@@ -1,4 +1,4 @@
-import { createTessera } from '@tessera/core';
+import { createTessera } from '@tessera-kit/core';
 import { describe, expect, it } from 'vitest';
 import { createTransport, isLocalTransport } from '../src/index.js';
 

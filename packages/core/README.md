@@ -1,21 +1,21 @@
-# @tessera/core
+# @tessera-kit/core
 
 The plugin host behind Tessera: configuration schema, plugin lifecycle, event bus, service registry, stores, undo/redo history, i18n and the adapter interfaces. One runtime dependency (zod).
 
 ```sh
-pnpm add @tessera/core
+pnpm add @tessera-kit/core
 ```
 
 ## `createTessera(config, options)`
 
 ```ts
-import { createTessera } from '@tessera/core';
+import { createTessera } from '@tessera-kit/core';
 
 const tessera = createTessera(
   { appId: 'my-app', features: { kanban: { enabled: true } } },
   {
-    plugins: { kanban: () => import('@tessera/kanban') }, // only called for enabled features
-    adapters: { transport, storage, uploads },            // factories from @tessera/transport / storage
+    plugins: { kanban: () => import('@tessera-kit/kanban') }, // only called for enabled features
+    adapters: { transport, storage, uploads },            // factories from @tessera-kit/transport / storage
   },
 );
 await tessera.ready; // never rejects; failures arrive as 'tessera:error'
@@ -34,7 +34,7 @@ The full configuration is documented in the [configuration reference](https://th
 ## Plugins
 
 ```ts
-import { definePlugin } from '@tessera/core';
+import { definePlugin } from '@tessera-kit/core';
 import { z } from 'zod';
 
 export default definePlugin({
@@ -64,7 +64,7 @@ See [Writing a plugin](https://thakurabhishek7283.github.io/tessera/guide/writin
 
 ## Extending the types
 
-`FeatureApiMap`, `ServiceMap` and `TesseraEvents` are open interfaces; kits add to them with `declare module '@tessera/core'`.
+`FeatureApiMap`, `ServiceMap` and `TesseraEvents` are open interfaces; kits add to them with `declare module '@tessera-kit/core'`.
 
 ## Error codes
 

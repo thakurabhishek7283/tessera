@@ -1,15 +1,15 @@
-# @tessera/elements
+# @tessera-kit/elements
 
 The Lit base class, design tokens and UI primitives that every Tessera kit is built on.
 
 ```html
-<script type="module" src="@tessera/elements/define"></script> <!-- defines every tag below -->
+<script type="module" src="@tessera-kit/elements/define"></script> <!-- defines every tag below -->
 ```
 
 ```ts
-import { TesseraElement } from '@tessera/elements';        // classes and helpers, no side effects
-import '@tessera/elements/define';                         // registers the custom elements
-import '@tessera/elements/tokens.css';                     // optional: tokens as a stylesheet
+import { TesseraElement } from '@tessera-kit/elements';        // classes and helpers, no side effects
+import '@tessera-kit/elements/define';                         // registers the custom elements
+import '@tessera-kit/elements/tokens.css';                     // optional: tokens as a stylesheet
 ```
 
 ## Writing an element

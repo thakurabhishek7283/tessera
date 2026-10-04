@@ -4,7 +4,7 @@ import {
   type ReadonlyStore,
   type Store,
   TesseraError,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 
 /** Keeps a room's remote peers in an observable list with immutable updates. */
 export interface PeerList {

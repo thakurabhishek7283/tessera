@@ -19,13 +19,13 @@ Most apps need the same handful of collaborative features, and each one usually 
 
 | Package | Purpose |
 | --- | --- |
-| [`@tessera/core`](packages/core) | Plugin host, config schema, event bus, service registry, stores, undo history, i18n, adapter interfaces |
-| [`@tessera/protocol`](packages/protocol) | Zod schemas for the WebSocket protocol and REST DTOs |
-| [`@tessera/transport`](packages/transport) | `local` (BroadcastChannel) and `websocket` transports |
-| [`@tessera/storage`](packages/storage) | Memory, localStorage, IndexedDB and REST storage; upload adapters; `createCollection` |
-| [`@tessera/elements`](packages/elements) | `TesseraElement`, `<tessera-root>`, design tokens and 18 accessible UI primitives |
-| [`@tessera/react`](packages/react) | `TesseraProvider` and hooks |
-| [`@tessera/testing`](packages/testing) | `FakeHub`, fake clock, fixtures, `createTestInstance` |
+| [`@tessera-kit/core`](packages/core) | Plugin host, config schema, event bus, service registry, stores, undo history, i18n, adapter interfaces |
+| [`@tessera-kit/protocol`](packages/protocol) | Zod schemas for the WebSocket protocol and REST DTOs |
+| [`@tessera-kit/transport`](packages/transport) | `local` (BroadcastChannel) and `websocket` transports |
+| [`@tessera-kit/storage`](packages/storage) | Memory, localStorage, IndexedDB and REST storage; upload adapters; `createCollection` |
+| [`@tessera-kit/elements`](packages/elements) | `TesseraElement`, `<tessera-root>`, design tokens and 18 accessible UI primitives |
+| [`@tessera-kit/react`](packages/react) | `TesseraProvider` and hooks |
+| [`@tessera-kit/testing`](packages/testing) | `FakeHub`, fake clock, fixtures, `createTestInstance` |
 
 The kits live in their own repositories and depend only on these packages: [tessera-workspace](https://github.com/thakurabhishek7283/tessera-workspace) (editor, notes, kanban), [tessera-realtime](https://github.com/thakurabhishek7283/tessera-realtime) (presence, chat, video, comments) and [tessera-visual](https://github.com/thakurabhishek7283/tessera-visual) (annotator, maps), with [tessera-server](https://github.com/thakurabhishek7283/tessera-server) as the reference backend.
 
@@ -42,7 +42,7 @@ The kits live in their own repositories and depend only on these packages: [tess
 ## Quick start
 
 ```sh
-pnpm add @tessera/core @tessera/elements @tessera/transport @tessera/storage
+pnpm add @tessera-kit/core @tessera-kit/elements @tessera-kit/transport @tessera-kit/storage
 ```
 
 > The packages are not on npm yet. Until they are, link them from this repository (see [Development](#development)).
@@ -51,10 +51,10 @@ pnpm add @tessera/core @tessera/elements @tessera/transport @tessera/storage
 
 ```html
 <script type="module">
-  import { createTessera } from '@tessera/core';
-  import { createStorage, createUploads } from '@tessera/storage';
-  import { createTransport } from '@tessera/transport';
-  import '@tessera/elements/define';
+  import { createTessera } from '@tessera-kit/core';
+  import { createStorage, createUploads } from '@tessera-kit/storage';
+  import { createTransport } from '@tessera-kit/transport';
+  import '@tessera-kit/elements/define';
 
   const tessera = createTessera(
     {
@@ -79,7 +79,7 @@ The `hello` feature is the example plugin in [`apps/playground`](apps/playground
 ### React
 
 ```tsx
-import { TesseraProvider, useFeature } from '@tessera/react';
+import { TesseraProvider, useFeature } from '@tessera-kit/react';
 
 function Counter() {
   const hello = useFeature('hello'); // undefined while the feature is off
@@ -103,7 +103,7 @@ createTessera(
     storage: { type: 'rest', baseUrl: 'https://example.com' },
     features: { chat: { enabled: true }, kanban: { enabled: true }, video: { enabled: false } },
   },
-  { plugins: { chat: () => import('@tessera/chat'), kanban: () => import('@tessera/kanban'), video: () => import('@tessera/video') }, adapters },
+  { plugins: { chat: () => import('@tessera-kit/chat'), kanban: () => import('@tessera-kit/kanban'), video: () => import('@tessera-kit/video') }, adapters },
 );
 ```
 

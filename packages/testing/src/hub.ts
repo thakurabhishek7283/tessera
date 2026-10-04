@@ -10,8 +10,8 @@ import {
   type TransportState,
   type Unsubscribe,
   type UserInfo,
-} from '@tessera/core';
-import { MAX_FRAME_BYTES, Topic } from '@tessera/protocol';
+} from '@tessera-kit/core';
+import { MAX_FRAME_BYTES, Topic } from '@tessera-kit/protocol';
 import { createFakeClock, createSequentialIds, type FakeClock } from './clock.js';
 
 export interface HubRequestContext {

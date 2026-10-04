@@ -4,8 +4,8 @@ import {
   type PluginLoader,
   type TesseraConfig,
   type TesseraInstance,
-} from '@tessera/core';
-import { TesseraElement } from '@tessera/elements';
+} from '@tessera-kit/core';
+import { TesseraElement } from '@tessera-kit/elements';
 import { html } from 'lit';
 import { act, Component, type ReactNode, StrictMode } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -20,7 +20,7 @@ import {
 } from '../src/index.js';
 import { cleanup, flush, render } from './helpers.js';
 
-declare module '@tessera/core' {
+declare module '@tessera-kit/core' {
   interface FeatureApiMap {
     counter: { value: number };
   }
@@ -118,7 +118,7 @@ describe('TesseraProvider', () => {
     expect(log).toEqual(['setup', 'teardown']);
 
     log.length = 0;
-    const { createTessera } = await import('@tessera/core');
+    const { createTessera } = await import('@tessera-kit/core');
     const mine = createTessera(config(), { plugins });
     const second = await render(
       <TesseraProvider instance={mine}>

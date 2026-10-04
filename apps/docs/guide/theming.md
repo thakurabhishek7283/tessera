@@ -4,10 +4,10 @@ All colours, sizes and spacing come from CSS custom properties prefixed `--tesse
 
 ## Using the tokens
 
-`@tessera/elements` installs the default tokens the first time an element connects. To control the cascade yourself, import the stylesheet:
+`@tessera-kit/elements` installs the default tokens the first time an element connects. To control the cascade yourself, import the stylesheet:
 
 ```css
-@import '@tessera/elements/tokens.css';
+@import '@tessera-kit/elements/tokens.css';
 ```
 
 If the page already defines `--tessera-color-primary`, nothing is installed on top of it.

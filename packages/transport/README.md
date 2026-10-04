@@ -1,9 +1,9 @@
-# @tessera/transport
+# @tessera-kit/transport
 
-Two implementations of the `Transport` interface from `@tessera/core`.
+Two implementations of the `Transport` interface from `@tessera-kit/core`.
 
 ```ts
-import { createTransport } from '@tessera/transport';
+import { createTransport } from '@tessera-kit/transport';
 createTessera(config, { plugins, adapters: { transport: createTransport } });
 ```
 
@@ -18,7 +18,7 @@ transport: { type: 'local', channel: 'default' }
 Peers find each other with announce/here/bye messages over `BroadcastChannel`, refreshed by a 5 s heartbeat; a peer silent for 15 s is dropped. `Room.request` is answered in the tab by handlers a kit registers, standing in for server topics:
 
 ```ts
-import { isLocalTransport } from '@tessera/transport';
+import { isLocalTransport } from '@tessera-kit/transport';
 
 const t = ctx.transport();
 if (isLocalTransport(t)) {
@@ -32,7 +32,7 @@ if (isLocalTransport(t)) {
 
 `capabilities`: no server history, no server persistence.
 
-## `websocket`: tessera-server or any server speaking `@tessera/protocol`
+## `websocket`: tessera-server or any server speaking `@tessera-kit/protocol`
 
 ```ts
 transport: { type: 'websocket', url: 'wss://example.com/v1/ws', reconnect: { initialDelayMs: 500, maxDelayMs: 30000 } }

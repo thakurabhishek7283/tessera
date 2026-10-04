@@ -1,5 +1,5 @@
-import type { Clock, Doc, StorageAdapter } from '@tessera/core';
-import { systemClock } from '@tessera/core';
+import type { Clock, Doc, StorageAdapter } from '@tessera-kit/core';
+import { systemClock } from '@tessera-kit/core';
 import { createEngine, type DocBackend } from './engine.js';
 
 export interface MemoryStorageOptions {

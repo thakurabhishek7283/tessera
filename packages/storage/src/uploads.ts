@@ -4,8 +4,8 @@ import {
   TesseraError,
   type UploadAdapter,
   type UploadResult,
-} from '@tessera/core';
-import { UploadRes } from '@tessera/protocol';
+} from '@tessera-kit/core';
+import { UploadRes } from '@tessera-kit/protocol';
 import { errorFromResponse, joinUrl } from './http.js';
 
 export const DEFAULT_ACCEPT: string[] = ['image/*', 'application/pdf'];

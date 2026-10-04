@@ -1,5 +1,5 @@
-import type { Clock, Doc, DocChange, Logger, StorageAdapter } from '@tessera/core';
-import { systemClock } from '@tessera/core';
+import type { Clock, Doc, DocChange, Logger, StorageAdapter } from '@tessera-kit/core';
+import { systemClock } from '@tessera-kit/core';
 import { createEngine, type DocBackend } from './engine.js';
 
 const SOFT_LIMIT_BYTES = 2 * 1024 * 1024;

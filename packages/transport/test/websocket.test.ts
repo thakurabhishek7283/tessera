@@ -5,7 +5,7 @@ import {
   systemClock,
   type Transport,
   type TransportState,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createWebSocketTransport, type WebSocketTransportOptions } from '../src/websocket.js';
 import { TestServer } from './helpers/test-server.js';

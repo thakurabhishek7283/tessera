@@ -7,8 +7,8 @@ import type {
   StorageAdapter,
   Transport,
   Unsubscribe,
-} from '@tessera/core';
-import { DocChangedEvent, encodeWhereValue } from '@tessera/protocol';
+} from '@tessera-kit/core';
+import { DocChangedEvent, encodeWhereValue } from '@tessera-kit/protocol';
 import { errorFromResponse, joinUrl } from './http.js';
 
 export interface RestStorageOptions {

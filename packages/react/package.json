@@ -1,5 +1,5 @@
 {
-  "name": "@tessera/react",
+  "name": "@tessera-kit/react",
   "version": "0.1.0",
   "description": "React bridge: provider and hooks for Tessera",
   "license": "MIT",
@@ -19,8 +19,8 @@
   ],
   "dependencies": {
     "@lit/react": "^1.0.8",
-    "@tessera/core": "workspace:*",
-    "@tessera/elements": "workspace:*"
+    "@tessera-kit/core": "workspace:*",
+    "@tessera-kit/elements": "workspace:*"
   },
   "peerDependencies": {
     "react": "^19.0.0"

@@ -9,12 +9,12 @@ Four small interfaces connect Tessera to the outside world. Kits only ever use t
 | Storage | `StorageAdapter` | `memory`, `local`, `indexeddb`, `rest`, `custom` | Persisting documents. |
 | Uploads | `UploadAdapter` | `dataurl`, `rest`, `custom` | Images and attachments. |
 
-Core does not import the implementations. You pass factories from `@tessera/transport` and `@tessera/storage`, which keeps core tiny and lets you tree-shake what you do not use:
+Core does not import the implementations. You pass factories from `@tessera-kit/transport` and `@tessera-kit/storage`, which keeps core tiny and lets you tree-shake what you do not use:
 
 ```ts
-import { createTessera } from '@tessera/core';
-import { createStorage, createUploads } from '@tessera/storage';
-import { createTransport } from '@tessera/transport';
+import { createTessera } from '@tessera-kit/core';
+import { createStorage, createUploads } from '@tessera-kit/storage';
+import { createTransport } from '@tessera-kit/transport';
 
 createTessera(config, {
   plugins,

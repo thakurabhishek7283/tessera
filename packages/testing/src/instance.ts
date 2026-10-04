@@ -5,8 +5,8 @@ import {
   type TesseraConfig,
   type TesseraInstance,
   type UserInfo,
-} from '@tessera/core';
-import { createMemoryStorage, createUploads } from '@tessera/storage';
+} from '@tessera-kit/core';
+import { createMemoryStorage, createUploads } from '@tessera-kit/storage';
 import { createFakeClock, createSequentialIds, type FakeClock } from './clock.js';
 import { alice } from './fixtures.js';
 import type { FakeHub, FakeTransport } from './hub.js';
@@ -34,7 +34,7 @@ export interface TestInstance {
  *
  * @example
  * const hub = new FakeHub();
- * const { instance } = await createTestInstance({ features: { chat: { enabled: true } } }, { chat: () => import('@tessera/chat') }, { hub });
+ * const { instance } = await createTestInstance({ features: { chat: { enabled: true } } }, { chat: () => import('@tessera-kit/chat') }, { hub });
  */
 export async function createTestInstance(
   config: Partial<TesseraConfig> & Pick<TesseraConfig, 'features'>,

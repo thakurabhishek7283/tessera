@@ -8,7 +8,7 @@ Realtime features need rooms, presence, broadcast, direct messages and request/r
 
 ## Decision
 
-Use plain WebSocket frames: JSON objects with a `t` discriminator, defined once as zod schemas in `@tessera/protocol` and imported by both the client transport and the server. Requests carry ids; errors use a fixed set of codes shared with `TesseraError`.
+Use plain WebSocket frames: JSON objects with a `t` discriminator, defined once as zod schemas in `@tessera-kit/protocol` and imported by both the client transport and the server. Requests carry ids; errors use a fixed set of codes shared with `TesseraError`.
 
 ## Consequences
 

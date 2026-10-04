@@ -1,16 +1,16 @@
 # Testing
 
-`@tessera/testing` lets you test a kit with several simulated users and no network.
+`@tessera-kit/testing` lets you test a kit with several simulated users and no network.
 
 ## A test instance
 
 ```ts
-import { createTestInstance, FakeHub } from '@tessera/testing';
+import { createTestInstance, FakeHub } from '@tessera-kit/testing';
 
 const hub = new FakeHub();
 const { instance, clock } = await createTestInstance(
   { features: { chat: { enabled: true } } },
-  { chat: () => import('@tessera/chat') },
+  { chat: () => import('@tessera-kit/chat') },
   { hub }, // gives the instance a transport connected to the hub
 );
 ```
@@ -20,7 +20,7 @@ The instance uses memory storage, a clock you control (`clock.advance(1000)`), s
 ## Many peers
 
 ```ts
-import { alice, bob } from '@tessera/testing';
+import { alice, bob } from '@tessera-kit/testing';
 
 const a = await hub.transport(alice).join('chat:general');
 const b = await hub.transport(bob).join('chat:general');
@@ -59,4 +59,4 @@ t.restore(); // state → open, peers re-synced, '$reconnected' emitted so kits 
 
 ## Component tests
 
-Kit element tests run in a real browser with Vitest browser mode (Chromium through Playwright), which is the only way to exercise focus, top-layer popovers and form association faithfully. The `@tessera/elements` repository tests show how, including an axe-core accessibility check helper.
+Kit element tests run in a real browser with Vitest browser mode (Chromium through Playwright), which is the only way to exercise focus, top-layer popovers and form association faithfully. The `@tessera-kit/elements` repository tests show how, including an axe-core accessibility check helper.

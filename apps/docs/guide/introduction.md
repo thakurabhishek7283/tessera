@@ -6,13 +6,13 @@ A *tessera* is one tile of a mosaic. Tessera is a family of feature kits that yo
 
 | Package | What it is |
 | --- | --- |
-| `@tessera/core` | The plugin host: configuration schema, plugin lifecycle, event bus, service registry, stores, undo history, i18n, and the adapter interfaces. |
-| `@tessera/protocol` | Zod schemas for the WebSocket wire protocol and the REST DTOs, shared by clients and the server. |
-| `@tessera/transport` | The `local` transport (BroadcastChannel, no server) and the `websocket` transport. |
-| `@tessera/storage` | Memory, localStorage, IndexedDB and REST storage adapters, upload adapters and `createCollection`. |
-| `@tessera/elements` | `TesseraElement` (the base class), `<tessera-root>`, design tokens and the UI primitives. |
-| `@tessera/react` | `TesseraProvider` and hooks. |
-| `@tessera/testing` | `FakeHub`, a fake clock, fixtures and `createTestInstance`. |
+| `@tessera-kit/core` | The plugin host: configuration schema, plugin lifecycle, event bus, service registry, stores, undo history, i18n, and the adapter interfaces. |
+| `@tessera-kit/protocol` | Zod schemas for the WebSocket wire protocol and the REST DTOs, shared by clients and the server. |
+| `@tessera-kit/transport` | The `local` transport (BroadcastChannel, no server) and the `websocket` transport. |
+| `@tessera-kit/storage` | Memory, localStorage, IndexedDB and REST storage adapters, upload adapters and `createCollection`. |
+| `@tessera-kit/elements` | `TesseraElement` (the base class), `<tessera-root>`, design tokens and the UI primitives. |
+| `@tessera-kit/react` | `TesseraProvider` and hooks. |
+| `@tessera-kit/testing` | `FakeHub`, a fake clock, fixtures and `createTestInstance`. |
 
 The feature kits (editor, notes, kanban, presence, chat, video, comments, annotator, maps) live in their own repositories and depend only on these packages. See the [kit catalog](/reference/kits).
 

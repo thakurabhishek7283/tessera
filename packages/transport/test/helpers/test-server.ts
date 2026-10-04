@@ -1,5 +1,5 @@
 import type { AddressInfo } from 'node:net';
-import { type ClientMessage, decodeClientFrame, type ServerMessage } from '@tessera/protocol';
+import { type ClientMessage, decodeClientFrame, type ServerMessage } from '@tessera-kit/protocol';
 import { type WebSocket, WebSocketServer } from 'ws';
 
 interface Member {

@@ -1,5 +1,5 @@
 {
-  "name": "@tessera/elements",
+  "name": "@tessera-kit/elements",
   "version": "0.1.0",
   "description": "Lit base element, design tokens and UI primitives for Tessera kits",
   "license": "MIT",
@@ -27,7 +27,7 @@
   ],
   "dependencies": {
     "@lit/context": "^1.1.0",
-    "@tessera/core": "workspace:*",
+    "@tessera-kit/core": "workspace:*",
     "lit": "^3.3.0"
   },
   "scripts": {
@@ -42,9 +42,9 @@
     "access": "public"
   },
   "devDependencies": {
-    "@tessera/protocol": "workspace:*",
-    "@tessera/storage": "workspace:*",
-    "@tessera/transport": "workspace:*",
+    "@tessera-kit/protocol": "workspace:*",
+    "@tessera-kit/storage": "workspace:*",
+    "@tessera-kit/transport": "workspace:*",
     "@types/node": "^26.6.4",
     "@vitest/browser-playwright": "^5.0.3",
     "axe-core": "^4.13.0",
@@ -52,14 +52,14 @@
     "zod": "^4.6.5"
   },
   "peerDependencies": {
-    "@tessera/storage": "^0.1.0",
-    "@tessera/transport": "^0.1.0"
+    "@tessera-kit/storage": "^0.1.0",
+    "@tessera-kit/transport": "^0.1.0"
   },
   "peerDependenciesMeta": {
-    "@tessera/storage": {
+    "@tessera-kit/storage": {
       "optional": true
     },
-    "@tessera/transport": {
+    "@tessera-kit/transport": {
       "optional": true
     }
   }

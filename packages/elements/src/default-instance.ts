@@ -12,7 +12,7 @@ import {
   type TransportConfig,
   type TransportState,
   type UploadAdapter,
-} from '@tessera/core';
+} from '@tessera-kit/core';
 
 const implicitPlugins: Record<string, PluginLoader> = {};
 let instance: TesseraInstance | undefined;
@@ -64,13 +64,13 @@ export async function resetDefaultInstance(): Promise<void> {
   await current?.destroy();
 }
 
-// ---------- adapters loaded on demand so `@tessera/elements` stays small ----------
+// ---------- adapters loaded on demand so `@tessera-kit/elements` stays small ----------
 
 function lazyStorage(...args: Parameters<AdapterFactories['storage']>): StorageAdapter {
   const [cfg, ctx] = args;
   let real: Promise<StorageAdapter> | undefined;
   const load = (): Promise<StorageAdapter> =>
-    (real ??= import('@tessera/storage').then((m) => m.createStorage(cfg, ctx)));
+    (real ??= import('@tessera-kit/storage').then((m) => m.createStorage(cfg, ctx)));
   return {
     get: async (collection, id) => (await load()).get(collection, id),
     list: async (collection, q) => (await load()).list(collection, q),
@@ -94,7 +94,7 @@ function lazyUploads(...args: Parameters<AdapterFactories['uploads']>): UploadAd
   const [cfg, ctx] = args;
   let real: Promise<UploadAdapter> | undefined;
   const load = (): Promise<UploadAdapter> =>
-    (real ??= import('@tessera/storage').then((m) => m.createUploads(cfg, ctx)));
+    (real ??= import('@tessera-kit/storage').then((m) => m.createUploads(cfg, ctx)));
   // Limits are known from config before the module loads; the real adapter enforces them again.
   const maxBytes =
     cfg.type === 'custom'
@@ -117,7 +117,7 @@ function lazyTransport(cfg: TransportConfig, ctx: TesseraContext): Transport | n
   let real: Promise<Transport> | undefined;
 
   const load = (): Promise<Transport> =>
-    (real ??= import('@tessera/transport').then(({ createTransport, isLocalTransport }) => {
+    (real ??= import('@tessera-kit/transport').then(({ createTransport, isLocalTransport }) => {
       const t = createTransport(cfg, ctx);
       if (!t) throw new TesseraError('ADAPTER_MISSING', 'The transport factory returned nothing');
       t.state.subscribe((s) => state.set(s));
@@ -147,7 +147,7 @@ function lazyTransport(cfg: TransportConfig, ctx: TesseraContext): Transport | n
       handlers.set(topic, fn as never);
       let off: (() => void) | undefined;
       void real?.then(async (t) => {
-        const { isLocalTransport } = await import('@tessera/transport');
+        const { isLocalTransport } = await import('@tessera-kit/transport');
         if (isLocalTransport(t)) off = t.registerHandler(topic, fn as never);
       });
       return () => {
