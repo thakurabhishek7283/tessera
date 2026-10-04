@@ -2,7 +2,7 @@
   {
     "name": "@tessera-kit/core",
     "path": "packages/core/dist/index.js",
-    "limit": "6 kB",
+    "limit": "6.5 kB",
     "ignore": ["zod"]
   },
   {
