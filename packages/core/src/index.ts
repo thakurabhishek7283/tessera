@@ -17,7 +17,8 @@ export type {
 export { resolveAuth } from './auth.js';
 export { createEventBus, type EventBus, type Unsubscribe } from './bus.js';
 export { type Clock, systemClock } from './clock.js';
-export { formatIssues, parseConfig, TesseraConfigSchema } from './config.js';
+export { checkConfig, formatIssues, parseConfig } from './config.js';
+export { TesseraConfigSchema } from './config-schema.js';
 export { type ErrorCode, TesseraError } from './errors.js';
 export {
   type Command,

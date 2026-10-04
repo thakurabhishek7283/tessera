@@ -50,5 +50,24 @@
         "organizeImports": "on"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["packages/*/src/**", "apps/playground/src/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noRestrictedImports": {
+              "level": "error",
+              "options": {
+                "paths": {
+                  "zod": "Runtime code uses 'zod/mini' (ADR 5). Classic zod is for build-time tools only."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod/mini';
 
 /** Any JSON-serialisable value. */
 export const Json = z.json();
@@ -7,10 +7,14 @@ export type JsonValue = z.infer<typeof Json>;
 /** `<appId>/<kind>:<id>` — the on-the-wire room name. */
 export const RoomName = z
   .string()
-  .regex(/^[a-z0-9-]{1,40}\/[a-z]+:[A-Za-z0-9_.:-]{1,120}$/, 'must look like "app/kind:id"');
+  .check(
+    z.regex(/^[a-z0-9-]{1,40}\/[a-z]+:[A-Za-z0-9_.:-]{1,120}$/, 'must look like "app/kind:id"'),
+  );
 
 /** Dotted lower-case topic, e.g. `chat.message-updated`. */
-export const Topic = z.string().regex(/^[a-z]+(\.[a-z-]+)+$/, 'must look like "kind.event"');
+export const Topic = z
+  .string()
+  .check(z.regex(/^[a-z]+(\.[a-z-]+)+$/, 'must look like "kind.event"'));
 
 export const ERROR_CODES = [
   'CONFIG_INVALID',
@@ -35,16 +39,16 @@ export const ErrorCodeSchema = z.enum(ERROR_CODES);
 export const ErrorSchema = z.object({
   code: ErrorCodeSchema,
   message: z.string(),
-  details: Json.optional(),
+  details: z.optional(Json),
 });
 export type WireError = z.infer<typeof ErrorSchema>;
 
 export const UserInfoSchema = z.object({
-  id: z.string().min(1).max(200),
-  name: z.string().min(1).max(200),
-  avatarUrl: z.string().max(2048).optional(),
-  color: z.string().max(64).optional(),
-  roles: z.array(z.string().max(64)).max(32).optional(),
+  id: z.string().check(z.minLength(1), z.maxLength(200)),
+  name: z.string().check(z.minLength(1), z.maxLength(200)),
+  avatarUrl: z.optional(z.string().check(z.maxLength(2048))),
+  color: z.optional(z.string().check(z.maxLength(64))),
+  roles: z.optional(z.array(z.string().check(z.maxLength(64))).check(z.maxLength(32))),
 });
 
 export const PeerSchema = z.object({

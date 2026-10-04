@@ -1,13 +1,16 @@
-import { z } from 'zod';
+import * as z from 'zod/mini';
 import { Json, UserInfoSchema } from './common.js';
 
 // ---------- shared chat shapes ----------
 
 /** ProseMirror-style rich document; the server stores it opaquely. */
-export const RichDoc = z.looseObject({ type: z.literal('doc'), content: z.array(Json).optional() });
+export const RichDoc = z.looseObject({
+  type: z.literal('doc'),
+  content: z.optional(z.array(Json)),
+});
 
 export const MessageBody = z.discriminatedUnion('type', [
-  z.object({ type: z.literal('text'), text: z.string().min(1).max(4000) }),
+  z.object({ type: z.literal('text'), text: z.string().check(z.minLength(1), z.maxLength(4000)) }),
   z.object({ type: z.literal('rich'), doc: RichDoc }),
 ]);
 export type MessageBodyDto = z.infer<typeof MessageBody>;
@@ -15,11 +18,11 @@ export type MessageBodyDto = z.infer<typeof MessageBody>;
 export const Attachment = z.object({
   id: z.string(),
   url: z.string(),
-  name: z.string().max(255),
-  mime: z.string().max(127),
-  size: z.number().int().nonnegative(),
-  width: z.number().int().positive().optional(),
-  height: z.number().int().positive().optional(),
+  name: z.string().check(z.maxLength(255)),
+  mime: z.string().check(z.maxLength(127)),
+  size: z.int().check(z.nonnegative()),
+  width: z.optional(z.int().check(z.positive())),
+  height: z.optional(z.int().check(z.positive())),
 });
 export type AttachmentDto = z.infer<typeof Attachment>;
 
@@ -29,56 +32,60 @@ export const Message = z.object({
   conversationId: z.string(),
   authorId: z.string(),
   authorName: z.string(),
-  authorAvatarUrl: z.string().optional(),
+  authorAvatarUrl: z.optional(z.string()),
   body: MessageBody,
   attachments: z.array(Attachment),
-  replyTo: z.string().optional(),
+  replyTo: z.optional(z.string()),
   /** emoji → user ids */
   reactions: z.record(z.string(), z.array(z.string())),
   createdAt: z.string(),
-  editedAt: z.string().optional(),
-  deletedAt: z.string().optional(),
+  editedAt: z.optional(z.string()),
+  deletedAt: z.optional(z.string()),
 });
 export type MessageDto = z.infer<typeof Message>;
 
 export const Conversation = z.object({
   id: z.string(),
   kind: z.enum(['room', 'direct']),
-  title: z.string().optional(),
-  members: z.array(z.string()).optional(),
-  lastMessage: Message.optional(),
-  unread: z.number().int().nonnegative(),
+  title: z.optional(z.string()),
+  members: z.optional(z.array(z.string())),
+  lastMessage: z.optional(Message),
+  unread: z.int().check(z.nonnegative()),
 });
 export type ConversationDto = z.infer<typeof Conversation>;
 
-const ConversationId = z.string().min(1).max(130);
-const MessageId = z.string().min(1).max(64);
+const ConversationId = z.string().check(z.minLength(1), z.maxLength(130));
+const MessageId = z.string().check(z.minLength(1), z.maxLength(64));
 
 // ---------- request / response pairs (client → server `req`) ----------
 
 export const ChatConversationsReq = z.object({});
 export const ChatConversationsRes = z.object({ conversations: z.array(Conversation) });
 
-export const ChatOpenDirectReq = z.object({ userId: z.string().min(1).max(200) });
+export const ChatOpenDirectReq = z.object({
+  userId: z.string().check(z.minLength(1), z.maxLength(200)),
+});
 export const ChatOpenDirectRes = Conversation;
 
 export const ChatSendReq = z.object({
   conversationId: ConversationId,
-  clientId: z.string().min(1).max(64),
+  clientId: z.string().check(z.minLength(1), z.maxLength(64)),
   body: MessageBody,
-  attachments: z.array(Attachment).max(10).optional(),
-  replyTo: MessageId.optional(),
+  attachments: z.optional(z.array(Attachment).check(z.maxLength(10))),
+  replyTo: z.optional(MessageId),
 });
 export const ChatSendRes = Message;
 
 export const ChatHistoryReq = z
   .object({
     conversationId: ConversationId,
-    before: MessageId.optional(),
-    after: MessageId.optional(),
-    limit: z.number().int().min(1).max(100).default(30),
+    before: z.optional(MessageId),
+    after: z.optional(MessageId),
+    limit: z._default(z.int().check(z.gte(1), z.lte(100)), 30),
   })
-  .refine((v) => !(v.before && v.after), { message: 'use either before or after, not both' });
+  .check(
+    z.refine((v) => !(v.before && v.after), { message: 'use either before or after, not both' }),
+  );
 export const ChatHistoryRes = z.object({ messages: z.array(Message), hasMore: z.boolean() });
 
 export const ChatEditReq = z.object({ messageId: MessageId, body: MessageBody });
@@ -89,7 +96,7 @@ export const ChatDeleteRes = Message;
 
 export const ChatReactReq = z.object({
   messageId: MessageId,
-  emoji: z.string().min(1).max(16),
+  emoji: z.string().check(z.minLength(1), z.maxLength(16)),
   on: z.boolean(),
 });
 export const ChatReactRes = z.object({
@@ -117,20 +124,20 @@ export const ChatReadEvent = z.object({
 export const DocChangedEvent = z.object({
   collection: z.string(),
   id: z.string(),
-  version: z.number().int().nonnegative(),
-  deleted: z.boolean().optional(),
-  by: z.string().optional(),
+  version: z.int().check(z.nonnegative()),
+  deleted: z.optional(z.boolean()),
+  by: z.optional(z.string()),
 });
 
 /** WebRTC signaling payload relayed with `Room.send(peerId, 'rtc.signal', …)`. */
 export const RtcSignal = z.object({
-  description: z
-    .object({
+  description: z.optional(
+    z.object({
       type: z.enum(['offer', 'answer', 'pranswer', 'rollback']),
-      sdp: z.string().optional(),
-    })
-    .optional(),
-  candidate: z.looseObject({ candidate: z.string().optional() }).nullable().optional(),
+      sdp: z.optional(z.string()),
+    }),
+  ),
+  candidate: z.optional(z.nullable(z.looseObject({ candidate: z.optional(z.string()) }))),
 });
 
 /** Request/response schemas keyed by topic — the server's handler registry and typed clients use this. */

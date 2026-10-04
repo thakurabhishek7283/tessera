@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod/mini';
 import { ErrorSchema, Json, UserInfoSchema } from './common.js';
 
 /** Error envelope returned by every REST endpoint. */
@@ -7,30 +7,30 @@ export const ErrorEnvelope = z.object({ error: ErrorSchema });
 export const DocDto = z.object({
   id: z.string(),
   data: Json,
-  version: z.number().int().positive(),
+  version: z.int().check(z.positive()),
   updatedAt: z.string(),
-  updatedBy: z.string().optional(),
+  updatedBy: z.optional(z.string()),
 });
 export type DocResponse = z.infer<typeof DocDto>;
 
-export const PageDto = z.object({ items: z.array(DocDto), nextCursor: z.string().optional() });
+export const PageDto = z.object({ items: z.array(DocDto), nextCursor: z.optional(z.string()) });
 
 const FIELD = /^[A-Za-z0-9_]{1,40}$/;
 
 /** Path params shared by the /v1/docs routes. */
 export const DocParams = z.object({
-  appId: z.string().regex(/^[a-z0-9-]{1,40}$/),
-  collection: z.string().regex(/^[a-z][A-Za-z0-9_.-]{0,79}$/),
-  id: z.string().min(1).max(200).optional(),
+  appId: z.string().check(z.regex(/^[a-z0-9-]{1,40}$/)),
+  collection: z.string().check(z.regex(/^[a-z][A-Za-z0-9_.-]{0,79}$/)),
+  id: z.optional(z.string().check(z.minLength(1), z.maxLength(200))),
 });
 
 /** Query for `GET /v1/docs/:appId/:collection` (`where[field]=value`). */
 export const DocListQuery = z.object({
-  where: z.record(z.string().regex(FIELD), z.string()).optional(),
-  orderBy: z.string().regex(FIELD).optional(),
-  dir: z.enum(['asc', 'desc']).default('asc'),
-  limit: z.coerce.number().int().min(1).max(200).default(50),
-  cursor: z.string().max(512).optional(),
+  where: z.optional(z.record(z.string().check(z.regex(FIELD)), z.string())),
+  orderBy: z.optional(z.string().check(z.regex(FIELD))),
+  dir: z._default(z.enum(['asc', 'desc']), 'asc'),
+  limit: z._default(z.coerce.number().check(z.int(), z.gte(1), z.lte(200)), 50),
+  cursor: z.optional(z.string().check(z.maxLength(512))),
 });
 
 export const DocPutBody = z.object({ data: Json });
@@ -40,13 +40,13 @@ export const ConflictBody = z.object({
   current: DocDto,
 });
 
-export const GuestAuthBody = z.object({ name: z.string().min(1).max(60) });
+export const GuestAuthBody = z.object({ name: z.string().check(z.minLength(1), z.maxLength(60)) });
 export const GuestAuthRes = z.object({ token: z.string(), user: UserInfoSchema });
 
 export const IceServer = z.object({
   urls: z.union([z.string(), z.array(z.string())]),
-  username: z.string().optional(),
-  credential: z.string().optional(),
+  username: z.optional(z.string()),
+  credential: z.optional(z.string()),
 });
 export const IceRes = z.object({ iceServers: z.array(IceServer) });
 
@@ -54,9 +54,9 @@ export const UploadRes = z.object({
   id: z.string(),
   url: z.string(),
   mime: z.string(),
-  size: z.number().int().nonnegative(),
-  width: z.number().int().positive().optional(),
-  height: z.number().int().positive().optional(),
+  size: z.int().check(z.nonnegative()),
+  width: z.optional(z.int().check(z.positive())),
+  height: z.optional(z.int().check(z.positive())),
 });
 
 export const HealthRes = z.object({ ok: z.literal(true), version: z.string(), uptime: z.number() });

@@ -1,4 +1,4 @@
-import type { z } from 'zod';
+import type { core } from 'zod/mini';
 import type { ServiceMap } from './services.js';
 import type { FeatureConfigBase, TesseraContext } from './types.js';
 
@@ -7,8 +7,11 @@ export interface TesseraPlugin<Cfg extends FeatureConfigBase = FeatureConfigBase
   /** Feature id, e.g. `'kanban'`. */
   id: string;
   version: string;
-  /** Must accept `{ enabled: true }` alone — every other option needs a default. */
-  configSchema: z.ZodType<Cfg>;
+  /**
+   * Must accept `{ enabled: true }` alone — every other option needs a default. Any zod 4 schema
+   * works, classic or `zod/mini`; runtime code should use `zod/mini`.
+   */
+  configSchema: core.$ZodType<Cfg>;
   requires?: Array<'transport' | 'storage' | 'uploads' | keyof ServiceMap>;
   optional?: Array<keyof ServiceMap>;
   /** Default i18n catalog, merged beneath the host's own messages. */

@@ -1,6 +1,6 @@
 import { createStore, definePlugin, type ReadonlyStore, TesseraError } from '@tessera-kit/core';
 import { createCollection } from '@tessera-kit/storage';
-import { z } from 'zod';
+import * as z from 'zod/mini';
 
 /** Everything the host and the element can do with the `hello` feature. */
 export interface HelloApi {
@@ -28,8 +28,10 @@ declare module '@tessera-kit/core' {
 /** Options for the feature. `{ enabled: true }` alone is valid: every other field has a default. */
 export const HelloConfig = z.object({
   enabled: z.boolean(),
-  label: z.string().default('Hello').describe('Heading shown above the counter'),
-  step: z.number().int().min(1).max(100).default(1).describe('How much one click adds'),
+  label: z._default(z.string(), 'Hello').check(z.describe('Heading shown above the counter')),
+  step: z
+    ._default(z.int().check(z.gte(1), z.lte(100)), 1)
+    .check(z.describe('How much one click adds')),
 });
 
 const CounterDoc = z.object({ value: z.number() });

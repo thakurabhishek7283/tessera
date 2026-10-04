@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import * as z from 'zod/mini';
 import {
   ErrorSchema,
   Json,
@@ -13,8 +13,8 @@ const v = z.literal(PROTOCOL_VERSION);
 
 /** Frames sent by clients. */
 export const ClientMsg = z.discriminatedUnion('t', [
-  z.object({ t: z.literal('hello'), v, token: z.string().nullable(), appId: z.string() }),
-  z.object({ t: z.literal('join'), id: z.string(), room: RoomName, presence: Json.optional() }),
+  z.object({ t: z.literal('hello'), v, token: z.nullable(z.string()), appId: z.string() }),
+  z.object({ t: z.literal('join'), id: z.string(), room: RoomName, presence: z.optional(Json) }),
   z.object({ t: z.literal('leave'), room: RoomName }),
   z.object({ t: z.literal('pub'), room: RoomName, topic: Topic, data: Json }),
   z.object({ t: z.literal('direct'), room: RoomName, to: z.string(), topic: Topic, data: Json }),
@@ -52,13 +52,15 @@ export const ServerMsg = z.discriminatedUnion('t', [
       t: z.literal('res'),
       id: z.string(),
       ok: z.boolean(),
-      data: Json.optional(),
-      error: ErrorSchema.optional(),
+      data: z.optional(Json),
+      error: z.optional(ErrorSchema),
     })
-    .refine((m) => (m.ok ? m.data !== undefined : m.error !== undefined), {
-      message: 'ok responses need `data`, failed responses need `error`',
-    }),
-  z.object({ t: z.literal('error'), error: ErrorSchema, ref: z.string().optional() }),
+    .check(
+      z.refine((m) => (m.ok ? m.data !== undefined : m.error !== undefined), {
+        message: 'ok responses need `data`, failed responses need `error`',
+      }),
+    ),
+  z.object({ t: z.literal('error'), error: ErrorSchema, ref: z.optional(z.string()) }),
   z.object({ t: z.literal('pong'), ts: z.number(), serverTime: z.number() }),
 ]);
 export type ServerMessage = z.infer<typeof ServerMsg>;
@@ -90,7 +92,7 @@ export function decodeServerFrame(raw: string): DecodeResult<ServerMessage> {
   return decode(raw, ServerMsg);
 }
 
-function decode<T>(raw: string, schema: z.ZodType<T>): DecodeResult<T> {
+function decode<T>(raw: string, schema: z.ZodMiniType<T>): DecodeResult<T> {
   let value: unknown;
   try {
     value = JSON.parse(raw);

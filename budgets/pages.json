@@ -1,10 +1,10 @@
 {
   "base": {
-    "initialGzip": 56100,
-    "totalGzip": 68500
+    "initialGzip": 31200,
+    "totalGzip": 49200
   },
   "react-bridge": {
-    "initialGzip": 57600,
-    "totalGzip": 69900
+    "initialGzip": 32600,
+    "totalGzip": 50700
   }
 }

@@ -1,0 +1,113 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CONFIG_INVALID messages > in development builds 1`] = `
+{
+  "appId as a number": "CONFIG_INVALID
+Invalid configuration:
+appId: Invalid input: expected string, received number",
+  "appId over 40 characters": "CONFIG_INVALID
+Invalid configuration:
+appId: must match /^[a-z0-9-]{1,40}$/",
+  "appId with spaces and capitals": "CONFIG_INVALID
+Invalid configuration:
+appId: must match /^[a-z0-9-]{1,40}$/",
+  "custom transport without a factory": "CONFIG_INVALID
+Invalid configuration:
+transport.create: must be a function",
+  "empty object": "CONFIG_INVALID
+Invalid configuration:
+appId: Invalid input: expected string, received undefined
+features: Invalid input: expected record, received undefined",
+  "enabled as a string": "CONFIG_INVALID
+Invalid configuration:
+features.kanban.enabled: Invalid input: expected boolean, received string",
+  "feature without enabled": "CONFIG_INVALID
+Invalid configuration:
+features.kanban.enabled: Invalid input: expected boolean, received undefined",
+  "features as an array": "CONFIG_INVALID
+Invalid configuration:
+features: Invalid input: expected record, received array",
+  "features missing": "CONFIG_INVALID
+Invalid configuration:
+features: Invalid input: expected record, received undefined",
+  "locale too short, messages and debug of the wrong type": "CONFIG_INVALID
+Invalid configuration:
+locale: Too small: expected string to have >=2 characters
+messages.en.hello: Invalid input: expected string, received number
+debug: Invalid input: expected boolean, received string",
+  "reconnect numbers out of range": "CONFIG_INVALID
+Invalid configuration:
+transport.reconnect.factor: Too small: expected number to be >=1
+transport.reconnect.jitter: Too big: expected number to be <=1
+transport.reconnect.maxQueue: Too small: expected number to be >=0",
+  "rest storage without baseUrl": "CONFIG_INVALID
+Invalid configuration:
+storage.baseUrl: Invalid input: expected string, received undefined",
+  "static auth with an empty user": "CONFIG_INVALID
+Invalid configuration:
+auth.user.id: Too small: expected string to have >=1 characters
+auth.user.name: Too small: expected string to have >=1 characters",
+  "theme mode and token names": "CONFIG_INVALID
+Invalid configuration:
+theme.mode: Invalid option: expected one of "light"|"dark"|"auto"
+theme.tokens.color: Invalid key in record",
+  "unknown auth type": "CONFIG_INVALID
+Invalid configuration:
+auth.type: Invalid discriminator value. Expected 'static' | 'guest' | 'custom'",
+  "unknown storage type": "CONFIG_INVALID
+Invalid configuration:
+storage.type: Invalid discriminator value. Expected 'memory' | 'local' | 'indexeddb' | 'rest' | 'custom'",
+  "unknown transport type": "CONFIG_INVALID
+Invalid configuration:
+transport.type: Invalid discriminator value. Expected 'none' | 'local' | 'websocket' | 'custom'",
+  "uploads maxBytes not an integer": "CONFIG_INVALID
+Invalid configuration:
+uploads.maxBytes: Invalid input: expected int, received number",
+  "websocket url without ws://": "CONFIG_INVALID
+Invalid configuration:
+transport.url: must start with ws:// or wss://",
+}
+`;
+
+exports[`CONFIG_INVALID messages > in production builds 1`] = `
+{
+  "appId as a number": "CONFIG_INVALID
+Invalid configuration:
+appId: Invalid input: expected string, received number",
+  "appId over 40 characters": "CONFIG_INVALID
+Invalid configuration:
+appId: must match /^[a-z0-9-]{1,40}$/",
+  "appId with spaces and capitals": "CONFIG_INVALID
+Invalid configuration:
+appId: must match /^[a-z0-9-]{1,40}$/",
+  "custom transport without a factory": "(accepted)",
+  "empty object": "CONFIG_INVALID
+Invalid configuration:
+appId: Invalid input: expected string, received undefined
+features: Invalid input: expected record, received undefined",
+  "enabled as a string": "(accepted)",
+  "feature without enabled": "(accepted)",
+  "features as an array": "CONFIG_INVALID
+Invalid configuration:
+features: Invalid input: expected record, received array",
+  "features missing": "CONFIG_INVALID
+Invalid configuration:
+features: Invalid input: expected record, received undefined",
+  "locale too short, messages and debug of the wrong type": "(accepted)",
+  "reconnect numbers out of range": "(accepted)",
+  "rest storage without baseUrl": "(accepted)",
+  "static auth with an empty user": "(accepted)",
+  "theme mode and token names": "(accepted)",
+  "unknown auth type": "CONFIG_INVALID
+Invalid configuration:
+auth.type: Invalid discriminator value. Expected 'static' | 'guest' | 'custom'",
+  "unknown storage type": "CONFIG_INVALID
+Invalid configuration:
+storage.type: Invalid discriminator value. Expected 'memory' | 'local' | 'indexeddb' | 'rest' | 'custom'",
+  "unknown transport type": "CONFIG_INVALID
+Invalid configuration:
+transport.type: Invalid discriminator value. Expected 'none' | 'local' | 'websocket' | 'custom'",
+  "uploads maxBytes not an integer": "(accepted)",
+  "websocket url without ws://": "(accepted)",
+}
+`;

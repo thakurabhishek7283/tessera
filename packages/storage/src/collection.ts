@@ -8,7 +8,7 @@ import {
   TesseraError,
   type Unsubscribe,
 } from '@tessera-kit/core';
-import type { z } from 'zod';
+import { type core, safeParse } from 'zod/mini';
 
 /** A typed, validated view of one storage collection. */
 export interface Collection<T> {
@@ -33,7 +33,7 @@ const NAME = /^[a-z][a-z0-9-]*\.[A-Za-z0-9_.-]+$/;
 export function createCollection<T>(
   ctx: Pick<TesseraContext, 'storage' | 'logger'>,
   name: string,
-  schema: z.ZodType<T>,
+  schema: core.$ZodType<T>,
 ): Collection<T> {
   if (!NAME.test(name)) {
     throw new TesseraError(
@@ -43,7 +43,7 @@ export function createCollection<T>(
   }
 
   const parse = (doc: Doc<unknown>): Doc<T> | null => {
-    const result = schema.safeParse(doc.data);
+    const result = safeParse(schema, doc.data);
     if (result.success) return { ...doc, data: result.data };
     ctx.logger.warn(
       `dropping invalid document ${name}/${doc.id}\n${formatIssues('', result.error.issues)}`,
@@ -63,7 +63,7 @@ export function createCollection<T>(
       return { items, ...(page.nextCursor ? { nextCursor: page.nextCursor } : {}) };
     },
     async put(doc) {
-      const result = schema.safeParse(doc.data);
+      const result = safeParse(schema, doc.data);
       if (!result.success) {
         throw new TesseraError(
           'VALIDATION',

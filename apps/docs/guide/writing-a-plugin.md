@@ -8,7 +8,9 @@ A plugin is an object with an id, an options schema, and a `setup` function. Thi
 
 ### What each part does
 
-**`configSchema`.** Options are validated with zod when the feature is set up. The schema must accept `{ enabled: true }` alone, so every other field needs a default. A mistake is reported with its path, for example `features.hello.step: expected number`.
+**`configSchema`.** Options are validated with zod when the feature is set up. The schema must accept `{ enabled: true }` alone, so every other field needs a default. A mistake is reported with its path, for example `features.hello.step: Invalid input: expected number, received string`.
+
+Use [`zod/mini`](https://zod.dev/packages/mini) for anything that ships to the browser, as above: it is about a quarter of the size of classic `zod` (6.5 KB against 24.7 KB gzip for a config-like schema). Describe options with `.check(z.describe('…'))` so documentation generators can read them. zod/mini carries no message catalog, so in production builds a wrong option reads `Invalid input` (still with its path); development builds load the English messages with core's config schema.
 
 **`requires`.** `['transport', 'storage']` makes setup fail with a clear message if the host did not configure them. You can also require another feature's service by id (`requires: ['editor']`) or list soft dependencies in `optional`. The host orders setup accordingly and detects cycles.
 

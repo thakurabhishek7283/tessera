@@ -33,7 +33,7 @@ The kits live in their own repositories and depend only on these packages: [tess
 
 - **Configuration-driven.** `features: { chat: { enabled: true } }`. Enable and disable at runtime; elements show and hide themselves.
 - **Lazy by construction.** Plugins are loaded through `() => import(...)` and only for enabled features.
-- **Validated everywhere.** Config, feature options, stored documents and wire frames go through zod, and errors name the offending path.
+- **Validated everywhere.** Config, feature options, stored documents and wire frames go through zod (`zod/mini` at run time), and errors name the offending path. The full config schema runs in development builds and stays out of production bundles.
 - **Swappable adapters** for auth, transport, storage and uploads, with one shared behaviour contract that every storage adapter passes.
 - **Works offline.** The local transport and IndexedDB storage make demos run without a server, and tabs stay in sync.
 - **Accessible primitives.** Keyboard-operable menus, dialogs and form controls; colour tokens checked for WCAG 2.2 AA in light and dark; axe-core in the component tests.
