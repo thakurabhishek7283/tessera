@@ -13,6 +13,7 @@ import { getDefaultInstance, isDefaultInstance } from './default-instance.js';
 import { observeLazyTags } from './lazy-define.js';
 import { interpolate, uiMessages } from './messages.js';
 import { installTokens } from './theme.js';
+import { version } from './version.js';
 
 const catalogged = new WeakSet<TesseraContext>();
 
@@ -30,6 +31,12 @@ export abstract class TesseraElement extends LitElement {
   static override properties: PropertyDeclarations = {
     tessera: { attribute: false },
   };
+
+  /**
+   * The version of the package that ships the element, reported when two copies define the same
+   * tag. Kits set it to their own version on each element class.
+   */
+  static tesseraVersion: string = version;
 
   /** Explicit instance; wins over any `<tessera-root>`. */
   tessera?: TesseraInstance;

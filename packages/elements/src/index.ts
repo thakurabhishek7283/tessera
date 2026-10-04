@@ -68,3 +68,4 @@ export { TesseraRoot } from './root.js';
 export { baseStyles, focusRing, visuallyHidden } from './styles.js';
 export { applyTheme, installTokens } from './theme.js';
 export { tokensCss } from './tokens.generated.js';
+export { version } from './version.js';

@@ -29,6 +29,8 @@ class MyKit extends TesseraElement {
 
 ## Defining elements
 
+`defineElement(tag, ctor)` defines a tag once, even if the module is evaluated twice. If a *different* class already holds the tag (two copies of a kit on one page), the first definition stays and development builds warn once per pair of versions, using each class's `static tesseraVersion`.
+
 `lazyDefine(tag, loader)` defines a tag the first time an element with it is connected instead of up front. One shared `MutationObserver` watches the document; `TesseraElement` checks its own shadow root after its first render (document observers can't see inside shadow roots), and elements already on the page when the tag is registered are found too.
 
 ```ts
@@ -37,7 +39,7 @@ lazyDefine('my-widget', () => import('./widget.js').then((m) => m.MyWidget)); //
 await whenLazyDefined('tessera-inbox');                         // resolves when defined, rejects if the loader failed
 ```
 
-`observeLazyTags(shadowRoot)` watches another shadow root (one that isn't a `TesseraElement`'s) the same way.
+`observeLazyTags(shadowRoot)` watches another shadow root (one that isn't a `TesseraElement`'s) the same way. `version` is this package's version.
 
 ## Primitives
 
