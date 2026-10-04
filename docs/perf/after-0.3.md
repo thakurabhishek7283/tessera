@@ -4,16 +4,16 @@ Measured on 2026-10-04 with `pnpm budget` (production builds, `process.env.NODE_
 
 | Page | Initial gzip before | Initial gzip after | Total gzip before | Total gzip after | Budget (initial / total) |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| `base` | 30.2 KB | 30.9 KB | 47.8 KB | 48.5 KB | 31.2 / 49.2 KB (unchanged) |
-| `react-bridge` | 31.6 KB | 32.3 KB | 49.2 KB | 49.8 KB | 32.6 / 50.7 KB (unchanged) |
+| `base` | 30.2 KB | 31.0 KB | 47.8 KB | 48.5 KB | 31.2 / 49.2 KB (unchanged) |
+| `react-bridge` | 31.6 KB | 32.3 KB | 49.2 KB | 49.9 KB | 32.6 / 50.7 KB (unchanged) |
 
 The base page is still under the plan's 32 KB target. Nothing in `tessera` got smaller, so no budget moves; none had to go up either.
 
-## Where the 0.7 KB went
+## Where the 0.8 KB went
 
 | Change | Gzip, minified on its own | Why it is on every page |
 | --- | ---: | --- |
-| `lazyDefine` (`lazy-define.ts`) | 0.87 KB (about 0.6 KB inside the page) | `TesseraElement` checks its shadow root for lazily defined tags after its first render, so the module is part of the base class |
+| `lazyDefine` (`lazy-define.ts`) | 0.93 KB (about 0.7 KB inside the page) | `TesseraElement` checks its shadow root for lazily defined tags after its first render, so the module is part of the base class |
 | Version constants and `static tesseraVersion` | < 0.1 KB | |
 | Core singleton registration | < 0.1 KB | Production builds keep the registration and drop the warning |
 
@@ -26,7 +26,7 @@ The savings are in the kits: pages that render only some of a kit's elements sto
 | Package | Before | After | Limit |
 | --- | ---: | ---: | ---: |
 | `@tessera-kit/core` | 6.10 kB | 6.16 kB | 6.5 kB |
-| `@tessera-kit/elements` (`define`) | 14.20 kB | 14.78 kB | 15 kB |
+| `@tessera-kit/elements` (`define`) | 14.20 kB | 14.87 kB | 15 kB |
 
 ## Development detection
 
