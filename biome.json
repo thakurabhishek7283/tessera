@@ -14,7 +14,8 @@
       "!**/.vitepress/dist",
       "!pnpm-lock.yaml",
       "!**/*.generated.ts",
-      "!**/tessera-config.schema.json"
+      "!**/tessera-config.schema.json",
+      "!packages/manifest/test/fixtures"
     ]
   },
   "formatter": {
@@ -53,7 +54,7 @@
   },
   "overrides": [
     {
-      "includes": ["packages/*/src/**", "apps/playground/src/**"],
+      "includes": ["packages/*/src/**", "!packages/manifest/**", "apps/playground/src/**"],
       "linter": {
         "rules": {
           "style": {
@@ -61,7 +62,8 @@
               "level": "error",
               "options": {
                 "paths": {
-                  "zod": "Runtime code uses 'zod/mini' (ADR 5). Classic zod is for build-time tools only."
+                  "zod": "Runtime code uses 'zod/mini' (ADR 5). Classic zod is for build-time tools only.",
+                  "@tessera-kit/manifest": "The manifest generator is a build-time tool. Runtime packages and the playground must not import it."
                 }
               }
             }

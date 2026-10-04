@@ -1,0 +1,20 @@
+{
+  "name": "@fixture/kit",
+  "version": "1.2.3",
+  "description": "A fixture kit for the generator tests.",
+  "type": "module",
+  "exports": {
+    ".": { "import": "./dist/index.js" },
+    "./elements": { "import": "./dist/elements/index.js" },
+    "./elements/*": { "import": "./dist/elements/tags/*.js" },
+    "./react": { "import": "./dist/react/index.js" }
+  },
+  "peerDependencies": { "@tessera-kit/core": "^0.1.0" },
+  "tessera": {
+    "manifest": {
+      "category": "workspace",
+      "exclude": ["fixture-internal"],
+      "docs": { "useWhen": ["testing the generator"] }
+    }
+  }
+}

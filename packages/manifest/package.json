@@ -1,0 +1,51 @@
+{
+  "name": "@tessera-kit/manifest",
+  "version": "0.0.0",
+  "description": "Build-time generator, schema and drift check for Tessera kit manifests (tessera.manifest.json)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thakurabhishek7283/tessera.git",
+    "directory": "packages/manifest"
+  },
+  "author": "Abhishek Thakur",
+  "type": "module",
+  "sideEffects": false,
+  "bin": {
+    "tessera-manifest": "./bin/tessera-manifest.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./manifest.schema.json": "./dist/manifest.schema.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build": "tsdown && node bin/tessera-manifest.mjs schema --out dist/manifest.schema.json",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@custom-elements-manifest/analyzer": "^0.11.0",
+    "custom-elements-manifest": "1.0.0",
+    "rolldown": "1.2.12",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4"
+  }
+}

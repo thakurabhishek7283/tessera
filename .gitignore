@@ -1,5 +1,7 @@
 node_modules/
 dist/
+# A built plugin the manifest generator tests read.
+!packages/manifest/test/fixtures/kit/dist/
 external/
 .turbo/
 coverage/
