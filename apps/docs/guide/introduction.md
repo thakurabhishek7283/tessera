@@ -41,6 +41,6 @@ config ───▶ │ createTessera({ features, auth, transport, storage })   
 ## Design rules
 
 - **Kits never import other kits.** Cross-kit use goes through the [service registry](/guide/writing-a-plugin#services).
-- **Everything is validated.** Configuration, feature options, storage documents and wire messages all pass through zod schemas, and errors name the path that is wrong.
+- **Everything is validated.** Feature options, storage documents and wire messages pass through zod schemas, and errors name the path that is wrong. Development builds also check the whole configuration; production builds check the parts that would otherwise fail far from their cause and leave the full schema out of the bundle.
 - **Accessible by default.** Keyboard operation, focus management, live regions for changing content and contrast-checked colour tokens are part of the primitives, not an afterthought.
 - **Offline first.** Every kit works with `transport: { type: 'local' }` and IndexedDB storage.

@@ -34,6 +34,7 @@ Component and end-to-end tests need Chromium. Install it with `npx playwright in
 - **Elements** use tokens only (no hard-coded colours), expose `part` names on main internals, and fire kebab-case `CustomEvent`s that bubble and are composed.
 - **Accessibility** is part of done: keyboard operation, visible focus, labelled controls. Add an `expectAccessible` check to component tests.
 - **Public API changes** need a changeset: `pnpm changeset`.
+- **zod** at run time means `zod/mini`: `import * as z from 'zod/mini'`, then the functional style (`z.optional(x)`, `.check(z.minLength(1), z.describe('…'))`, `z._default(x, value)`). Lint rejects classic `'zod'` in `packages/*/src` ([ADR 5](docs/decisions/0005-zod-mini-on-the-runtime-path.md)).
 - **Page budgets** only go down. If a change has to raise one in `budgets/pages.json`, say why in the pull request. A new runtime package gets a page in `budgets/pages/` before its first release ([ADR 6](docs/decisions/0006-page-budgets-and-the-shared-peer-trigger.md)).
 
 ## Adding a UI primitive
