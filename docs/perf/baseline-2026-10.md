@@ -33,13 +33,13 @@ Lazy only: transport 4.7 KB, storage 4.1 KB, protocol 1.8 KB, idb (inside the st
 
 ## Checking the gate
 
-A temporary commit that added `export * from '@tessera-kit/storage'` to `budgets/pages/base.ts` moved storage, protocol and idb into the initial load and failed the check:
+A temporary commit (e118930, reverted in 2bdff94) that added `export * from '@tessera-kit/storage'` to `budgets/pages/base.ts` moved storage, protocol and idb into the initial load and failed the check:
 
 ```
 Page budget check failed:
-  ✖ base: initial gzip is 63.2 KB, over its budget of 56.1 KB by 7.1 KB (+12.6%).
+  ✖ base: initial gzip is 61.7 KB, over its budget of 56.1 KB by 5.6 KB (+9.9%).
 
 Lower the page cost, or raise the budget in budgets/pages.json and justify it in the pull request.
 ```
 
-The commit was then reverted.
+`pnpm budget` exited with status 1. After the revert it passes again.
