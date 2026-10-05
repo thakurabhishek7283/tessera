@@ -8,6 +8,9 @@ let counter = 0;
 /**
  * Describes the slotted element on hover and keyboard focus. The text is also exposed to assistive
  * technology through `aria-describedby`, so it is never the only way to learn something.
+ *
+ * @tessera-icon message
+ * @tessera-span 2
  */
 export class TesseraTooltip extends TesseraElement {
   static override properties: PropertyDeclarations = {

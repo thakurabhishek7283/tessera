@@ -23,6 +23,7 @@
       "import": "./dist/define.js"
     },
     "./tokens.css": "./src/tokens.css",
+    "./tessera.manifest.json": "./dist/tessera.manifest.json",
     "./package.json": "./package.json"
   },
   "files": [
@@ -36,17 +37,20 @@
     "lit": "^3.3.0"
   },
   "scripts": {
-    "build": "node scripts/sync-tokens.mjs && tsdown",
+    "build": "node scripts/sync-tokens.mjs && tsdown && tessera-manifest build",
     "dev": "tsdown --watch",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
     "test:browser": "vitest run --config vitest.browser.config.ts",
-    "sync-tokens": "node scripts/sync-tokens.mjs"
+    "sync-tokens": "node scripts/sync-tokens.mjs",
+    "manifest:check": "tessera-manifest check",
+    "manifest:update": "tessera-manifest check --update"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
+    "@tessera-kit/manifest": "workspace:*",
     "@tessera-kit/protocol": "workspace:*",
     "@tessera-kit/storage": "workspace:*",
     "@tessera-kit/transport": "workspace:*",
@@ -66,6 +70,22 @@
     },
     "@tessera-kit/transport": {
       "optional": true
+    }
+  },
+  "tessera": {
+    "manifest": {
+      "category": "primitive",
+      "plugin": false,
+      "docs": {
+        "summary": "Design tokens, <tessera-root> and the UI primitives every Tessera kit is built from: buttons, form fields, menus, dialogs, popovers, tooltips, avatars, badges and toasts.",
+        "useWhen": [
+          "a page needs a basic control (button, input, select, dialog) that matches the Tessera kits",
+          "wrapping a page in <tessera-root> to give its kit elements an instance and a theme"
+        ],
+        "avoidWhen": [
+          "the app already has a design system for basic controls; the kits work without these primitives on the page"
+        ]
+      }
     }
   }
 }

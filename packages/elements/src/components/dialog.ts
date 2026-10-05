@@ -18,6 +18,10 @@ function deepActiveElement(root: Document | ShadowRoot = document): HTMLElement 
  * @fires dialog-close - after the dialog closed
  * @slot - dialog body
  * @slot footer - actions
+ *
+ * @tessera-icon copy
+ * @tessera-method show(): void - Opens the dialog as a modal.
+ * @tessera-method close(): void - Closes the dialog.
  */
 export class TesseraDialog extends TesseraElement {
   static override properties: PropertyDeclarations = {

@@ -7,8 +7,14 @@ import { baseStyles } from '../styles.js';
  * Colour picker made of radio swatches (single choice, arrow keys move and select).
  *
  * @fires change - `{ value: string }`
+ *
+ * @tessera-icon image
+ * @tessera-span 4
+ * @tessera-editor value color
+ * @tessera-expose value {string} - The selected colour.
  */
 export class TesseraColorSwatches extends TesseraElement {
+  static override tesseraExposes: readonly string[] = ['value'];
   static formAssociated = true;
   static override properties: PropertyDeclarations = {
     colors: { attribute: false },

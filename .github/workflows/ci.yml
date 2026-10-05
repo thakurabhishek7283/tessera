@@ -37,6 +37,8 @@ jobs:
       - run: pnpm size
       - name: Page budgets (all dependencies included)
         run: pnpm budget
+      - name: Manifests match the source (public API drift check)
+        run: pnpm manifest:check
 
   browser:
     name: Component and end-to-end tests

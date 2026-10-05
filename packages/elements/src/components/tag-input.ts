@@ -9,8 +9,15 @@ let counter = 0;
  * pasted text is split on commas and new lines. Submits one form entry per tag under `name`.
  *
  * @fires change - `{ value: string[] }`
+ *
+ * @tessera-icon tag
+ * @tessera-span 6
+ * @tessera-expose value {string[]} - The current tags.
+ * @tessera-method addTags(raw: string): string[] - Adds comma-separated tags and returns the ones that were added.
+ * @tessera-method removeTag(tag: string): void - Removes a tag.
  */
 export class TesseraTagInput extends TesseraElement {
+  static override tesseraExposes: readonly string[] = ['value'];
   static formAssociated = true;
   static override properties: PropertyDeclarations = {
     label: {},

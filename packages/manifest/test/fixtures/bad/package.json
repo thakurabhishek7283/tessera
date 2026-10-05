@@ -1,0 +1,7 @@
+{
+  "name": "@fixture/bad",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": { "./elements": { "import": "./dist/elements/index.js" } },
+  "tessera": { "manifest": { "plugin": false } }
+}

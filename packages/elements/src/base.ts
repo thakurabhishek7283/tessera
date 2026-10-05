@@ -38,6 +38,13 @@ export abstract class TesseraElement extends LitElement {
    */
   static tesseraVersion: string = version;
 
+  /**
+   * Properties that bindings can observe: when one changes, the element dispatches
+   * `tessera-change` with `{ property, value }` (not bubbling, composed). Each needs an
+   * `@tessera-expose` tag so the manifest knows its type.
+   */
+  static tesseraExposes?: readonly string[];
+
   /** Explicit instance; wins over any `<tessera-root>`. */
   tessera?: TesseraInstance;
 
@@ -141,6 +148,13 @@ export abstract class TesseraElement extends LitElement {
     // A document MutationObserver cannot see into shadow roots, so after the first render each
     // element watches its own for lazily defined tags (see lazyDefine).
     if (first && this.renderRoot instanceof ShadowRoot) observeLazyTags(this.renderRoot);
+    for (const property of (this.constructor as typeof TesseraElement).tesseraExposes ?? []) {
+      if (!changed.has(property)) continue;
+      const value = (this as unknown as Record<string, unknown>)[property];
+      this.dispatchEvent(
+        new CustomEvent('tessera-change', { detail: { property, value }, composed: true }),
+      );
+    }
     // `update` (unlike `updated`) is not normally overridden, so this cannot be skipped by accident.
     // Drop subscriptions to stores the last render no longer read.
     for (const [store, off] of this.#observed) {

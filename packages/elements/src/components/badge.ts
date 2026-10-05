@@ -2,7 +2,10 @@ import { type CSSResultGroup, css, html, nothing, type PropertyDeclarations } fr
 import { TesseraElement } from '../base.js';
 import { baseStyles } from '../styles.js';
 
-/** Small status or count label. */
+/** Small status or count label. *
+ * @tessera-icon star
+ * @tessera-span 1
+ */
 export class TesseraBadge extends TesseraElement {
   static override properties: PropertyDeclarations = {
     variant: { reflect: true },

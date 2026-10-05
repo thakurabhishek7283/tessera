@@ -6,6 +6,10 @@ import { buttonStyles, TesseraButton } from './button.js';
  * native tooltip.
  *
  * @example <tessera-icon-button icon="trash" label="Delete card"></tessera-icon-button>
+ *
+ * @tessera-icon settings
+ * @tessera-span 1
+ * @tessera-editor icon icon
  */
 export class TesseraIconButton extends TesseraButton {
   static override properties: PropertyDeclarations = {

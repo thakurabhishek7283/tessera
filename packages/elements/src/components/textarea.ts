@@ -2,7 +2,11 @@ import { html, nothing, type PropertyDeclarations } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { TesseraField } from './field.js';
 
-/** Multi-line text input with optional auto-growing height. */
+/** Multi-line text input with optional auto-growing height. *
+ * @tessera-icon note
+ * @tessera-span 6
+ * @tessera-editor value textarea
+ */
 export class TesseraTextarea extends TesseraField {
   static override properties: PropertyDeclarations = {
     ...TesseraField.properties,

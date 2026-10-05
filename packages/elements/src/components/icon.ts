@@ -8,6 +8,9 @@ import { baseStyles } from '../styles.js';
  * Inline SVG icon. Decorative unless `label` is set.
  *
  * @example <tessera-icon name="plus" label="Add card"></tessera-icon>
+ *
+ * @tessera-icon smile
+ * @tessera-span 1
  */
 export class TesseraIcon extends TesseraElement {
   static override properties: PropertyDeclarations = {

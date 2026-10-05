@@ -37,6 +37,8 @@ let nextId = 0;
 /**
  * Stack of transient notifications. Errors use `role="alert"`, everything else `role="status"`,
  * so screen readers announce them. Timers pause while the pointer or keyboard focus is inside.
+ *
+ * @tessera-icon bell
  */
 export class TesseraToastRegion extends TesseraElement {
   static override properties: PropertyDeclarations = { toasts: { state: true } };

@@ -12,6 +12,10 @@ const supportsPopoverApi = (): boolean =>
  *
  * @fires popover-close - `{ reason: 'escape' | 'outside' | 'api' }` after the popover closed itself
  * @csspart panel - the floating container
+ *
+ * @tessera-icon eye
+ * @tessera-span 3
+ * @tessera-method hide(): void - Closes the popover.
  */
 export class TesseraPopover extends TesseraElement {
   static override properties: PropertyDeclarations = {
