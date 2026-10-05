@@ -16,6 +16,7 @@ export default defineConfig({
       'lit',
       'lit/directives/unsafe-svg.js',
       'lit/directives/if-defined.js',
+      'lit/static-html.js',
       '@lit/context',
       'vitest/browser',
       'zod',

@@ -3,6 +3,7 @@ import type { TesseraInstance, Unsubscribe } from '@tessera-kit/core';
 import { type CSSResultGroup, css, html, LitElement, type PropertyDeclarations } from 'lit';
 import { tesseraContext } from './context.js';
 import { applyTheme, installTokens } from './theme.js';
+import { version } from './version.js';
 
 /**
  * Provides a Tessera instance to every element inside it and applies theme and token overrides.
@@ -13,6 +14,9 @@ import { applyTheme, installTokens } from './theme.js';
  */
 export class TesseraRoot extends LitElement {
   static override properties: PropertyDeclarations = { tessera: { attribute: false } };
+
+  /** Reported when two copies define the tag; see `TesseraElement.tesseraVersion`. */
+  static tesseraVersion: string = version;
 
   static override styles: CSSResultGroup = css`
     :host {

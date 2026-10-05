@@ -11,7 +11,7 @@ The kit repositories bundle their private `@tessera-internal/*` packages into ea
 ## Decision
 
 - Every repository measures **pages**: realistic entry files in `budgets/pages/*.ts`, bundled by `scripts/page-budget.mjs` with rolldown the way an app would bundle them (minified ESM, code splitting on, every dependency included except the host framework, `react` and `react-dom`).
-- The report gives, per page, the initial load (entry chunk plus static imports) in gzip and brotli, the total with lazy chunks, the top 10 packages by bytes and every package that appears more than once. It's printed as Markdown and written to `budgets/report.json`.
+- The report gives, per page, the initial load (entry chunk plus static imports, plus chunks loaded by an `import()` that runs at module evaluation, since those download on every page too) in gzip and brotli, the total with lazy chunks, the top 10 packages by bytes and every package that appears more than once. It's printed as Markdown and written to `budgets/report.json`.
 - `pnpm budget` runs in CI after `build` and fails when a page is over its limit in `budgets/pages.json`, when a page has no budget or when a budget has no page.
 - Budgets start at the measured baseline plus 3% (`docs/perf/baseline-2026-10.md`) and only go down. Raising one needs a reason in the pull request.
 - When a realistic composed page carries two or more copies of the same internal package, that package is promoted to a published peer (`@tessera-kit/shared`) with its own changeset and size limit. Promotion follows measurement, not taste.

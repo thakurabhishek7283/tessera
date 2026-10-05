@@ -49,6 +49,12 @@ export {
 } from './default-instance.js';
 export { defineElement } from './define-element.js';
 export { ICONS, iconNames, registerIcons } from './icons.js';
+export {
+  type LazyLoader,
+  lazyDefine,
+  observeLazyTags,
+  whenLazyDefined,
+} from './lazy-define.js';
 export { interpolate, uiMessages } from './messages.js';
 export {
   computePosition,
@@ -62,3 +68,4 @@ export { TesseraRoot } from './root.js';
 export { baseStyles, focusRing, visuallyHidden } from './styles.js';
 export { applyTheme, installTokens } from './theme.js';
 export { tokensCss } from './tokens.generated.js';
+export { version } from './version.js';
