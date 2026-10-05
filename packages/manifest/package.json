@@ -1,6 +1,6 @@
 {
   "name": "@tessera-kit/manifest",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Build-time generator, schema and drift check for Tessera kit manifests (tessera.manifest.json)",
   "license": "MIT",
   "repository": {

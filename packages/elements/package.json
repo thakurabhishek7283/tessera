@@ -1,6 +1,6 @@
 {
   "name": "@tessera-kit/elements",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Lit base element, design tokens and UI primitives for Tessera kits",
   "license": "MIT",
   "repository": {
@@ -61,8 +61,8 @@
     "zod": "^4.6.5"
   },
   "peerDependencies": {
-    "@tessera-kit/storage": "^0.1.0",
-    "@tessera-kit/transport": "^0.1.0"
+    "@tessera-kit/storage": "^0.1.1",
+    "@tessera-kit/transport": "^0.1.1"
   },
   "peerDependenciesMeta": {
     "@tessera-kit/storage": {
