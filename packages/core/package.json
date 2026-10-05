@@ -1,6 +1,6 @@
 {
   "name": "@tessera-kit/core",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Plugin host, config, event bus, services, store, history, i18n and adapter contracts",
   "license": "MIT",
   "repository": {

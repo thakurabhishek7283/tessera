@@ -1,6 +1,6 @@
 {
   "name": "@tessera-kit/protocol",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Wire protocol and REST DTO schemas shared by Tessera clients and servers",
   "license": "MIT",
   "repository": {

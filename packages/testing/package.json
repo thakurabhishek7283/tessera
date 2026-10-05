@@ -1,6 +1,6 @@
 {
   "name": "@tessera-kit/testing",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "FakeHub, fake clock and fixtures for testing Tessera kits",
   "license": "MIT",
   "repository": {

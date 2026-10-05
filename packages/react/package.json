@@ -1,6 +1,6 @@
 {
   "name": "@tessera-kit/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React bridge: provider and hooks for Tessera",
   "license": "MIT",
   "repository": {
