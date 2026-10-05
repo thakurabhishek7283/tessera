@@ -38,6 +38,10 @@ Component and end-to-end tests need Chromium. Install it with `npx playwright in
 - **zod** at run time means `zod/mini`: `import * as z from 'zod/mini'`, then the functional style (`z.optional(x)`, `.check(z.minLength(1), z.describe('…'))`, `z._default(x, value)`). Lint rejects classic `'zod'` in `packages/*/src` ([ADR 5](docs/decisions/0005-zod-mini-on-the-runtime-path.md)).
 - **Page budgets** only go down. If a change has to raise one in `budgets/pages.json`, say why in the pull request. A new runtime package gets a page in `budgets/pages/` before its first release ([ADR 6](docs/decisions/0006-page-budgets-and-the-shared-peer-trigger.md)).
 
+## Releases
+
+Merging changesets into `main` makes the Release workflow open a "Version Packages" pull request. Merging that pull request releases: the workflow publishes to npm (when `NPM_TOKEN` is set) and tags every bumped package as `<package>@<version>` (for example `@tessera-kit/core@0.2.0`) on the commit that bumped it, with `scripts/release-tags.mjs`. Don't create release tags by hand. To pin another repository to a release, use one of these tags as its `deps.json` `ref`.
+
 ## Adding a UI primitive
 
 1. Create `packages/elements/src/components/<name>.ts` extending `TesseraElement` (`featureId = null`).
