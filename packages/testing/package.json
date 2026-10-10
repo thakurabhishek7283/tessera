@@ -37,7 +37,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/node": "^24",
+    "@types/node": "^26",
     "zod": "^4.6.5"
   }
 }
