@@ -55,9 +55,9 @@
     "@tessera-kit/storage": "workspace:*",
     "@tessera-kit/transport": "workspace:*",
     "@types/node": "^26.6.4",
-    "@vitest/browser-playwright": "^5.0.3",
+    "@vitest/browser-playwright": "^5.0.4",
     "axe-core": "^4.13.0",
-    "playwright": "^1.63.0",
+    "playwright": "^1.64.1",
     "zod": "^4.6.5"
   },
   "peerDependencies": {
